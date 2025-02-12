@@ -15,7 +15,7 @@ export default function Land() {
                     <div
                         className="absolute inset-0 text-5xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
                         <div className="block">HOW TO GET</div>
-                        <div className="text-9xl font-semibold text-green-500">INSURED</div>
+                        <div className="text-9xl font-semibold text-green-500 ml-7">INSURED</div>
                     </div>
 
                     <Navbar/>
