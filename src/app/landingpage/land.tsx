@@ -14,8 +14,8 @@ export default function Land() {
                     <img src="/images/dollars.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-25 "/>
 
 <div className="absolute inset-0 text-6xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
-<div className="block z-10">HOW TO GET</div>
-<div className="text-[175px] font-semibold text-green-600 ml-7 z-50">INSURED</div>
+<div className="block z-10">WANT TO GET</div>
+<div className="text-[175px] font-bold tracking-wider text-green-600 ml-16 z-50">INSURED?</div>
 </div>
 
 <Navbar />
