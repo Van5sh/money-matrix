@@ -1,6 +1,9 @@
 "use client"
 import Navbar from "@/app/components/navbar";
 import Image from "next/image";
+import SignInButton from "@/app/components/buttons/singin";
+import {SignOut} from "@/app/firebase/auth";
+import SignOutButton from "@/app/components/buttons/signout";
 
 
 export default function Land() {
@@ -8,6 +11,7 @@ export default function Land() {
         <>
 
             <div>
+                <Navbar/>
                 <div className="relative h-screen">
 
                     <img src="/images/dollars.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-25 "/>
@@ -16,9 +20,10 @@ export default function Land() {
                         className="absolute inset-0 text-5xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
                         <div className="block">HOW TO GET</div>
                         <div className="text-9xl font-semibold text-green-500 ml-7">INSURED</div>
+                        <SignInButton/>
+                        <SignOutButton/>
                     </div>
 
-                    <Navbar/>
                 </div>
             </div>
             <div className="p-10">
