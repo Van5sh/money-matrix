@@ -28,7 +28,7 @@ export default function Nav() {
     <>
       <div
         className={`fixed top-0 left-0 w-screen transition-colors duration-300 ${
-          scrolling ? "bg-green-700 bg-opacity-70 rounded-lg" : "bg-transparent"
+          scrolling ? "bg-green-900 bg-opacity-70 rounded-lg" : "bg-transparent"
         }`}
       >
         <div className="flex gap-4 justify-between font-mono text-green-50 font-medium m-6 p-4 text-xl pb-4">

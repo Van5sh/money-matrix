@@ -1,6 +1,7 @@
 "use client"
 import Navbar from "@/app/components/navbar";
 import Image from "next/image";
+import Footer from "@/app/components/footer";
 
 
 
@@ -13,9 +14,9 @@ export default function Land() {
 
 <img src="/images/dollars.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-25 " />
 
-<div className="absolute inset-0 text-5xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
-<div className="block">HOW TO GET</div>
-<div className="text-9xl font-semibold text-green-500 ml-7">INSURED</div>
+<div className="absolute inset-0 text-6xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
+<div className="block z-10">HOW TO GET</div>
+<div className="text-[175px] font-semibold text-green-600 ml-7 z-50">INSURED</div>
 </div>
 
 <Navbar />
@@ -25,7 +26,9 @@ export default function Land() {
 <div className="text-5xl text-green-50 ">
      BMI
 </div>
+
 </div>
+<Footer/>
 
 
 
