@@ -1,9 +1,9 @@
 "use client"
 import Navbar from "@/app/components/navbar";
-import Image from "next/image";
-import SignInButton from "@/app/components/buttons/singin";
-import {SignOut} from "@/app/firebase/auth";
-import SignOutButton from "@/app/components/buttons/signout";
+// import Image from "next/image";
+// import SignInButton from "@/app/components/buttons/singin";
+// import {SignOut} from "@/app/firebase/auth";
+// import SignOutButton from "@/app/components/buttons/signout";
 
 import Footer from "@/app/components/footer";
 export default function Page() {
