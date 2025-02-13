@@ -1,6 +1,7 @@
-"use client";
-import { useState, useEffect } from "react";
-import { Bitcoin, House, LogIn, Info } from "lucide-react";
+"use client"
+import { useState,useEffect } from 'react';
+import {Bitcoin, House, LogIn, Info} from 'lucide-react';
+import Link from "next/link";
 
 export default function Nav() {
   const [scrolling, setScrolling] = useState(false);
