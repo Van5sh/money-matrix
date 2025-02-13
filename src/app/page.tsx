@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Land from "@/app/landingpage/land";
+import Page from "@/app/landingpage/page";
 
 export default function Home() {
   return (
-    <Land />
+    <Page />
   );
 }
