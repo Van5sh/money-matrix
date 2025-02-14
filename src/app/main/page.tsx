@@ -12,7 +12,7 @@ export default function Page() {
                 <SignOutButton />
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <h1 className="text-6xl font-bold">MONEY MATRIX</h1>
+                <h1 className="text-6xl text-green-400 font-bold">MONEY MATRIX</h1>
                 <div>
 
                 </div>
