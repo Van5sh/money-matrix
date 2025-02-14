@@ -9,14 +9,14 @@ export default function SignOutButton() {
     const handleSignOut = async () => {
         try {
             await signOutUser();
-            router.push("/"); // Adjust this route if your landing page is at a different path
+            router.push("/");
         } catch (error) {
             console.error("Error signing out:", error);
         }
     };
 
     return (
-        <button onClick={handleSignOut} className="border-2 p-6 rounded-full">
+        <button onClick={handleSignOut} className="text-green-400 border-2 p-6 rounded-full">
             SignOut
         </button>
     );

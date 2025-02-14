@@ -23,7 +23,7 @@ export default function SignInButton() {
     return (
         <>
             <button
-                className="border-white border-4 text-black p-4 text-2xl rounded-full w-[15vw]"
+                className="border-green-400 border-4 text-green-400 p-4 text-2xl m-2 rounded-full w-60"
                 onClick={handleSignIn}
                 disabled={loading}
             >
