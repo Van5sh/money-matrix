@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/app/components/navbar";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
@@ -9,7 +9,6 @@ export default function Page() {
     return (
         <>
             <div>
-                <Navbar />
                 <div className="relative h-screen">
                     <div className="absolute inset-0 text-6xl font-sans text-green-200 flex flex-col justify-center items-center gap-10">
                         <div className="block z-10">HOW TO GET</div>

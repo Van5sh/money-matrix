@@ -9,8 +9,11 @@ const firebaseConfig = {
     messagingSenderId:"214583048917",
     appId:"1:214583048917:web:537e67471b860e4044405c",
 };
-const app =!getApps().length ? initializeApp(firebaseConfig) : getApp();
+const app =initializeApp(firebaseConfig);
 
 const auth=getAuth(app);
 
-export {auth,app};
+const user=auth.currentUser;
+// sessionStorage.setItem("user", JSON.stringify(user));
+
+export {auth,app,user};

@@ -2,16 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { signInUser } from "@/app/firebase/auth";
+import {UserAuth} from "@/app/context/AuthContext";
 
 export default function SignInButton() {
     const router = useRouter();
     const [loading,setLoading]=useState(false);
+    const {googleSignIn}=UserAuth();
 
     const handleSignIn = async () => {
         try {
-            await signInUser();
-
+            await googleSignIn();
             router.push("/main");
         } catch (error) {
             console.error("Sign in failed:", error);
