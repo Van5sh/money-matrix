@@ -21,15 +21,25 @@ export default function Navbar() {
                         <Info className="inline mr-2 mb-1" /> About Us
                     </Link>
                 </li>
-
                 {!user ? (
                     <>
 
                     </>
                 ) : (
                     <>
+                        <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                            Insurance Plans
+                        </li>
+                        <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                            Resources
+                        </li>
+                        <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                            <Link href="#">
+                                <Info className="inline mr-2 mb-1" /> Contact Us
+                            </Link>
+                        </li>
                         <li>
-
+                            Calculator
                         </li>
                         <button className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full" onClick={logOut}>
                             Log Out
