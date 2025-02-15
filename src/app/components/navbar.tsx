@@ -23,11 +23,16 @@ export default function Navbar() {
                 </li>
 
                 {!user ? (
-                    <></>
+                    <>
+
+                    </>
                 ) : (
                     <>
-                        <button onClick={logOut} className="text-green-400 border-2 p-6 rounded-full">
-                            logOut
+                        <li>
+
+                        </li>
+                        <button className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full" onClick={logOut}>
+                            Log Out
                         </button>
                     </>
                 )}

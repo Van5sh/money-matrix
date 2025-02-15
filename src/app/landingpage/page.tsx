@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import Footer from "@/app/components/footer";
+import SignInButton from "@/app/components/buttons/singin";
 
 export default function Page() {
     return (
@@ -15,6 +16,7 @@ export default function Page() {
                         <div className="text-[175px] font-semibold text-green-600 ml-7 z-50">
                             INSURED
                         </div>
+                        <SignInButton/>
                     </div>
                 </div>
             </div>
