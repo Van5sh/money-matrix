@@ -1,6 +1,6 @@
 "use client";
 
-import {House, ShieldCheck,Boxes, Calculator,LogOut} from "lucide-react";
+import {House, ShieldCheck, Boxes, Calculator, LogOut} from "lucide-react";
 import Link from "next/link";
 import {UserAuth} from "@/app/context/AuthContext";
 
@@ -35,8 +35,7 @@ export default function Navbar() {
                         {/*</li>*/}
                         <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
                             <Link href="/calculator">
-                                <Calculator className="inline mr-2 mb-1"/>
-                                Calculator
+                                <Calculator className="inline mr-2 mb-1"/> Calculator
                             </Link>
                         </li>
                         <li>
@@ -44,7 +43,7 @@ export default function Navbar() {
                                 onClick={logOut}
                                 className="bg-red-500 hover:bg-red-700 transition-all px-4 py-2 rounded-lg"
                             >
-                                <LogOut className="inline mr-2 mb-1" />
+                                <LogOut className="inline mr-2 mb-1"/>
                                 Log Out
                             </button>
                         </li>
