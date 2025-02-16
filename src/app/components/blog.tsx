@@ -11,7 +11,7 @@ interface BlogProps {
     onLike: () => void;
 }
 
-const Blog: React.FC<BlogProps> = ({title, user, content, createdAt, likes}) => {
+const Blog: React.FC<BlogProps> = ({title, user, content, createdAt, likes,onLike}) => {
     const [liked, setLiked] = React.useState(false);
     const handleLike = () => {
         console.log("Liked");
