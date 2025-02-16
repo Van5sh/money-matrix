@@ -13,7 +13,5 @@ const app =initializeApp(firebaseConfig);
 
 const auth=getAuth(app);
 
-const user=auth.currentUser;
-// sessionStorage.setItem("user", JSON.stringify(user));
 
-export {auth,app,user};
+export {auth,app};

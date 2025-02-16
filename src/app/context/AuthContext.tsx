@@ -21,6 +21,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
+            console.log(user);
         } catch (error) {
             console.error("Google Sign-In Error:", error);
         }
