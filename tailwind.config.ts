@@ -9,6 +9,13 @@ export default {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			anton: ["var(--font-anton)", "sans-serif"],
+			bebas: ["var(--font-bebas-neue)", "sans-serif"],
+			oswald: ["var(--font-oswald)", "sans-serif"],
+			bangers: ["var(--font-bangers)", "cursive"],
+			
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
