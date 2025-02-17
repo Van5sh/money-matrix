@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import Blog from "@/app/components/blog";
 import {UserAuth} from "@/app/context/AuthContext";
+import "../globals.css";
 import {Newspaper } from "lucide-react"
 
 export default function Page() {
@@ -103,6 +104,14 @@ export default function Page() {
                     {/*</button>*/}
                 </div>
                 <div className="flex flex-col w-full max-w-sm gap-6">
+                    <div className="w-full max-w-md bg-white rounded-lg shadow-green-300 shadow-lg overflow-hidden">
+                        <div className="bg-green-700 text-white text-xl font-bold px-6 py-4 flex items-center gap-2">
+                            <Newspaper className="w-6 h-6" /> Latest News
+                        </div>
+                        <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
+                            No latest News
+                        </div>
+                    </div>
                     <div className="bg-green-900 w-full max-w-md p-6 rounded-lg self-start text-white shadow-lg">
                         <h1 className="text-xl font-bold mb-4 text-center">🔥 TOP BLOGS</h1>
                         <div className="space-y-4">
@@ -111,14 +120,6 @@ export default function Page() {
                                     <h2 className="text-lg font-semibold">{blog.title}</h2>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                    <div className="w-full max-w-md bg-white rounded-lg shadow-green-300 shadow-lg overflow-hidden">
-                        <div className="bg-green-700 text-white text-xl font-bold px-6 py-4 flex items-center gap-2">
-                            <Newspaper className="w-6 h-6" /> Latest News
-                        </div>
-                        <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
-                            No latest News
                         </div>
                     </div>
                 </div>

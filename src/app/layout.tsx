@@ -3,7 +3,7 @@ import { Inter, Roboto, Poppins, Montserrat, Lato, Nunito,Geist, Geist_Mono, Ant
 import type {Metadata} from "next";
 import {AuthContextProvider} from "@/app/context/AuthContext";
 import Navbar from "@/app/components/navbar";
-import "./globals.css";
+
 
 
 const geistSans = Geist({
@@ -58,7 +58,7 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable}  ${anton.variable} 
                     ${bebasNeue.variable} 
                     ${oswald.variable} 
-                    ${bangers.variable} antialiased min-h-screen`}
+                    ${bangers.variable} antialiased min-h-screen  `}
             >
             <AuthContextProvider>
                 <Navbar/>

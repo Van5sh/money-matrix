@@ -1,6 +1,6 @@
 "use client";
 
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {House, ShieldCheck,LogOut, Boxes, Calculator, User } from "lucide-react";
 import Link from "next/link";
 import "../globals.css";
@@ -13,13 +13,21 @@ export default function Navbar() {
     const handleOpen = () => {
         setOpen(!Open);
     }
+    useEffect(() => {
+        const toggleButton = document.getElementById("dark-mode-toggle");
+        if (toggleButton) {
+            toggleButton.addEventListener("click", () => {
+                document.body.classList.toggle("dark-mode");
+            });
+        }
+    }, []);
     const handleClose = async() => {
         setOpen(false);
         await logOut();
     }
 
     return (
-        <nav className="bg-green-600 p-6 text-white font-bold">
+        <nav className="bg-green-600  p-6 text-white font-bold">
             <ul className="flex flex-row gap-10 justify-end items-center">
                 {user && (
                     <>
