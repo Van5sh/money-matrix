@@ -11,28 +11,7 @@ import SignInButton from "@/app/components/buttons/singin";
 
 export default function Page() {
     return (
-        <>
-            {/* <div>
-                <div className="relative h-screen">
-
-                    <img src="/images/dollars.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-25 "/>
-
-                <div className="absolute inset-0 text-6xl font-sans text-green-50  flex flex-col justify-center items-center gap-10 ">
-                <div className="block z-10 font-oswald">WANT TO GET</div>
-                <div className="text-[175px] font-bold text-green-600 ml-16 z-50 tracking-wider font-bangers">INSURED?</div>
-                </div>
-
-<Navbar />
-</div>
-</div>
-<div className="p-10">
-<div className="text-5xl text-green-50 ">
-     BMI
-</div>
-
-</div>
-<Footer/> */}
-                   
+        <>         
                    <div className="relative h-screen">
                    <img src="/images/dollars.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-25 "/>
 
@@ -46,19 +25,46 @@ export default function Page() {
                     <Navbar/>
 
                    </div>
+                   <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}
+                className="  text-white grid grid-cols-4 "
+            >
+             <div className="bg-gradient-to-bl from-green-700  to-green-500  grid grid-cols-4 gap-4 col-span-3 p-10 transition-all duration-200 hover:z-40  hover:shadow-2xl hover:shadow-green-400   ">
+  <div className=""></div>
+  <div className="text-center text-pretty font-mono font-semibold text-2xl col-span-2 min-h-[50vh] flex justify-center items-center  ">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe neque veritatis, suscipit, esse repellendus quibusdam ratione, nostrum nam velit nemo magnam dolorem dolor voluptas maxime illum natus exercitationem. Quod, hic.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, recusandae itaque. Quia harum, asperiores obcaecati eum rem blanditiis! Dolore commodi cupiditate accusantium eius facilis. Adipisci vel voluptate mollitia et maiores!
+  </div>
+  <div></div>
+  <div></div>
+</div>
+<div className="relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center border-white   ">
+<img src="/images/aboutusnew.jpg" alt="Dollars" className="w-full  h-full object-cover opacity-45 "/>
+<h1 className="absolute">
+                    ABOUT US  
+                    </h1>
+</div>
+             
+            </motion.div>
+
                    
 
             <motion.div
                 initial={{ backgroundColor: "#FFFFFF", opacity: 0 }}
-                whileInView={{ backgroundColor: "#43A047", opacity: 1 }}
+                whileInView={{ backgroundColor: "#1B5E20", opacity: 1 }}
                 transition={{ duration: 1.5 }}
-                className="p-10 pl-6  text-white flex flex-row"
+                className=" text-white grid grid-cols-4 min-h-[45vh]"
             >
-                <h1 className="font-medium font-oswald text-6xl border-r-[1px] flex justify-center items-center border-white  pr-8 mr-6">
-                    ABOUT US  
-                </h1>
+                <div className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center border-white   ">
+<img src="/images/feature.avif" alt="Dollars" className="w-full  h-full object-cover opacity-45 "/>
+<h1 className="absolute">
+                    FEATURES  
+                    </h1>
+</div>
 
-                <div className="flex flex-row gap-10 p-10 pt-12 justify-center items-center">
+                <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-start items-center col-span-3 bg-gradient-to-br from-green-700  to-green-500  transition-all duration-200 hover:z-40  hover:shadow-2xl hover:shadow-green-400 ">
                     <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -71,7 +77,7 @@ export default function Page() {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, staggerChildren: 0.2 }}
-                        className="space-y-6"
+                        className="space-y-6 pl-8 "
                     >
                         {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
                             (text, index) => (
@@ -80,9 +86,12 @@ export default function Page() {
                                     initial={{ x: 50, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ duration: 0.5 + index * 0.2 }}
-                                    className="text-3xl font-mono font-medium relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full"
+                                    className="text-3xl font-mono font-medium relative pb-2 text-white"
                                 >
-                                    {text}
+                                  <button className="transition-all duration-100 ease-in-out hover:scale-110 hover:text-cyan-500">
+                                  {text}
+                                  </button>
+                                    
                                 </motion.h1>
                             )
                         )}

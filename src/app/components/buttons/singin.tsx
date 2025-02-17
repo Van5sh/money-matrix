@@ -24,7 +24,7 @@ export default function SignInButton() {
     return (
         <>
             <button
-                className="border-green-600 bg-green-950  border-[1.5px]  text-green-50 p-4 text-2xl m-2 rounded-full w-60  ease-in-out duration-500 hover:bg-opacity-20 hover:text-white "
+                className="border-green-600 bg-green-950 hover:bg-opacity-100 hover:scale-110  border-[1.5px]  text-green-50 p-4 text-2xl m-2 rounded-full w-60  ease-in-out duration-500 bg-opacity-20 hover:text-white "
                 onClick={handleSignIn}
                 disabled={loading}
             >

@@ -28,7 +28,7 @@ export default function Navbar() {
   return (
     <div
       className={`fixed top-0 left-0 w-screen transition-colors duration-300 ${
-        scrolling ? "bg-green-800 shadow-lg bg-opacity-65 rounded-lg" : "bg-transparent"
+        scrolling ? "bg-green-600 shadow-lg bg-opacity-65 rounded-lg" : "bg-transparent"
       }`}
     >
       <div className="flex gap-4 justify-between font-mono text-green-50 font-medium m-4 p-4 text-xl pb-4 py-6">
