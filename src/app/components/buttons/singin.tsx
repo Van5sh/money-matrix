@@ -1,27 +1,37 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { signInUser } from "@/app/firebase/auth";
+import { useState } from "react";
+import {UserAuth} from "@/app/context/AuthContext";
+import { LogIn } from 'lucide-react';
 
 export default function SignInButton() {
     const router = useRouter();
+    const [loading,setLoading]=useState(false);
+    const {googleSignIn}=UserAuth();
 
     const handleSignIn = async () => {
         try {
-            await signInUser();
-            // Redirect to the main page after successful sign in.
-            router.push("/main"); // Adjust this path if your main page route is different.
+            await googleSignIn();
+            router.push("/main");
         } catch (error) {
             console.error("Sign in failed:", error);
+            setLoading(false);
         }
+        setLoading(true);
     };
 
     return (
-        <button
-            className="border-green-900 border-2 p-4 text-2xl rounded-full w-[15vw]"
-            onClick={handleSignIn}
-        >
-            Sign In
-        </button>
+        <>
+            <button
+                className="border-green-600 bg-green-950  border-[1.5px]  text-green-50 p-4 text-2xl m-2 rounded-full w-60  ease-in-out duration-500 hover:bg-opacity-20 hover:text-white "
+                onClick={handleSignIn}
+                disabled={loading}
+            >
+                <div><LogIn className="inline mr-2 mb-1"/> Sign In</div>
+                
+            </button>
+            {loading && <p>Loading...</p> }
+        </>
     );
 }

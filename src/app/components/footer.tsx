@@ -25,18 +25,18 @@ function Footer() {
                         </div>
                         <ul className="font-mono leading-8 text-lg">
                             <li className="pb-4 text-xl font-semibold text-green-50 opacity-90"><span className="pr-1"><Linkedin className="inline-block pb-1" /></span>LINKEDIN</li>
-                            <li className="text-green-50"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vansh Dhir</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vibhor Kataria</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Aditya Mishra</button></li>
+                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vansh Dhir</button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vibhor Kataria</button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Aditya Mishra</button></li>
                         </ul>
                         <div className="invisible">
                             hello
                         </div>
                         <ul className="font-mono leading-8 text-lg ">
                             <li className="pb-4 text-xl font-semibold text-green-50 opacity-90"><span className="pr-1"><Instagram className="inline-block pb-1" /></span>SOCIALS</li>
-                            <li className="text-green-50"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>vansh_277</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>viberrrr</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration:400 hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>aditya_fatneek</button></li>
+                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>vansh_277</button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>viberrrr</button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>aditya_fatneek</button></li>
                         </ul>
                         <div className="invisible">
                             hello

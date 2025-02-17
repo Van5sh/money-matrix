@@ -1,5 +1,8 @@
-import type { Metadata } from "next";
+
 import { Inter, Roboto, Poppins, Montserrat, Lato, Nunito,Geist, Geist_Mono, Anton, Bebas_Neue, Oswald, Bangers } from "next/font/google";
+import type {Metadata} from "next";
+import {AuthContextProvider} from "@/app/context/AuthContext";
+import Navbar from "@/app/components/navbar";
 import "./globals.css";
 
 
@@ -49,20 +52,18 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
+
         <html lang="en">
             <body
-                className={`
-                    ${geistSans.variable} 
-                    ${geistMono.variable} 
-                    ${anton.variable} 
+                className={`${geistSans.variable} ${geistMono.variable}  ${anton.variable} 
                     ${bebasNeue.variable} 
                     ${oswald.variable} 
-                    ${bangers.variable} 
-                    antialiased min-h-screen 
-                    bg-gradient-to-br from-green-950 to-green-800
-                `}
+                    ${bangers.variable} antialiased min-h-screen bg-gradient-to-br from-green-950 to-green-800 `}
             >
+            <AuthContextProvider>
+                <Navbar/>
                 {children}
+            </AuthContextProvider>
             </body>
         </html>
     );
