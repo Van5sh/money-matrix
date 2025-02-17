@@ -58,7 +58,7 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable}  ${anton.variable} 
                     ${bebasNeue.variable} 
                     ${oswald.variable} 
-                    ${bangers.variable} antialiased min-h-screen bg-gradient-to-br from-green-950 to-green-800 `}
+                    ${bangers.variable} antialiased min-h-screen`}
             >
             <AuthContextProvider>
                 <Navbar/>
