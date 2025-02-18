@@ -33,7 +33,7 @@ export default function Page() {
         <div className="flex-1 bg-white bg-opacity-30 p-5 rounded-lg backdrop-blur-md">
           <p className="text-lg font-semibold">User Information</p>
           {user ? (
-            <p className="mt-3">Welcome, {user.displayName}</p>
+            <p className="mt-3">Welcome , {user.displayName}</p>
           ) : (
             <p className="mt-3">Please log in to access personalized insights.</p>
           )}
