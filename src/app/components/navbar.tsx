@@ -1,6 +1,6 @@
 "use client";
 
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {House, ShieldCheck,LogOut, Boxes, Calculator, User } from "lucide-react";
 import Link from "next/link";
 import "../globals.css";
@@ -13,9 +13,21 @@ export default function Navbar() {
     const handleOpen = () => {
         setOpen(!Open);
     }
+    useEffect(() => {
+        const toggleButton = document.getElementById("dark-mode-toggle");
+        if (toggleButton) {
+            toggleButton.addEventListener("click", () => {
+                document.body.classList.toggle("dark-mode");
+            });
+        }
+    }, []);
+    const handleClose = async() => {
+        setOpen(false);
+        await logOut();
+    }
 
     return (
-        <nav className="bg-green-600 p-6 text-white font-bold">
+        <nav className="bg-green-600  p-6 text-white font-bold">
             <ul className="flex flex-row gap-10 justify-end items-center">
                 {user && (
                     <>
@@ -63,13 +75,13 @@ export default function Navbar() {
                             {Open && (
                                 <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-green-500 text-white rounded-lg shadow-lg py-2 z-10 w-48">
                                     <li className=" hover:bg-green-700 transition-all px-4 py-2 rounded-lg">
-                                        <button >
+                                        <button onClick={()=>{console.log("hhhb")}} >
                                             {user?.displayName}
                                         </button>
                                     </li>
                                     <li>
                                         <button
-                                            onClick={logOut}
+                                            onClick={handleClose}
                                             className="bg-red-500 hover:bg-red-700 transition-all px-4 py-2 rounded-lg"
                                         >
                                             <LogOut className="inline mr-2 mb-1"/>

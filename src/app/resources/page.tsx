@@ -1,18 +1,80 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Blog from "@/app/components/blog";
-import { UserAuth } from "@/app/context/AuthContext";
+import {UserAuth} from "@/app/context/AuthContext";
+import "../globals.css";
+import {Newspaper } from "lucide-react"
 
 export default function Page() {
-    const { user } = UserAuth();
+    const {user} = UserAuth();
     const currentUser = user?.displayName || "Guest";
 
+    const news = [
+        {
+            id: 1,
+            title: "Next.js 14 Released with New Features",
+            content: "The latest version of Next.js introduces improvements in performance, streaming, and partial prerendering.",
+            date: "2025-02-18",
+            source: "TechCrunch"
+        },
+        {
+            id: 2,
+            title: "React Native 0.74 Brings Faster Builds",
+            content: "The React Native team has optimized the bundler and improved support for Fabric, enhancing performance for developers.",
+            date: "2025-02-17",
+            source: "React Blog"
+        },
+        {
+            id: 3,
+            title: "Tailwind CSS v4 Beta Released",
+            content: "The new version of Tailwind introduces a smaller CSS footprint, dynamic themes, and better JIT compilation.",
+            date: "2025-02-15",
+            source: "CSS Weekly"
+        },
+        {
+            id: 4,
+            title: "AI in Web Development: Trends for 2025",
+            content: "Developers are increasingly leveraging AI for code completion, UI generation, and performance optimization.",
+            date: "2025-02-14",
+            source: "Hacker News"
+        }
+    ];
+
+
     const initialBlogs = [
-        { id: 1, title: "My First Blog", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Morbi vitae pharetra orci. Duis eget vehicula ipsum, at dapibus lorem.", createdAt: new Date(), user: currentUser, likes: 0 },
-        { id: 2, title: "A Day in React Native", content: "Vestibulum vitae libero vitae sapien cursus accumsan. Sed vulputate lacus eu risus rhoncus, non ultrices justo condimentum.", createdAt: new Date(), user: currentUser, likes: 0 },
-        { id: 3, title: "Understanding Next.js", content: "Curabitur faucibus tortor id nulla tristique, sed ornare mauris vehicula. Proin convallis dui ut ligula accumsan posuere.", createdAt: new Date(), user: currentUser, likes: 0 },
-        { id: 4, title: "CSS Tips & Tricks", content: "Aliquam erat volutpat. Aenean sodales varius justo nec sollicitudin. Etiam vestibulum sapien sed felis interdum vulputate.", createdAt: new Date(), user: currentUser, likes: 0 }
+        {
+            id: 1,
+            title: "My First Blog",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Morbi vitae pharetra orci. Duis eget vehicula ipsum, at dapibus lorem.",
+            createdAt: new Date(),
+            user: currentUser,
+            likes: 0
+        },
+        {
+            id: 2,
+            title: "A Day in React Native",
+            content: "Vestibulum vitae libero vitae sapien cursus accumsan. Sed vulputate lacus eu risus rhoncus, non ultrices justo condimentum.",
+            createdAt: new Date(),
+            user: currentUser,
+            likes: 0
+        },
+        {
+            id: 3,
+            title: "Understanding Next.js",
+            content: "Curabitur faucibus tortor id nulla tristique, sed ornare mauris vehicula. Proin convallis dui ut ligula accumsan posuere.",
+            createdAt: new Date(),
+            user: currentUser,
+            likes: 0
+        },
+        {
+            id: 4,
+            title: "CSS Tips & Tricks",
+            content: "Aliquam erat volutpat. Aenean sodales varius justo nec sollicitudin. Etiam vestibulum sapien sed felis interdum vulputate.",
+            createdAt: new Date(),
+            user: currentUser,
+            likes: 0
+        }
     ];
 
     const [blogs, setBlogs] = useState(initialBlogs);
@@ -20,7 +82,7 @@ export default function Page() {
     const handleLike = (id: number) => {
         setBlogs((prevBlogs) =>
             prevBlogs.map((blog) =>
-                blog.id === id ? { ...blog, likes: blog.likes + 1 } : blog
+                blog.id === id ? {...blog, likes: blog.likes + 1} : blog
             )
         );
     };
@@ -34,21 +96,31 @@ export default function Page() {
                 <div className="flex flex-col items-center justify-center flex-1">
                     <div className="w-full max-w-2xl flex flex-col gap-6">
                         {blogs.map((blog) => (
-                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)} />
+                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)}/>
                         ))}
                     </div>
                     {/*<button className="bg-green-900 text-white px-5 py-3 rounded-lg mt-6 hover:bg-green-800 transition">*/}
                     {/*    Load More*/}
                     {/*</button>*/}
                 </div>
-                <div className="bg-green-900 w-full max-w-sm p-6 rounded-lg self-start text-white shadow-lg">
-                    <h1 className="text-xl font-bold mb-4 text-center">🔥 TOP BLOGS</h1>
-                    <div className="space-y-4">
-                        {topBlogs.map((blog) => (
-                            <div key={blog.id} className="border-b border-white pb-3 last:border-0">
-                                <h2 className="text-lg font-semibold">{blog.title}</h2>
-                            </div>
-                        ))}
+                <div className="flex flex-col w-full max-w-sm gap-6">
+                    <div className="w-full max-w-md bg-white rounded-lg shadow-green-300 shadow-lg overflow-hidden">
+                        <div className="bg-green-700 text-white text-xl font-bold px-6 py-4 flex items-center gap-2">
+                            <Newspaper className="w-6 h-6" /> Latest News
+                        </div>
+                        <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
+                            No latest News
+                        </div>
+                    </div>
+                    <div className="bg-green-900 w-full max-w-md p-6 rounded-lg self-start text-white shadow-lg">
+                        <h1 className="text-xl font-bold mb-4 text-center">🔥 TOP BLOGS</h1>
+                        <div className="space-y-4">
+                            {topBlogs.map((blog) => (
+                                <div key={blog.id} className="border-b border-white pb-3 last:border-0">
+                                    <h2 className="text-lg font-semibold">{blog.title}</h2>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
