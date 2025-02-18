@@ -23,7 +23,6 @@ export default function Page() {
                     <SignInButton/>
                 </div>
                 <Navbar/>
-
             </div>
             <motion.div
                 initial={{opacity: 0}}

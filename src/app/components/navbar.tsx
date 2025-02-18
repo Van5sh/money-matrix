@@ -56,13 +56,15 @@ export default function Navbar() {
                             <button className="flex items-center gap-2 pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
                                 <Calculator className="inline mr-2 mb-1"/> Calculator
                             </button>
-                            <ul className="absolute right-0 top-full mt-2 w-96 bg-white text-green-700 shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-2 gap-4 p-2">
-                                <li className="text-md px-4 py-1 justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">BMI Calculator</li>
-                                <li className="px-4 text-md py-1 justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">Insurance Calculator</li>
-                                <li className="px-4 py-1 text-md justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">Insurance Calculator</li>
-                                <li className="px-4 py-1 text-md justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">Insurance Calculator</li>
-                                <li className="px-4 py-1 text-md justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">Insurance Calculator</li>
-                                <li className="px-4 py-1 text-md justify-center hover:bg-green-500 hover:text-white rounded-md cursor-pointer">Insurance Calculator</li>
+                            <ul className="shadow-green-950 absolute right-0 top-full mt-2 w-96 bg-white text-green-700 shadow-lg rounded-lg opacity-0 invisible font-bold group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-1 gap-2 p-2">
+                                <li className="text-md px-4 py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
+                                    <Link href="../calculator/bmi_calculator">
+                                        BMI Calculator
+                                    </Link>
+                                </li>
+                                <li className="px-4 text-md py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Insurance Calculator</li>
+                                <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Child Life Calculator</li>
+                                <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Term Insurance Calculator</li>
                             </ul>
                         </li>
                         <li className="group relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
@@ -73,7 +75,7 @@ export default function Navbar() {
                                 Profile
                             </div>
                             {Open && (
-                                <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-green-500 text-white rounded-lg shadow-lg py-2 z-10 w-48">
+                                <ul className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 mr-2 bg-green-500 text-white rounded-lg shadow-lg py-2 z-10 w-48">
                                     <li className=" hover:bg-green-700 transition-all px-4 py-2 rounded-lg">
                                         <button onClick={()=>{console.log("hhhb")}} >
                                             {user?.displayName}
