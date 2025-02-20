@@ -52,7 +52,7 @@ export default function Navbar() {
                         {/*        <Info className="inline mr-2 mb-1"/> Contact Us*/}
                         {/*    </Link>*/}
                         {/*</li>*/}
-                        <li className="relative group pb-0 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                        <li className="relative z-10 group pb-0 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
                             <button className="flex items-center gap-2 pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
                                 <Calculator className="inline mr-2 mb-1"/> Calculator
                             </button>

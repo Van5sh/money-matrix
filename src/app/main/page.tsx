@@ -6,7 +6,6 @@ import main from "../../../public/main.svg"
 
 export default function Page() {
   const { user } = UserAuth();
-
   return (
       <div className="relative h-screen flex justify-center items-center text-white backdrop-blur-md">
         <Image
@@ -18,7 +17,7 @@ export default function Page() {
             className="z-0"
         />
         <div className="mb-6">
-            <Image src="../../../public/circular_logo.png" alt="Money Matrix Logo" width={150} height={150} />
+          {/*<Image src="../../../public/circular_logo.png" alt="Money Matrix Logo" width={150} height={150} />*/}
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-80 p-8 rounded-2xl w-4/5 max-w-3xl flex shadow-lg z-10">
           <div className="flex-2 pr-6">
