@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     if (user) {
-      router.push("/dashboard"); // Redirect to dashboard or any other authenticated page
+      router.push("/main");
     }
   }, [user, router]);
 
