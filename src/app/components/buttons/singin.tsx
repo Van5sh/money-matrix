@@ -16,7 +16,7 @@ export default function SignInButton() {
             await googleSignIn();
             await axios.post("/api/user", {
                 name:user?.displayName,
-                email:user?.email
+                email:user?.email,
             });
             router.push("/main");
         } catch (error) {
@@ -34,7 +34,6 @@ export default function SignInButton() {
                 disabled={loading}
             >
                 <div><LogIn className="inline mr-2 mb-1"/> Sign In</div>
-                
             </button>
             {loading && <p>Loading...</p> }
         </>
