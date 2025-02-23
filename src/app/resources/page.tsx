@@ -1,46 +1,15 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import Blog from "@/app/components/blog";
-import {UserAuth} from "@/app/context/AuthContext";
+import { UserAuth } from "@/app/context/AuthContext";
 import "../globals.css";
-import {Newspaper } from "lucide-react"
+import { Newspaper } from "lucide-react";
+import {news} from "@/app/constants/news"
 
 export default function Page() {
-    const {user} = UserAuth();
+    const { user } = UserAuth();
     const currentUser = user?.displayName || "Guest";
-
-    const news = [
-        {
-            id: 1,
-            title: "Next.js 14 Released with New Features",
-            content: "The latest version of Next.js introduces improvements in performance, streaming, and partial prerendering.",
-            date: "2025-02-18",
-            source: "TechCrunch"
-        },
-        {
-            id: 2,
-            title: "React Native 0.74 Brings Faster Builds",
-            content: "The React Native team has optimized the bundler and improved support for Fabric, enhancing performance for developers.",
-            date: "2025-02-17",
-            source: "React Blog"
-        },
-        {
-            id: 3,
-            title: "Tailwind CSS v4 Beta Released",
-            content: "The new version of Tailwind introduces a smaller CSS footprint, dynamic themes, and better JIT compilation.",
-            date: "2025-02-15",
-            source: "CSS Weekly"
-        },
-        {
-            id: 4,
-            title: "AI in Web Development: Trends for 2025",
-            content: "Developers are increasingly leveraging AI for code completion, UI generation, and performance optimization.",
-            date: "2025-02-14",
-            source: "Hacker News"
-        }
-    ];
-
 
     const initialBlogs = [
         {
@@ -78,11 +47,26 @@ export default function Page() {
     ];
 
     const [blogs, setBlogs] = useState(initialBlogs);
+    const [newsData, setNews] = useState<any[]>();
+    useEffect(() => {
+        setNews(news)
+        // const getNews = async () => {
+        //     try {
+        //         const request = await fetch("http://localhost:3000/api/getnews");
+        //         const data = await request.json();
+        //         setNews(data);
+        //     } catch (error) {
+        //         console.error("News Error:", error);
+        //     }
+        // };
+        //
+        // getNews();
+    }, []);
 
     const handleLike = (id: number) => {
         setBlogs((prevBlogs) =>
             prevBlogs.map((blog) =>
-                blog.id === id ? {...blog, likes: blog.likes + 1} : blog
+                blog.id === id ? { ...blog, likes: blog.likes + 1 } : blog
             )
         );
     };
@@ -90,18 +74,15 @@ export default function Page() {
     const topBlogs = [...blogs].sort((a, b) => b.likes - a.likes).slice(0, 3);
 
     return (
-        <div className="flex flex-col gap-6 p-6 items-center justify-center min-h-screen bg-gray-50 overflow-auto ">
+        <div className="flex flex-col gap-6 p-6 items-center justify-center min-h-screen bg-gray-50 overflow-auto">
             <h1 className="text-4xl font-bold text-green-900 mb-4">Latest Blogs</h1>
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl">
                 <div className="flex flex-col items-center justify-center flex-1">
                     <div className="w-full max-w-2xl flex flex-col gap-6">
                         {blogs.map((blog) => (
-                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)}/>
+                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)} />
                         ))}
                     </div>
-                    {/*<button className="bg-green-900 text-white px-5 py-3 rounded-lg mt-6 hover:bg-green-800 transition">*/}
-                    {/*    Load More*/}
-                    {/*</button>*/}
                 </div>
                 <div className="flex flex-col w-full max-w-sm gap-6">
                     <div className="w-full max-w-md bg-white rounded-lg shadow-green-300 shadow-lg overflow-hidden">
@@ -109,7 +90,16 @@ export default function Page() {
                             <Newspaper className="w-6 h-6" /> Latest News
                         </div>
                         <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
-                            No latest News
+                            {/*{news.length > 0 ? (*/}
+                            {/*    news.map((article, index) => (*/}
+                            {/*        <div key={index} className="border-b border-green-200 pb-3 last:border-0">*/}
+                            {/*            <h2 className="text-lg font-semibold">{article.title}</h2>*/}
+                            {/*            <p className="text-sm">{article.description}</p>*/}
+                            {/*        </div>*/}
+                            {/*    ))*/}
+                            {/*) : (*/}
+                            {/*    <p>Loading news...</p>*/}
+                            {/*)}*/}
                         </div>
                     </div>
                     <div className="bg-green-900 w-full max-w-md p-6 rounded-lg self-start text-white shadow-lg">

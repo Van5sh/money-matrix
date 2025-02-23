@@ -116,7 +116,6 @@ export default function Navbar() {
     // Toggle dropdown
     const handleOpen = () => setOpen((prev) => !prev);
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -133,13 +132,18 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="bg-green-600 p-6 text-white font-bold">
+        <nav className="z-10 bg-green-600 p-6 text-white font-bold">
             <ul className="flex flex-row gap-10 justify-end items-center">
                 {user && (
                     <>
                         <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
                             <Link href="/main">
                                 <House className="inline mr-2 mb-1" /> Home
+                            </Link>
+                        </li>
+                        <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                            <Link href="/chat">
+                                <ShieldCheck className="inline mr-2 mb-1" /> Insurance Plans11
                             </Link>
                         </li>
                         <li className="relative pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
@@ -152,20 +156,20 @@ export default function Navbar() {
                                 <Boxes className="inline mr-2 mb-1" /> Resources
                             </Link>
                         </li>
-                            <li className="relative z-10 group pb-0 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
-                                 <button className="flex items-center gap-2 pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
-                                     <Calculator className="inline mr-2 mb-1"/> Calculator
-                                 </button>
-                                 <ul className="shadow-green-950 absolute right-0 top-full mt-2 w-96 bg-white text-green-700 shadow-lg rounded-lg opacity-0 invisible font-bold group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-1 gap-2 p-2">
-                                     <li className="text-md px-4 py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
-                                         <Link href="../calculator/bmi_calculator">
-                                             BMI Calculator
-                                         </Link>
-                                     </li>
-                                     <li className="px-4 text-md py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Insurance Calculator</li>
-                                    <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Child Life Calculator</li>
-                                     <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Term Insurance Calculator</li>
-                                 </ul>
+                        <li className="relative z-10 group pb-0 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                            <button className="flex items-center gap-2 pb-2 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500 hover:before:w-full">
+                                <Calculator className="inline mr-2 mb-1"/> Calculator
+                            </button>
+                            <ul className="shadow-green-950 absolute right-0 top-full mt-2 w-96 bg-white text-green-700 shadow-lg rounded-lg opacity-0 invisible font-bold group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-1 gap-2 p-2">
+                                <li className="text-md px-4 py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
+                                    <Link href="../calculator/bmi_calculator">
+                                        BMI Calculator
+                                    </Link>
+                                </li>
+                                <li className="px-4 text-md py-1 shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Insurance Calculator</li>
+                                <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Child Life Calculator</li>
+                                <li className="px-4 py-1 text-md shadow-green-800 justify-center hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">Term Insurance Calculator</li>
+                            </ul>
                         </li>
                         <li className="relative">
                             <button
@@ -178,7 +182,7 @@ export default function Navbar() {
                             {open && (
                                 <div
                                     ref={dropdownRef}
-                                    className="absolute right-0 mt-3 bg-white text-gray-800 rounded-xl shadow-lg py-3 w-56 border border-gray-200 transform transition-all duration-300 opacity-100 scale-100 origin-top-right"
+                                    className="absolute z-10 right-0 mt-3 bg-white text-gray-800 rounded-xl shadow-lg py-3 w-56 border border-gray-200 transform transition-all duration-300 opacity-100 scale-100 origin-top-right"
                                 >
                                     <div className="px-5 pb-3 text-sm text-gray-500 border-b border-gray-200">
                                         <span className="block font-semibold text-gray-800 mt-1">{user?.displayName || "Profile"}</span>
@@ -197,7 +201,6 @@ export default function Navbar() {
                                 </div>
                             )}
                         </li>
-
                     </>
                 )}
             </ul>
