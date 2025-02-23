@@ -3,17 +3,18 @@
 import { UserAuth } from "@/app/context/AuthContext";
 import { useEffect } from "react";
 import Image from "next/image";
+import axios from "axios";
 
 const Page = () => {
     const { user } = UserAuth();
 
     useEffect(() => {
         console.log(user?.metadata);
-    }, [user]); // Added `user` as a dependency
+    }, [user]);
 
     return (
         <div className="flex flex-col items-center justify-center gap-4 p-4 bg-gray-50">
-            <div className="flex flex-row w-[75vw] h-[80vh] bg-gray-50 border-green-500 border-4 rounded-xl items-center justify-center p-4">
+            <div className="flex flex-row w-[75vw] h-[80vh] bg-gray-50 border-green-900 border-4 rounded-xl items-center justify-center p-4">
                 <div className="flex flex-col gap-4 bg-green-800 left-0">
                     {user?.photoURL ? (
                         <img

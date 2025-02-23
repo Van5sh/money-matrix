@@ -15,6 +15,7 @@ export default function SignInButton() {
         try {
             await googleSignIn();
             await axios.post("/api/user", {
+                id:user?.uid,
                 name:user?.displayName,
                 email:user?.email,
             });
