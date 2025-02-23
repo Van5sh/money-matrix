@@ -5,7 +5,7 @@ import Blog from "@/app/components/blog";
 import { UserAuth } from "@/app/context/AuthContext";
 import "../globals.css";
 import { Newspaper } from "lucide-react";
-import {news} from "@/app/constants/news"
+import { news } from "@/app/constants/news"
 
 export default function Page() {
     const { user } = UserAuth();
