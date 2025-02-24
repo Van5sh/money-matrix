@@ -6,19 +6,23 @@ import {UserAuth} from "@/app/context/AuthContext";
 import { LogIn } from 'lucide-react';
 import axios from "axios";
 
+
 export default function SignInButton() {
     const router = useRouter();
     const [loading,setLoading]=useState(false);
+
     const {user,googleSignIn}=UserAuth();
 
     const handleSignIn = async () => {
         try {
             await googleSignIn();
+            console.log("Hello");
             await axios.post("/api/user", {
-                id:user?.uid,
                 name:user?.displayName,
                 email:user?.email,
             });
+            router.push("/main");
+            console.log("nigga");
             router.push("/main");
         } catch (error) {
             console.error("Sign in failed:", error);
