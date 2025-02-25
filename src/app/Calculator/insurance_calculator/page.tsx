@@ -20,12 +20,17 @@ export default function Page(){
 
     return(
         <div>
+            {/*current yearly expenses multiplied by the rate and raise to the power of the difference between the retirement age and the current age */}
             <form>
-                <p>Weight</p>
+                <p>Current Age</p>
                 <input className="border-2 rosunded-lg" type="number" value={weight} onChange={(e)=>{setWeight(e.target.valueAsNumber)}} />
-                <p>Height</p>
+                <p>Retirement Age</p>
                 <input className="border-2 rounded-lg" type="number" value={height} onChange={(e)=>{setHeight(e.target.valueAsNumber)}} />
-                <p>Age</p>
+                <p>Yearly Inflation</p>
+                <input className="border-2 rounded-lg" />
+                <p>Monthly Expenses</p>
+                <input className="border-2 rounded-lg" />
+                <p></p>
                 <input className="border-2 rounded-lg" />
             </form>
             <button onClick={onSubmit} className="bg-green-500 text-white">Calculate BMI</button>

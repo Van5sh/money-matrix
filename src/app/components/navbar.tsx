@@ -60,18 +60,18 @@ export default function Navbar() {
                                     <Link href="../calculator/bmi_calculator">BMI Calculator</Link>
                                 </li>
                                 <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
-                                    Insurance Calculator
+                                    <Link href="../calculator/insurance_calculator">
+                                        Insurance Calculator
+                                    </Link>
                                 </li>
                                 <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
                                     Child Life Calculator
                                 </li>
                                 <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md font-bold cursor-pointer">
-                                    Term Insurance Calculator
+                                    <Link href="../calculator/retirement_calculator">Retirement Calculator</Link>
                                 </li>
                             </ul>
                         </li>
-
-                        {/* Profile Dropdown */}
                         <li className="relative">
                             <button
                                 onClick={handleOpen}
