@@ -1,12 +1,17 @@
-import mongoose from "mongoose";
+import {MongoClient,MongoClientOptions} from "mongodb";
 
+const uri = process.env.MONGODB_URI
 
-const connectDB = async () => {
-    try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/money");
-    }catch (error){
-        console.error("DB Error:",error)
-    }
+// const options: MongoClientOptions = {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+// }
+
+if (!process.env.MONGO_URL) {
+    throw new Error('Add Mongo URI to .env.local')
 }
 
-export default connectDB;
+const client = new MongoClient(uri as string);
+const clientPromise: Promise<MongoClient> = client.connect();
+
+export default clientPromise
