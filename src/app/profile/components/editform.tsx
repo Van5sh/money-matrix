@@ -12,22 +12,22 @@ const Editform: React.FC<EditformProps> = ({ formClose }) => {
     const [name, setName] = useState<string>(user?.displayName || "");
     const [email, setEmail] = useState<string>(user?.email || "");
     const [phone, setPhone] = useState<string>("");
-    const [age, setAge] = useState<number>(0);
-    const [weight, setWeight] = useState<number>(0);
-    const [height, setHeight] = useState<number>(0);
+    const [age, setAge] = useState<string>("");
+    const [weight, setWeight] = useState<string>("");
+    const [height, setHeight] = useState<string>("");
     const [address, setAddress] = useState<string>("");
     const [income, setIncome] = useState<string>("");
 
     useEffect(() => {
-        setAge(parseInt(sessionStorage.getItem("age") || "0", 10));
-        setWeight(parseInt(sessionStorage.getItem("weight") || "0", 10));
-        setHeight(parseInt(sessionStorage.getItem("height") || "0", 10));
+        setAge(sessionStorage.getItem("age")||"");
+        setWeight(sessionStorage.getItem("weight")||"");
+        setHeight(sessionStorage.getItem("height")||"");
         setAddress(sessionStorage.getItem("address") || "");
         setIncome(sessionStorage.getItem("income") || "");
     }, []);
 
     const saveProfile = () => {
-        if (!phone || age <= 0 || weight <= 0 || height <= 0 || !address || !income) {
+        if (!phone || parseInt(age) <= 0 || parseInt(weight) <= 0 || parseInt(height) <= 0 || !address || !income) {
             alert("Please fill all the fields");
             return;
         }
@@ -47,11 +47,11 @@ const Editform: React.FC<EditformProps> = ({ formClose }) => {
                 <h2 className="text-lg font-bold justify-center items-center bg-green-800 text-white rounded-t-lg p-4">Edit Profile</h2>
                 <form className="flex flex-col gap-4 overflow-y-auto p-6">
                     <label>NAME: <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} className="border p-2 rounded w-full"  /></label>
-                    <label>E-MAIL: <input type="email" onChange={(e)=>{setName(e.target.value)}} value={email} className="border p-2 rounded w-full"  /></label>
+                    <label>E-MAIL: <input type="email" readOnly value={email} className="border p-2 rounded w-full"  /></label>
                     <label>PHONE NO.: <input type="text" value={phone} className="border p-2 rounded w-full" onChange={(e)=> setPhone(e.target.value)} /></label>
-                    <label>AGE: <input type="number" value={age} onChange={(e)=> setAge(e.target.valueAsNumber || 0)} className="border p-2 rounded w-full" /></label>
-                    <label>WEIGHT: <input type="number" value={weight} onChange={(e)=> setWeight(e.target.valueAsNumber || 0)} className="border p-2 rounded w-full" /></label>
-                    <label>HEIGHT: <input type="number" value={height} onChange={(e)=> setHeight(e.target.valueAsNumber || 0)} className="border p-2 rounded w-full" /></label>
+                    <label>AGE(years):<input type="text" value={age} onChange={(e)=> setAge(e.target.value)} className="border p-2 rounded w-full" /></label>
+                    <label>WEIGHT(in kgs): <input type="text" value={weight} onChange={(e)=> setWeight(e.target.value )} className="border p-2 rounded w-full" /></label>
+                    <label>HEIGHT(in m): <input type="text" value={height} onChange={(e)=> setHeight(e.target.value)} className="border p-2 rounded w-full" /></label>
                     <label>ADDRESS: <input type="text" value={address} onChange={(e)=> setAddress(e.target.value)} className="border p-2 rounded w-full" /></label>
                     <label>INCOME(annual): <input type="text" value={income} onChange={(e)=> setIncome(e.target.value)} className="border p-2 rounded w-full" /></label>
                 </form>

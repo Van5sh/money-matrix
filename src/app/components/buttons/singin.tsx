@@ -17,10 +17,10 @@ export default function SignInButton() {
         try {
             await googleSignIn();
             console.log("Hello");
-            await axios.post("/api/user", {
-                name:user?.displayName,
-                email:user?.email,
-            });
+            // await axios.post("/api/user", {
+            //     name:user?.displayName,
+            //     email:user?.email,
+            // });
             router.push("/main");
             console.log("nigga");
             router.push("/main");

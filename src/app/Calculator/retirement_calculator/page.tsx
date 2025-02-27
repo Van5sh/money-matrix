@@ -1,6 +1,5 @@
 "use client"
 
-// import {useEffect, useState} from "react";
 import {useEffect, useState} from "react";
 
 export default function Page(){
@@ -20,6 +19,7 @@ export default function Page(){
             const expense = expenses * 12;
             setYearlyExpense(expense);
             const rate = 1 + inflation / 100;
+            setFinalRate(rate);
             const expenseAtRetirement = Math.pow((expenses * rate), retirementAge - age);
             setRequiredAtRetirement(expenseAtRetirement);
             setIsOpen(true);

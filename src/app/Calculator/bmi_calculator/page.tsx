@@ -5,11 +5,11 @@ import {useEffect, useState} from "react";
 export default function Page(){
     const [weight,setWeight]=useState<number>(0);
     const [height,setHeight]=useState<number>(0);
-    const [bm,setbmi]=useState<number>();
+    const [bm,setbmi]=useState<number>(0);
     const [isSubmi,setSubmit]=useState<boolean>(false);
     useEffect(() => {
-        setWeight(parseInt(sessionStorage.getItem("weight") || "0"));
-        setHeight(parseInt(sessionStorage.getItem("height") || "0"));
+        setWeight(parseInt(sessionStorage.getItem("weight")||"0"));
+        setHeight(parseFloat(sessionStorage.getItem("height")||"0"));
     }, []);
 
     const onSubmit=()=>{
