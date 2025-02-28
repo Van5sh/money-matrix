@@ -15,7 +15,7 @@ export default function Page() {
             <div className="relative h-screen">
 
                 <div
-                    className="absolute inset-0 text-6xl mt-16 text-green-50 flex flex-col justify-center items-center gap-10">
+                    className="absolute inset-0 text-6xl mt-15 text-green-50 flex flex-col justify-center items-center gap-10">
                     <div className="block z-10 font-oswald">WANT TO GET</div>
                     <div className="text-[200px] font-bold text-green-600 ml-14  z-50 tracking-wider font-bangers">
                         INSURED?
