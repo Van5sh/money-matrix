@@ -4,15 +4,25 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {UserAuth} from "@/app/context/AuthContext";
 import { LogIn } from 'lucide-react';
+import axios from "axios";
+
 
 export default function SignInButton() {
     const router = useRouter();
     const [loading,setLoading]=useState(false);
-    const {googleSignIn}=UserAuth();
+
+    const {user,googleSignIn}=UserAuth();
 
     const handleSignIn = async () => {
         try {
             await googleSignIn();
+            console.log("Hello");
+            // await axios.post("/api/user", {
+            //     name:user?.displayName,
+            //     email:user?.email,
+            // });
+            router.push("/main");
+            console.log("nigga");
             router.push("/main");
         } catch (error) {
             console.error("Sign in failed:", error);
@@ -29,7 +39,6 @@ export default function SignInButton() {
                 disabled={loading}
             >
                 <div><LogIn className="inline mr-2 mb-1"/> Sign In</div>
-                
             </button>
             {loading && <p>Loading...</p> }
         </>
