@@ -73,11 +73,11 @@ export default function Page() {
             initial={{ backgroundColor: "#FFFFFF" }}
             whileInView={{ backgroundColor: "#1B5E20" }}
             transition={{ duration: 1.5, delay: 0.5 }}
-            className=" text-white grid grid-cols-4 min-h-[75vh]"
+            className=" text-white grid grid-cols-5 min-h-[75vh]"
           >
             <div
-              className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center border-white   ">
-              <img src="/images/feature.avif" alt="Dollars" className="w-full  h-full object-cover opacity-45 " />
+              className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-2 ">
+              <img src="/images/feature.avif" alt="Dollars" className="w-full max-h-[75vh]  object-cover opacity-45 " />
               <h1 className="absolute">
                 FEATURES
               </h1>
@@ -85,19 +85,18 @@ export default function Page() {
 
             <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-3 bg-black  transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{scale: 1 ,x:[100,-150,120,0]}}
-                transition={{ duration: 3 }}
+                animate={{x:[-8,-8,-150,190,0]}}
+                transition={{ duration: 2.5 }}
               >
-                <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-200 text-[200px]" />
+                <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-300 text-[200px]" />
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0}}
                 whileInView={{ opacity: 1}}
-                animate={{x:[100,-150,120,0]}}
+                animate={{x:[150,-100,120,0]}}
                 transition={{ duration: 3, staggerChildren: 1}}
-                className="space-y-6 z-40  border-2 rounded-[30%] shadow-xl shadow-green-400 border-white p-20"
+                className="space-y-6 z-40  border-2 rounded-[30%] shadow-xl shadow-green-400 border-green-400 p-20"
               >
                 {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
                   (text, index) => (
@@ -109,7 +108,7 @@ export default function Page() {
                       className="text-3xl font-mono font-medium relative pb-2 text-white"
                     >
                       <button
-                        className="transition-all duration-100 ease-in-out hover:scale-110 hover:text-green-500">
+                        className="transition-all duration-150 ease-in-out hover:scale-125 hover:text-green-500">
                         {text}
                       </button>
 
@@ -206,12 +205,14 @@ export default function Page() {
                       className="overflow-hidden">
 
                       <motion.img
-                        animate={{
-                          scale: [.5, .75, .5, 1],
-                          rotate: [30, 130, 460, 0],
-                          borderRadius: ["20%", "90%", "30%", "10%"]
-                        }}
-                        transition={{ duration: 6 }}
+                        // animate={{
+                        //   scale: [.5, .75, .5, 1],
+                        //   rotate: [30, 130, 460, 0],
+                        //   borderRadius: ["20%", "90%", "30%", "10%"]
+                        // }}
+                        initial={{scale:0,opacity:0}}
+                        animate={{scale:1,opacity:1}}
+                        transition={{ duration:2 }}
                         src="/images/stock3.jpg" alt="" className="max-h-[60vh]" />
                     </motion.div>
                   </AnimatePresence>
@@ -259,7 +260,7 @@ export default function Page() {
               transition={{ duration: 0.5 }}
               className="relative min-h-[75vh] p-6 bg-black  text-white overflow-hidden"
             >
-              <img src="/images/ourpicbg.avif" className="absolute inset-0 w-full h-full object-cover opacity-35 backdrop-blur-lg" alt="" />
+              <img src="/images/ourpicbg.avif" className="absolute inset-0 w-full h-full object-cover opacity-25 backdrop-blur-lg" alt="" />
 
               <div className="absolute inset-0 flex flex-col items-center pt-4">
                 <div className="absolute inset-0 flex flex-col items-center pt-4">
@@ -269,19 +270,19 @@ export default function Page() {
                 </div>
 
                 <div className="  min-h-[600px] relative flex flex-row gap-14 pt-24 pb-4">
-                  <div className="relative max-h-[95%] group">
+                  <div className="relative max-h-[95%] group duration-700">
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
                         src="images/vanshdhir.jpg"
-                        className="absolute inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
+                        className="absolute inset-0 opacity-90 border-4 border-green-500 transition-all  duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
                         alt="Vansh Dhir"
                       />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center  bg-green-900 bg-opacity-70">
+                      <div className="absolute bottom-0 left-0 right-0 p-4  backdrop-blur-sm text-4xl group-hover:hidden text-center  bg-green-900 bg-opacity-70">
                         <div className="font-bebas text-white font-bold tracking-wider">VANSH DHIR</div>
                       </div>
                     </div>
 
-                    <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center backdrop-blur-sm text-4xl">
+                    <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center group-hover:backdrop-blur-sm text-4xl">
                       <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300">LINK</button>
                     </div>
                   </div>
@@ -289,7 +290,7 @@ export default function Page() {
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
                         src="images/vanshdhir.jpg"
-                        className="absolute inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
+                        className="absolute inset-0 border-4 border-green-500  opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
                         alt="Vansh Dhir"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
@@ -306,7 +307,7 @@ export default function Page() {
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
                         src="images/vanshdhir.jpg"
-                        className="absolute inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
+                        className="absolute border-4 border-green-500  inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
                         alt="Vansh Dhir"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
