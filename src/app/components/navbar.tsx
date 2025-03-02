@@ -240,7 +240,6 @@ export default function Navbar() {
     const [scrolling, setScrolling] = useState(false);
     const dropdownRef = useRef<HTMLUListElement>(null);
 
-    // Toggle dropdown
     const handleOpen = () => setOpen((prev) => !prev);
 
     useEffect(() => {
