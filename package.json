@@ -23,6 +23,7 @@
     "mongoose": "^8.10.1",
     "motion": "^12.4.3",
     "next": "15.1.7",
+    "next-video": "^2.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",
