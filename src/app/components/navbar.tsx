@@ -268,7 +268,7 @@ export default function Navbar() {
 
     return ( user&&(
         <div
-            className={`z-40 fixed top-0 left-0 w-screen transition-all duration-300 ${
+            className={`z-40  top-0 left-0 min-w-screen transition-all duration-300 ${
                 scrolling ? "backdrop-blur-2xl shadow-lg bg-opacity-45 rounded-lg" : ""
             }`}
         >
@@ -301,7 +301,11 @@ export default function Navbar() {
                                     <Boxes className="inline mr-2 mb-1" /> Resources
                                 </Link>
                             </li>
-
+                            <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
+                                <Link href="/chat">
+                                    <Boxes className="inline mr-2 mb-1" />Chat
+                                </Link>
+                            </li>
                             {/* Calculator Dropdown */}
                             <li className="relative group">
                                 <button className="flex items-center gap-2 pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
@@ -324,8 +328,6 @@ export default function Navbar() {
                                     </li>
                                 </ul>
                             </li>
-                            
-                            {/* User Profile Dropdown */}
                             <li className="relative">
                                 <button
                                     onClick={handleOpen}
