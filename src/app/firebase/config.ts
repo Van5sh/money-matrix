@@ -2,13 +2,13 @@ import { initializeApp,getApp,getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCeD_3VkF4aQ2fUfRlx7yrnSkex6yd22Es",
-    authDomain: "moneymatrix-e10d0.firebaseapp.com",
-    databaseURL: "https://moneymatrix-e10d0-default-rtdb.firebaseio.com",
-    projectId: "moneymatrix-e10d0",
-    storageBucket: "moneymatrix-e10d0.firebasestorage.app",
-    messagingSenderId: "214583048917",
-    appId: "1:214583048917:web:537e67471b860e4044405c"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 const app =!getApps().length ? initializeApp(firebaseConfig) : getApp();
 

@@ -78,7 +78,7 @@ export default function Page() {
             <h1 className="text-4xl font-bold text-green-900 mb-4">Latest Blogs</h1>
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl">
                 <div className="flex flex-col items-center justify-center flex-1">
-                    <div className="w-full max-w-2xl flex flex-col gap-6">
+                    <div className="w-full max-w-2xl flex flex-col gap-6 ">
                         {blogs.map((blog) => (
                             <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)} />
                         ))}
