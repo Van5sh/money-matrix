@@ -28,9 +28,8 @@ export default function Page(){
         }
     };
     return(
-        <div>
-            {/*current yearly expenses multiplied by the rate and raise to the power of the difference between the retirement age and the current age */}
-            <form className="flex flex-col space-y-4 w-full max-w-md">
+        <div className="bg-gray-800 border-green-900 shadow-2xl shadow-green-500 border-8 p-6 h-full max-w-md rounded-2xl justify-center items-center">
+            <form className="flex flex-col space-y-4 w-full  max-w-md">
                 <div className="grid grid-cols-2 items-center gap-4">
                     <label className="text-white font-medium">Current Age:</label>
                     <input
@@ -41,7 +40,7 @@ export default function Page(){
                     />
                 </div>
 
-                <div className="grid grid-cols-2 items-center gap-4">
+                <div className="grid grid-cols-2 items-center  gap-4">
                     <label className="text-white font-medium">Retirement Age:</label>
                     <input
                         value={retirementAge}
@@ -72,8 +71,10 @@ export default function Page(){
                         className=" border-2 rounded-lg p-2 w-full"
                     />
                 </div>
+                <button type="submit" className="p-3 rounded-lg bg-gray-100 text-green-400 shadow-green-400 border-green-900 border-2 w-full hover:bg-green-600 transition">
+                    Calculate Retirement Fund
+                </button>
             </form>
-            <button onClick={onSubmit} className="p-3 rounded-lg mt-4 w-[40vw] bg-green-500 text-white">Calculate The money Required at your retirement</button>
             {
                 isOpen && (
                     <div>
