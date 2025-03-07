@@ -1,4 +1,5 @@
 import Agentbox from "@/app/chat/components/agentbox";
+import Image from "next/image";
 
 export default function Page() {
     const Agents = [
