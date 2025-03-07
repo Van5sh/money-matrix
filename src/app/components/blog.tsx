@@ -21,20 +21,22 @@ const Blog: React.FC<BlogProps> = ({title, user, content, createdAt, likes,onLik
         onLike();
     }
     return (
-        <div className="flex shadow-green-300 shadow-lg flex-col border-l-8 w-full h-[40vh] bg-transparent max-w-2xl border-4 border-green-900 rounded-lg">
-            <div className="flex flex-row justify-between w-full p-4 bg-green-900">
-                <h1 className="text-2xl text-white capitalize">{title}</h1>
+        <div className=" flex shadow-green-300 shadow-lg flex-col border-l-8 w-full h-[40vh] bg-transparent max-w-2xl border-4 border-l-green-700 border-b-green-700 border-t-green-500 border-r-green-500 rounded-lg">
+            <div className="flex flex-row justify-between w-full p-4 bg-gradient-to-r from-green-700 via-emerald-400 to-green-500">
+                <h1 className="text-3xl text-white capitalize font-bebas">{title}</h1>
                 <span className="text-md text-white capitalize">{user}</span>
             </div>
-            <p className="flex-1 w-full p-4 overflow-hidden text-ellipsis">
+            {/* <div className='absolute inset-0 backdrop-blur-md'></div> */}
+            <p className="flex-1 w-full p-4 backdrop-blur-md overflow-hidden text-ellipsis font-mono ">
                 {content}
             </p>
-            <div className="flex flex-row gap-4 justify-end w-full p-2">
+            <div className="flex flex-row gap-4 backdrop-blur-md justify-end w-full p-2 ">
                 <button className={`text-sm text-gray-600transition-all ${
                     liked ? "text-green-600" : "text-gray-600"
                 }`} onClick={handleLike}><ThumbsUp/></button>
                 <span className="text-md text-gray-600">{createdAt.toLocaleDateString()}</span>
             </div>
+            
         </div>
     );
 };
