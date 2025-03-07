@@ -22,10 +22,8 @@ export default function Page() {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-900 to-black">
-            <div className="bg-white p-8 rounded-2xl shadow-xl w-96">
+            <div className="flex flex-col h-[75vh] max-w-md bg-white p-8 rounded-2xl shadow-xl justify-center items-center">
                 <h1 className="text-2xl font-bold text-green-700 text-center mb-4">BMI Calculator</h1>
-
                 <form className="space-y-4">
                     <div>
                         <label className="text-black font-medium">Weight (kg)</label>
@@ -69,6 +67,5 @@ export default function Page() {
                     </p>
                 )}
             </div>
-        </div>
     );
 }
