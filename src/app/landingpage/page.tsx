@@ -15,7 +15,7 @@ import { ChartCandlestick } from 'lucide-react';
 export default function Page() {
   const [showContent, setShowContent] = useState(false);
   const [showContent1, setShowContent1] = useState(false);
-  const[showContent2,setShowConten2]=useState(false);
+  const [showContent2, setShowConten2] = useState(false);
   const text = "STOCK MARKET".split("");
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -24,7 +24,7 @@ export default function Page() {
     <>
 
       <div className="relative h-screen scroll-smooth">
-        <img src="/images/dollars.jpg" className="absolute inset-0 w-full h-full object-cover opacity-45" alt="" />
+        <img src="/images/ruppe2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-25" alt="" />
         <div className="absolute inset-0 text-6xl mt-16 text-green-50 flex flex-col justify-center items-center gap-10">
           <div className="block z-10 font-oswald">WANT TO GET</div>
           <div className="text-[200px] font-bold text-green-600 ml-14  z-50 tracking-wider font-bangers">
@@ -41,92 +41,92 @@ export default function Page() {
 
 
       {/* Insurance */}
-      
-        <motion.div
-        onClick={()=>setShowConten2(!showContent2)}
-        >
-          <AnimatePresence mode="popLayout">
-          {!showContent2 ? ( 
+
+      <motion.div
+        onClick={() => setShowConten2(!showContent2)}
+      >
+        <AnimatePresence mode="popLayout">
+          {!showContent2 ? (
             <motion.div
-            key="insurance-card"
-            initial={{x:"-100%"}}
-            animate={{x:"0%"}}
-            exit={{x:"-100%"}}
-            transition={{duration:0.5}}
-            className="relative bg-black flex justify-center items-center overflow-hidden min-h-[75vh] group"
+              key="insurance-card"
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.5 }}
+              className="relative bg-black flex justify-center items-center overflow-hidden min-h-[75vh] group"
             >
               <img src="/images/insu9.jpg" alt="" className="absolute w-full object-cover min-h-[75vh] opacity-35 group-hover:opacity-90 group-hover:scale-125 duration-500" />
               <h1 className="absolute text-8xl text-white font-anton transition-all duration-500 group-hover:scale-150 group-hover:text-green-200 tracking-wider ">INSURANCE</h1>
 
             </motion.div>
-          ):(
-          <motion.div
-          key="About-features"
-          initial={{x:"100%"}}
-          animate={{x:"0%"}}
-          exit={{x:"100%"}}
-          transition={{duration:0.5}}
-          >
-          
-          <motion.div
-
-            initial={{ backgroundColor: "#FFFFFF" }}
-            whileInView={{ backgroundColor: "#1B5E20" }}
-            transition={{ duration: 1.5, delay: 0.5 }}
-            className=" text-white grid grid-cols-5 min-h-[75vh]"
-          >
-            <div
-              className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-2 ">
-              <img src="/images/feature.avif" alt="Dollars" className="w-full max-h-[75vh]  object-cover opacity-45 " />
-              <h1 className="absolute">
-                FEATURES
-              </h1>
-            </div>
-
-            <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-3 bg-black  transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
-              <motion.div
-                animate={{x:[-8,-8,-150,190,0]}}
-                transition={{ duration: 2.5 }}
-              >
-                <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-300 text-[200px]" />
-              </motion.div>
+          ) : (
+            <motion.div
+              key="About-features"
+              initial={{ x: "100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.5 }}
+            >
 
               <motion.div
-                initial={{ opacity: 0}}
-                whileInView={{ opacity: 1}}
-                animate={{x:[150,-100,120,0]}}
-                transition={{ duration: 3, staggerChildren: 1}}
-                className="space-y-6 z-40  border-2 rounded-[30%] shadow-xl shadow-green-400 border-green-400 p-20"
-              >
-                {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
-                  (text, index) => (
-                    <motion.h1
-                      key={index}
-                      initial={{ x: 100, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 1 + index * 0.5 }}
-                      className="text-3xl font-mono font-medium relative pb-2 text-white"
-                    >
-                      <button
-                        className="transition-all duration-150 ease-in-out hover:scale-125 hover:text-green-500">
-                        {text}
-                      </button>
 
-                    </motion.h1>
-                  )
-                )}
+                initial={{ backgroundColor: "#FFFFFF" }}
+                whileInView={{ backgroundColor: "#1B5E20" }}
+                transition={{ duration: 1.5, delay: 0.5 }}
+                className=" text-white grid grid-cols-5 min-h-[75vh]"
+              >
+                <div
+                  className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-2 ">
+                  <img src="/images/feature.avif" alt="Dollars" className="w-full max-h-[75vh]  object-cover opacity-45 " />
+                  <h1 className="absolute">
+                    FEATURES
+                  </h1>
+                </div>
+
+                <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-3 bg-black  transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
+                  <motion.div
+                    animate={{ x: [-8, -8, -150, 190, 0] }}
+                    transition={{ duration: 2.5 }}
+                  >
+                    <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-300 text-[200px]" />
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    animate={{ x: [150, -100, 120, 0] }}
+                    transition={{ duration: 3, staggerChildren: 1 }}
+                    className="space-y-6 z-40  border-2 rounded-[30%] shadow-xl shadow-green-400 border-green-400 p-20"
+                  >
+                    {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
+                      (text, index) => (
+                        <motion.h1
+                          key={index}
+                          initial={{ x: 100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          transition={{ duration: 1 + index * 0.5 }}
+                          className="text-3xl font-mono font-medium relative pb-2 text-white"
+                        >
+                          <button
+                            className="transition-all duration-150 ease-in-out hover:scale-125 hover:text-green-500">
+                            {text}
+                          </button>
+
+                        </motion.h1>
+                      )
+                    )}
+                  </motion.div>
+                </div>
               </motion.div>
-            </div>
-          </motion.div>
-          </motion.div>)}
-          </AnimatePresence>
-        </motion.div>
-      
+            </motion.div>)}
+        </AnimatePresence>
+      </motion.div>
+
       {/* end of Insurance */}
 
       {/* stock market */}
       <motion.div
-        
+
         className=" duration-500 bg-black text-white overflow-hidden "
         onClick={() => setShowContent1(!showContent1)}
       >
@@ -210,9 +210,9 @@ export default function Page() {
                         //   rotate: [30, 130, 460, 0],
                         //   borderRadius: ["20%", "90%", "30%", "10%"]
                         // }}
-                        initial={{scale:0,opacity:0}}
-                        animate={{scale:1,opacity:1}}
-                        transition={{ duration:2 }}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 2 }}
                         src="/images/stock3.jpg" alt="" className="max-h-[60vh]" />
                     </motion.div>
                   </AnimatePresence>
