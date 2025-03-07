@@ -21,7 +21,7 @@ const Blog: React.FC<BlogProps> = ({title, user, content, createdAt, likes,onLik
         onLike();
     }
     return (
-        <div className="flex flex-col border-l-8 w-full h-[40vh] bg-transparent max-w-2xl border-4 border-green-900 rounded-lg">
+        <div className="flex shadow-green-300 shadow-lg flex-col border-l-8 w-full h-[40vh] bg-transparent max-w-2xl border-4 border-green-900 rounded-lg">
             <div className="flex flex-row justify-between w-full p-4 bg-green-900">
                 <h1 className="text-2xl text-white capitalize">{title}</h1>
                 <span className="text-md text-white capitalize">{user}</span>

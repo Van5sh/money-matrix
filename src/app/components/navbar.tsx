@@ -233,6 +233,8 @@ import { House, ShieldCheck, LogOut, Boxes, Calculator, User, Bitcoin, Info, Log
 import Link from "next/link";
 import "../globals.css";
 import { UserAuth } from "@/app/context/AuthContext";
+import Image from "next/image";
+import logo from "../../../public/flogo.svg";
 
 export default function Navbar() {
     const { user, logOut } = UserAuth();
@@ -268,7 +270,7 @@ export default function Navbar() {
 
     return ( user&&(
         <div
-            className={`z-40 fixed top-0 left-0 w-screen transition-all duration-300 ${
+            className={`z-40  top-0 left-0 min-w-screen transition-all duration-300 ${
                 scrolling ? "backdrop-blur-2xl shadow-lg bg-opacity-45 rounded-lg" : ""
             }`}
         >
@@ -276,12 +278,7 @@ export default function Navbar() {
                 scrolling ? "pb-2 pt-4 m-4 px-6" : "py-6 m-4 p-4 pb-4"
             }`}>
                 <div>
-                    <button>
-                        <div className="text-2xl">
-                            <Bitcoin className="inline mr-1 mb-1 opacity-100" />
-                            MoneyMatrix
-                        </div>
-                    </button>
+                    <Image src={logo} alt="Logo" />
                 </div>
                 <ul className="flex flex-row gap-10 justify-end items-center">
                     {user && (
@@ -301,8 +298,11 @@ export default function Navbar() {
                                     <Boxes className="inline mr-2 mb-1" /> Resources
                                 </Link>
                             </li>
-
-                            {/* Calculator Dropdown */}
+                            <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
+                                <Link href="/chat">
+                                    <Boxes className="inline mr-2 mb-1" />Chat
+                                </Link>
+                            </li>
                             <li className="relative group">
                                 <button className="flex items-center gap-2 pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
                                     <Calculator className="inline mr-2 mb-1" /> Calculator
@@ -324,8 +324,6 @@ export default function Navbar() {
                                     </li>
                                 </ul>
                             </li>
-                            
-                            {/* User Profile Dropdown */}
                             <li className="relative">
                                 <button
                                     onClick={handleOpen}
