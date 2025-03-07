@@ -1,70 +1,77 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import ChatMessage from "@/app/components/chatmessages";
+import React, { useEffect, useState } from "react";
+import send from "../../../../public/send.svg";
+import Image from "next/image";
 import { io } from "socket.io-client";
+import { UserAuth } from "@/app/context/AuthContext";
 
 const socket = io("http://localhost:3001");
 
-export default function ChatPage({ params }: { params: { id: string } }) {
-    const [messages, setMessages] = useState<{ id: string; text: string }[]>([]);
-    const [input, setInput] = useState<string>("");
-    const [id, setId] = useState<string | null>(null);
+interface Message {
+    text: string;
+    sender: string;
+}
+
+export default function Page() {
+    const { user } = UserAuth();
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [inputMessage, setInputMessage] = useState<string>("");
 
     useEffect(() => {
-        socket.on("connect", () => {
-            setId(socket.id!);
-        });
+        socket.emit("client ready", "Hello, World!");
 
-        socket.on("receiveMessage", (msg: { id: string; text: string }) => {
-            console.log("Received message:", msg);
-            setMessages((prevMessages) => [...prevMessages, msg]);
+        socket.on("message", (message: Message) => {
+            setMessages((prev) => [...prev, message]);
         });
 
         return () => {
-            socket.off("connect");
-            socket.off("receiveMessage");
+            socket.off("message");
         };
     }, []);
 
-    const onSubmit = () => {
-        if (input.trim() !== "") {
-            const newMessage = { id: id ?? "unknown", text: input };
-            socket.emit("sendMessage", newMessage);
-            setMessages((prevMessages) => [...prevMessages, newMessage]);
-            setInput("");
-        }
+    const sendMessage = () => {
+        if (inputMessage.trim() === "") return;
+
+        const newMessage: Message = {
+            text: inputMessage,
+            sender: user?.displayName || "Me",
+        };
+
+        setMessages([...messages, newMessage]);
+        setInputMessage("");
+
+        socket.emit("send_message", newMessage);
     };
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
-            <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-4 flex flex-col h-[70vh] overflow-y-auto">
-                {messages.length > 0 ? (
-                    messages.map((msg, index) => (
-                        <ChatMessage
-                            key={index}
-                            sender={msg.id === id ? "You" : `User ${params.id}`}
-                            message={msg.text}
-                            isOwnMessage={msg.id === id}
-                        />
-                    ))
-                ) : (
-                    <p className="text-gray-400 text-center">No messages yet...</p>
-                )}
+        <div className="flex flex-col items-center justify-center min-h-screen w-full p-5">
+            <div className="max-w-md w-full bg-white p-5 rounded-lg shadow-md h-96 overflow-y-auto">
+                {messages.map((msg, index) => (
+                    <div key={index} className={`flex flex-col mb-2 ${msg.sender === (user?.displayName || "Me") ? "items-end" : "items-start"}`}>
+                        <span className="text-sm text-gray-600">{msg.sender}</span>
+                        <div className={`p-3 rounded-lg max-w-xs break-words ${msg.sender === (user?.displayName || "Me") ? "bg-green-800 text-white self-end" : "bg-gray-300 text-black self-start"}`}>
+                            {msg.text}
+                        </div>
+                    </div>
+                ))}
             </div>
-            <div className="flex w-full max-w-md mt-4 gap-2">
-                <input
-                    className="flex-1 border border-gray-300 rounded-full px-4 py-3 outline-none focus:border-blue-500"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Type a message..."
-                />
-                <button
-                    className="bg-blue-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-600"
-                    onClick={onSubmit}
-                >
-                    Send
-                </button>
+            <div className="max-w-md w-full mt-5">
+                <div className="flex">
+                    <input
+                        type="text"
+                        value={inputMessage}
+                        onChange={(e) => setInputMessage(e.target.value)}
+                        className="flex-1 border border-gray-300 rounded-l-lg p-2 text-black"
+                        placeholder="Type your message here..."
+                    />
+                    <button
+                        className="py-2 px-3 bg-green-800 text-white font-bold rounded-r-md text-xl md:w-1/12 md:text-2xl"
+                        onClick={sendMessage}
+                    >
+                        <Image src={send} className="w-6 md:w-12 mx-auto" alt="send" height={20} width={20} />
+                    </button>
+                </div>
             </div>
         </div>
     );
