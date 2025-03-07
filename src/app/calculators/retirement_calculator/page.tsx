@@ -32,7 +32,7 @@ export default function Page(){
             {/*current yearly expenses multiplied by the rate and raise to the power of the difference between the retirement age and the current age */}
             <form className="flex flex-col space-y-4 w-full max-w-md">
                 <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-black font-medium">Current Age:</label>
+                    <label className="text-white font-medium">Current Age:</label>
                     <input
                         value={age}
                         type="number"
@@ -42,7 +42,7 @@ export default function Page(){
                 </div>
 
                 <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-black font-medium">Retirement Age:</label>
+                    <label className="text-white font-medium">Retirement Age:</label>
                     <input
                         value={retirementAge}
                         type="number"
@@ -54,7 +54,7 @@ export default function Page(){
                 </div>
 
                 <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-black font-medium">Yearly Inflation:</label>
+                    <label className="text-white font-medium">Yearly Inflation:</label>
                     <input
                         value={inflation}
                         type="number"
@@ -64,7 +64,7 @@ export default function Page(){
                 </div>
 
                 <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-black font-medium">Monthly Expenses:</label>
+                    <label className="text-white font-medium">Monthly Expenses:</label>
                     <input
                         value={expenses}
                         type="number"
