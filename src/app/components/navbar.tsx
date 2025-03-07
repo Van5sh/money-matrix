@@ -249,14 +249,14 @@ export default function Navbar() {
             setScrolling(window.scrollY > 40);
         };
         window.addEventListener("scroll", handleScroll);
-        
+
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setOpen(false);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
-        
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
             document.removeEventListener("mousedown", handleClickOutside);
@@ -268,15 +268,13 @@ export default function Navbar() {
         await logOut();
     };
 
-    return ( user&&(
+    return (user && (
         <div
-            className={`z-40  top-0 left-0 min-w-screen transition-all duration-300 ${
-                scrolling ? "backdrop-blur-2xl shadow-lg bg-opacity-45 rounded-lg" : ""
-            }`}
+            className={`z-40  top-0 left-0 min-w-screen transition-all duration-300 ${scrolling ? "backdrop-blur-2xl shadow-lg bg-opacity-45 rounded-lg" : ""
+                }`}
         >
-            <div className={`flex gap-4 justify-between font-mono text-green-900 font-medium text-xl ${
-                scrolling ? "pb-2 pt-4 m-4 px-6" : "py-6 m-4 p-4 pb-4"
-            }`}>
+            <div className={`flex gap-4 justify-between font-mono text-green-900 font-medium text-xl ${scrolling ? "pb-2 pt-4 m-4 px-6" : "py-6 m-4 p-4 pb-4"
+                }`}>
                 <div>
                     <Image src={logo} alt="Logo" />
                 </div>
@@ -309,10 +307,10 @@ export default function Navbar() {
                                 </button>
                                 <ul className="absolute right-0 mt-2 w-96 bg-white text-green-700 shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 grid grid-cols-2 gap-2 p-2">
                                     <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">
-                                        <Link href="../calculator/bmi_calculator">BMI Calculator</Link>
+                                        <Link href="../calculators/bmi_calculator">BMI Calculator</Link>
                                     </li>
                                     <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">
-                                        <Link href="../calculator/insurance_calculator">
+                                        <Link href="../calculators/insurance_calculator">
                                             Insurance Calculator
                                         </Link>
                                     </li>
@@ -320,7 +318,7 @@ export default function Navbar() {
                                         Child Life Calculator
                                     </li>
                                     <li className="px-4 py-2 hover:bg-green-500 hover:text-white rounded-md cursor-pointer">
-                                        <Link href="../calculator/retirement_calculator">Retirement Calculator</Link>
+                                        <Link href="../calculators/retirement_calculator">Retirement Calculator</Link>
                                     </li>
                                 </ul>
                             </li>
