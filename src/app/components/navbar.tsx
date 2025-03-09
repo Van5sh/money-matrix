@@ -105,7 +105,7 @@ export default function Navbar() {
                                 {open && (
                                     <ul
                                         ref={dropdownRef}
-                                        className="absolute right-0 mt-3 bg-white text-gray-800 rounded-xl shadow-lg py-3 w-56 border border-gray-200 transition-all duration-300"
+                                        className="absolute right-0 mt-3 bg-green-300 text-gray-800 rounded-xl shadow-lg pt-3 w-56 border border-gray-200 transition-all duration-300"
                                     >
                                         <li className="px-5 py-3 hover:bg-gray-100 font-bold">
                                             {user?.displayName}
