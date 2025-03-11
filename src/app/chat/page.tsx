@@ -1,5 +1,6 @@
 import Agentbox from "@/app/chat/components/agentbox";
 import { MessageSquareMore } from 'lucide-react';
+import Link from "next/link";
 
 export default function Page() {
     const Agents = [
@@ -18,15 +19,15 @@ export default function Page() {
                     )
                 })}
             </div>
-            <div className="flex justify-end gap-4">
-                <div className="group relative bg-green-800 p-5 w-22 justify-end flex items-end rounded-full bottom-5 right-5 hover:w-[20vw]">
-                    <MessageSquareMore color="white" size={38}/>
-                </div>
-            </div>
-            <div className="group relative w-32 h-32 bg-blue-500 rounded-lg transition-all duration-300 hover:w-48 hover:h-48 flex items-center justify-center">
-                <p className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
-                    Hovered Text Appears!
-                </p>
+            <div className="flex justify-end gap-4 items-center"  >
+                <Link href="/chat/community">
+                    <div className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 cursor-pointer" >
+                        <MessageSquareMore color="white" size={32} className="transition-all duration-300 group-hover:mr-32"/>
+                        <p className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center justify-end ml-8 text-sm whitespace-nowrap ">
+                            ASK COMMUNITY
+                        </p>
+                    </div>
+                </Link>
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import send from "../../../../public/send.svg";
+import send from "../../../public/send.svg";
 import Image from "next/image";
 import { io } from "socket.io-client";
 import { UserAuth } from "@/app/context/AuthContext";
