@@ -13,6 +13,8 @@ export default function Page() {
     return (
         <>
             <div className="flex flex-col gap-4 justify-center items-center">
+                <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-ping-slow -top-20 -left-20"></div>
+                <div className="absolute w-[300px] h-[300px] bg-cyan-400 rounded-full mix-blend-screen filter blur-2xl opacity-30 animate-pulse -bottom-10 -right-10"></div>
                 {Agents.map((agent)=>{
                     return(
                         <Agentbox email={agent.email} company={agent.company} key={agent.id} id={agent.id} name={agent.name} phoneno={agent.phoneno} services={agent.services}/>
