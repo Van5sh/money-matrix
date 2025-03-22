@@ -6,7 +6,7 @@ import Navbar from "@/app/components/navbar";
 import Link from "next/link";
 import {MessageSquareMore} from "lucide-react";
 import {usePathname} from "next/navigation";
-
+import "@/app/globals.css";
 
 
 const geistSans = Geist({
