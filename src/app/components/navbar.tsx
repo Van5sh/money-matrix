@@ -59,8 +59,8 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
-                                <Link href="/insurance">
-                                    <ShieldCheck className="inline mr-2 mb-1" /> Insurance Plans
+                                <Link href="/investments">
+                                    <ShieldCheck className="inline mr-2 mb-1" /> Investments
                                 </Link>
                             </li>
                             <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
