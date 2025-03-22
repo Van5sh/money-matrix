@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  cursor: url("/circle-outline.svg") 12 12, auto; /* Custom cursor */
+  cursor: url("/circle-outline.svg") 12 12, auto;
 }
 
 button, a, .pointer {
