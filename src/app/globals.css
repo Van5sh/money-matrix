@@ -10,8 +10,6 @@ button, a, .pointer {
   cursor: url("/hand-pointer.svg") 12 12, pointer;
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -4,9 +4,11 @@ import { UserAuth } from "@/app/context/AuthContext";
 import Image from "next/image";
 import main from "../../../public/main.svg";
 import hi from "./image.png";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
   const { user } = UserAuth();
+  const router=useRouter();
 
   return (
     <div className="relative h-screen flex justify-center items-center text-white font-sans">
@@ -59,7 +61,7 @@ export default function Page() {
           ) : (
             <p className="text-lg text-gray-200">Please log in to access personalized insights.</p>
           )}
-          <button className="mt-5 px-6 py-3 bg-green-400 text-black font-semibold rounded-full shadow-md hover:bg-green-500 transition-all">
+          <button onClick={()=>{router.push("/investments")}} className="mt-5 px-6 py-3 bg-green-400 text-black font-semibold rounded-full shadow-md hover:bg-green-500 transition-all">
             {user ? "Explore Insights" : "Login Now"}
           </button>
           <p className="mt-6 text-lg text-white font-medium leading-relaxed">
