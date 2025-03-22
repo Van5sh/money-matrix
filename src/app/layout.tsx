@@ -27,13 +27,13 @@ const anton = Anton({
 
 const bebasNeue = Bebas_Neue({
     variable: "--font-bebas-neue",
-    weight: "400", // Bebas Neue only has 400
+    weight: "400",
     subsets: ["latin"],
 });
 
 const oswald = Oswald({
     variable: "--font-oswald",
-    weight: ["400", "700"], // Oswald supports multiple weights
+    weight: ["400", "700"],
     subsets: ["latin"],
 });
 
@@ -69,9 +69,11 @@ export default function RootLayout({
         <AuthContextProvider>
             <Navbar/>
             {children}
-            <div className="flex justify-end gap-4 items-center"  >
-                <Link href={buttonLink}>
-                    <div className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 cursor-pointer" >
+            <div
+                className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 custom-cursor"
+            >
+            <Link href={buttonLink}>
+                    <div className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 " >
                         <MessageSquareMore color="white" size={32} className="transition-all duration-300 group-hover:mr-32"/>
                         <p className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center justify-end ml-8 text-sm whitespace-nowrap ">
                             {buttonText}
