@@ -8,7 +8,6 @@ interface EditformProps {
 
 const Editform: React.FC<EditformProps> = ({ formClose }) => {
     const { user } = UserAuth();
-
     const [name, setName] = useState<string>(user?.displayName || "");
     const [email, setEmail] = useState<string>(user?.email || "");
     const [phone, setPhone] = useState<string>("");
@@ -19,9 +18,9 @@ const Editform: React.FC<EditformProps> = ({ formClose }) => {
     const [income, setIncome] = useState<string>("");
 
     useEffect(() => {
-        setAge(sessionStorage.getItem("age")||"");
-        setWeight(sessionStorage.getItem("weight")||"");
-        setHeight(sessionStorage.getItem("height")||"");
+        setAge(sessionStorage.getItem("age") || "");
+        setWeight(sessionStorage.getItem("weight") || "");
+        setHeight(sessionStorage.getItem("height") || "");
         setAddress(sessionStorage.getItem("address") || "");
         setIncome(sessionStorage.getItem("income") || "");
     }, []);
@@ -43,19 +42,22 @@ const Editform: React.FC<EditformProps> = ({ formClose }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="relative h-full min-w-[89vh] flex flex-col gap-4 bg-white rounded-xl shadow-lg w-96">
-                <h2 className="text-lg font-bold justify-center items-center bg-green-800 text-white rounded-t-lg p-4">Edit Profile</h2>
-                <form className="flex flex-col gap-4 overflow-y-auto p-6">
-                    <label>NAME: <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} className="border p-2 rounded w-full"  /></label>
-                    <label>E-MAIL: <input type="email" readOnly value={email} className="border p-2 rounded w-full"  /></label>
-                    <label>PHONE NO.: <input type="text" value={phone} className="border p-2 rounded w-full" onChange={(e)=> setPhone(e.target.value)} /></label>
-                    <label>AGE(years):<input type="text" value={age} onChange={(e)=> setAge(e.target.value)} className="border p-2 rounded w-full" /></label>
-                    <label>WEIGHT(in kgs): <input type="text" value={weight} onChange={(e)=> setWeight(e.target.value )} className="border p-2 rounded w-full" /></label>
-                    <label>HEIGHT(in m): <input type="text" value={height} onChange={(e)=> setHeight(e.target.value)} className="border p-2 rounded w-full" /></label>
-                    <label>ADDRESS: <input type="text" value={address} onChange={(e)=> setAddress(e.target.value)} className="border p-2 rounded w-full" /></label>
-                    <label>INCOME(annual): <input type="text" value={income} onChange={(e)=> setIncome(e.target.value)} className="border p-2 rounded w-full" /></label>
-                </form>
-                <button onClick={saveProfile} className="m-4 p-2 bg-green-500 text-white rounded font-bold">SAVE YOUR PROFILE</button>
+            <div className="h-[80vh] w-[90vw] max-w-md flex flex-col bg-gray-500 mt-20 rounded-xl shadow-lg">
+                    <form className="flex  flex-col gap-4 p-10 overflow-x-auto mt-8 rounded-xl">
+                        <label className="text-green-900 font-bold">NAME: <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">E-MAIL: <input type="email" readOnly value={email} className="border p-2 rounded w-full bg-gray-200" /></label>
+                        <label className="text-green-900 font-bold">PHONE NO.: <input type="text" value={phone} placeholder="+919999999999" onChange={(e) => setPhone(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">AGE (years): <input type="text" value={age} placeholder="10" onChange={(e) => setAge(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">WEIGHT (kg): <input type="text" value={weight} placeholder="60 kgs" onChange={(e) => setWeight(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">HEIGHT (m): <input type="text" value={height} placeholder="1.5m" onChange={(e) => setHeight(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">ADDRESS: <input type="text" value={address} placeholder="A-86,Second Floor, New Delhi" onChange={(e) => setAddress(e.target.value)} className="text-black font-serif font-normal border p-2 rounded w-full" /></label>
+                        <label className="text-green-900 font-bold">INCOME (annual): <input type="text" placeholder="Rs 60000000" value={income} onChange={(e) => setIncome(e.target.value)} className="border p-2 rounded w-full" /></label>
+                    </form>
+
+                <div className="flex justify-between p-4">
+                    <button onClick={formClose} className="p-2 bg-black text-white rounded font-bold w-1/2 mr-2">Cancel</button>
+                    <button onClick={saveProfile} className="p-2 bg-green-500 text-white rounded font-bold w-1/2">Save</button>
+                </div>
             </div>
         </div>
     );
