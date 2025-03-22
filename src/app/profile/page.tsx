@@ -7,7 +7,7 @@ import Editform from "@/app/profile/components/editform";
 
 const Page = () => {
   const { user, logOut } = UserAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
@@ -34,8 +34,6 @@ const Page = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 pt-4 pb-12 mt-[-40px] overflow-hidden text-white font-mono">
-
-      {/* ✨ Floating Glow Particles */}
       <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-ping-slow -top-20 -left-20"></div>
       <div className="absolute w-[300px] h-[300px] bg-cyan-400 rounded-full mix-blend-screen filter blur-2xl opacity-30 animate-pulse -bottom-10 -right-10"></div>
 
