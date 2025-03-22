@@ -13,8 +13,11 @@ interface CardsProps {
 const Cards: React.FC<CardsProps> = ({ title, description,link }) => {
     const router=useRouter();
     return(
-            <Card onClick={()=>{router.push(`/${link}`)}} className="flex border-green-900  flex-col justify-center items-center cursor-pointer  rounded-xl bg-gradient-to-r from-green-800 via-emerald-400 to-green-400">
-                <CardHeader className="flex justify-center items-center">
+        <Card
+            onClick={() => { router.push(`/${link}`) }}
+            className="flex border-green-900 flex-col justify-center items-center rounded-xl bg-gradient-to-r from-green-800 via-emerald-400 to-green-400 card-custom"
+        >
+        <CardHeader className="flex justify-center items-center">
                     <CardTitle className="text-white pt-4 pb-2">{title}</CardTitle>
                 </CardHeader>
                 <CardContent>
