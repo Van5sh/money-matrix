@@ -94,9 +94,9 @@ const Page = () => {
           </div>
         </div>
       </div>
-        {isOpen && <Editform formClose={() => setIsOpen(false)} />}
+      {isOpen && <Editform formClose={() => setIsOpen(false)} />}
     </div>
-    );
+  );
 };
 
 export default Page;
