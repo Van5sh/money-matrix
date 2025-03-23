@@ -1,10 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {UserAuth} from "@/app/context/AuthContext";
 import { LogIn } from 'lucide-react';
-// import axios from "axios";
 import {motion} from "framer-motion";
 
 
@@ -14,32 +13,49 @@ export default function SignInButton() {
 
     const {user,googleSignIn}=UserAuth();
 
-    const handleSignIn = async (e:Event) => {
+
+    const handleSignIn = async (e: React.MouseEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await googleSignIn();
-            console.log("Hello");
-            if(user){
-                await fetch('/api/user',{
-                    method:'POST',
-                    headers:{
-                        'Content-Type':'application/json'
-                    },
-                    body:JSON.stringify({
-                        email:user?.email,
-                        name:user?.displayName
-                    })
-                })
-            }
-            router.push("/main");
-            console.log("nigga");
+            //
+            // if (user) {
+            //     await fetch("/api/users", {
+            //         method: 'POST',
+            //         headers: { "Content-Type": "application/json" },
+            //         body: JSON.stringify({
+            //             name: user.displayName,
+            //             email: user.email,
+            //         }),
+            //     });
+            //     // await axios.post("/api/users", {
+            //     //     email: user.email,
+            //     //     name: user.displayName,
+            //     // });
+            // }
             router.push("/main");
         } catch (error) {
             console.error("Sign in failed:", error);
-            setLoading(false);
         }
-        setLoading(true);
+        setLoading(false);
     };
+    useEffect(() => {
+        const saveUser=async()=> {
+            if (user) {
+                await fetch("/api/users", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        name: user.displayName,
+                        email: user.email,
+                    }),
+                });
+            }
+        }
+        saveUser();
+    }, [user]);
+
 
     return (
         <>
