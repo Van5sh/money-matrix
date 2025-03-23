@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import connectDB from "@/lib/index";
+import connectDB from "@/lib";
 import User from "@/lib/mongo/models/user";
 
 export async function GET() {
@@ -17,6 +17,7 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         const user = await User.create(body);
+        await user.save();
         return NextResponse.json({ success: true, data: user }, { status: 201 });
     } catch (error) {
         return NextResponse.json({ success: false, error: error }, { status: 400 });
