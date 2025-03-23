@@ -1,25 +1,24 @@
+import { NextResponse } from "next/server";
 import connectDB from "@/lib/index";
-import User from "@/lib/mongo/models/user"
-import {NextApiRequest, NextApiResponse} from "next";
+import User from "@/lib/mongo/models/user";
 
-export default async function(req:NextApiRequest, res:NextApiResponse) {
-  await connectDB();
-  // const {method}=req;
-  switch(req.method){
-    case 'GET':
-      try {
+export async function GET() {
+    await connectDB();
+    try {
         const users = await User.find({});
-        res.status(200).json({success:true,data:users});
-      }catch (error){
-        res.status(400).json({success:false,data:error});
-      }
-      break;
-    case 'POST':
-        try {
-            const user = await User.create(req.body);
-            res.status(201).json({success:true,data:user});
-        }catch (error){
-            res.status(400).json({success:false,data:error});
-        }
-  }
+        return NextResponse.json({ success: true, data: users }, { status: 200 });
+    } catch (error) {
+        return NextResponse.json({ success: false, error: error }, { status: 400 });
+    }
+}
+
+export async function POST(req: Request) {
+    await connectDB();
+    try {
+        const body = await req.json();
+        const user = await User.create(body);
+        return NextResponse.json({ success: true, data: user }, { status: 201 });
+    } catch (error) {
+        return NextResponse.json({ success: false, error: error }, { status: 400 });
+    }
 }
