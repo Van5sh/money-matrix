@@ -1,20 +1,25 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import connectDB from "../../../lib";
-import User from "../../../lib/mongo/models/user";
+import connectDB from "@/lib/index";
+import User from "@/lib/mongo/models/user"
+import {NextApiRequest, NextApiResponse} from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === "GET") {
+export default async function(req:NextApiRequest, res:NextApiResponse) {
+  await connectDB();
+  // const {method}=req;
+  switch(req.method){
+    case 'GET':
+      try {
+        const users = await User.find({});
+        res.status(200).json({success:true,data:users});
+      }catch (error){
+        res.status(400).json({success:false,data:error});
+      }
+      break;
+    case 'POST':
         try {
-            await connectDB();
-
-            const users = await User.find();
-
-            res.status(200).json(users);
-        } catch (error) {
-            console.error("Error fetching users:", error);
-            res.status(500).json({ message: "Something went wrong!", error: (error as Error).message });
+            const user = await User.create(req.body);
+            res.status(201).json({success:true,data:user});
+        }catch (error){
+            res.status(400).json({success:false,data:error});
         }
-    } else {
-        res.status(405).json({ message: "Method not allowed!" });
-    }
+  }
 }

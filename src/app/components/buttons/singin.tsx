@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {UserAuth} from "@/app/context/AuthContext";
 import { LogIn } from 'lucide-react';
-import axios from "axios";
+// import axios from "axios";
 import {motion} from "framer-motion";
 
 
@@ -14,14 +14,23 @@ export default function SignInButton() {
 
     const {user,googleSignIn}=UserAuth();
 
-    const handleSignIn = async () => {
+    const handleSignIn = async (e:Event) => {
+        e.preventDefault();
         try {
             await googleSignIn();
             console.log("Hello");
-            // await axios.post("/api/user", {
-            //     name:user?.displayName,
-            //     email:user?.email,
-            // });
+            if(user){
+                await fetch('/api/user',{
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        email:user?.email,
+                        name:user?.displayName
+                    })
+                })
+            }
             router.push("/main");
             console.log("nigga");
             router.push("/main");
