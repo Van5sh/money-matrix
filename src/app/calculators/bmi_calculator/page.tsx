@@ -96,16 +96,16 @@ export default function Page() {
         <div className="flex items-center justify-center pb-12  bg-gradient-to-r  overflow-hidden">
             <div className="w-full max-w-xl bg-emerald-100/90 backdrop-blur-sm p-10 rounded-3xl shadow-2xl md:max-w-[65vh] md:max-h-[65vh] md:w-[65vh] md:h-[65vh] flex flex-col justify-center space-y-6">
                 
-                <h1 className="text-3xl font-bold text-green-800 text-center mb-2">
+                <h1 className="text-xl 2xl:text-3xl  2xl:pt-0  font-bold text-green-800 text-center mb-2">
                     BMI Calculator
                 </h1>
 
-                <form className="space-y-5">
+                <form className="space-y-3 2xl:space-y-6">
                     
                     <div className="flex flex-col">
                         <label className="text-gray-700 font-medium">Weight (kg)</label>
                         <input
-                            className="w-full border border-green-500 bg-gray-100 text-black rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
+                            className="w-full border size-6 2xl:size-10 2xl:w-full  border-green-500 bg-gray-100 text-black rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
                             type="number"
                             value={weight}
                             onChange={(e) => setWeight(e.target.valueAsNumber)}
@@ -116,7 +116,7 @@ export default function Page() {
                     <div className="flex flex-col">
                         <label className="text-gray-700 font-medium">Height (m)</label>
                         <input
-                            className="w-full border border-green-500 bg-gray-100 text-black rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
+                            className="w-full border size-6 2xl:size-10 2xl:w-full border-green-500 bg-gray-100 text-black rounded-lg p-3 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
                             type="number"
                             value={height}
                             onChange={(e) => setHeight(e.target.valueAsNumber)}
@@ -124,7 +124,7 @@ export default function Page() {
                     </div>
 
                     
-                    <div className="flex flex-col">
+                    <div className="flex flex-col ">
                         <label className="text-gray-700 font-medium">Age: <span className="text-green-700 font-semibold">{age} years</span></label>
                         <input
                             type="range"
@@ -133,18 +133,19 @@ export default function Page() {
                             step="1"
                             value={age}
                             onChange={(e) => setAge(Number(e.target.value))}
-                            className="w-full cursor-pointer border border-green-500 bg-gray-100 text-black rounded-lg p-1 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
+                            className="w-full size-6 2xl:size-10 2xl:w-full cursor-pointer border border-green-500 bg-gray-100 text-black rounded-lg p-1 focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-200 hover:border-green-600"
                         />
                     </div>
                 </form>
 
-                
+                <div className="flex justify-center">
                 <button
                     onClick={onSubmit}
-                    className="mt-3 w-full bg-gradient-to-r from-green-600 to-green-800 text-white font-bold py-3 rounded-lg hover:scale-105 hover:shadow-lg transition-transform duration-300"
+                    className=" text-sm flex justify-center items-center 2xl:py-4 2xl:w-full 2xl:text-base w-[35vh] py-2  bg-gradient-to-r from-green-600 to-green-800 text-white font-bold  rounded-lg hover:scale-105 hover:shadow-lg transition-transform duration-300"
                 >
-                    Calculate BMI
+                    <div className="">Calculate BMI</div>
                 </button>
+                </div>
 
             
                 {isSubmitted && (
