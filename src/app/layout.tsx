@@ -57,7 +57,7 @@ export default function RootLayout({
     const pathname = usePathname();
     const isChatPage = pathname === "/chat";
     const buttonText = isChatPage ? "ASK COMMUNITY" : "CHAT";
-    const buttonLink = isChatPage ? "/community" : "/chat";
+    const buttonLink = isChatPage ? "/chat/community" : "/chat";
     return (
         <html lang="en">
         <body
@@ -72,7 +72,7 @@ export default function RootLayout({
             <div
                 className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 custom-cursor"
             >
-            <Link href={buttonLink}>
+                <Link href={buttonLink}>
                     <div className="group fixed bg-green-800 p-2 w-16 h-16 flex items-center justify-center rounded-full bottom-5 right-5 hover:w-[15vw] transition-all duration-400 " >
                         <MessageSquareMore color="white" size={32} className="transition-all duration-300 group-hover:mr-32"/>
                         <p className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center justify-end ml-8 text-sm whitespace-nowrap ">
