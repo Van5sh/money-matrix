@@ -36,8 +36,6 @@ const Page = () => {
     <div className="relative min-h-screen overflow-y-hidden bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 pt-4 pb-12 mt-[-40px] overflow-hidden text-white font-mono">
       <div className="absolute w-[500px] h-[500px] bg-green-700 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-ping-slow -top-20 -left-20"></div>
       <div className="absolute w-[300px] h-[300px] bg-emerald-400 rounded-full mix-blend-screen filter blur-2xl opacity-30 animate-pulse -bottom-10 -right-10"></div>
-
-      {/* 🔥 Dashboard Card */}
       <div className="w-[150vh] max-w-6xl h-[60vh] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl shadow-[0_0_60px_rgba(0,255,150,0.2)] flex flex-col lg:flex-row overflow-hidden transition-all duration-300 2xl:h-[54vh] ">
 
         {/* Sidebar */}

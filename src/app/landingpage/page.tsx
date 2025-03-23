@@ -33,15 +33,7 @@ export default function Page() {
           <SignInButton />
         </div>
         <Navbar />
-
       </div>
-
-
-
-
-
-      {/* Insurance */}
-
       <motion.div
         onClick={() => setShowConten2(!showContent2)}
       >
