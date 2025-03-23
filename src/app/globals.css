@@ -3,7 +3,20 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  cursor: url("/circle-outline.svg") 12 12, auto;
+}
+
+.custom-cursor {
+  cursor: url('/circle-outline.svg') 12 12, pointer;
+}
+
+
+button, a, .pointer {
+  cursor: url("/hand-pointer.svg") 12 12, pointer;
+}
+
+.card-custom {
+  cursor: url("/hand-pointer.svg") 12 12, pointer;
 }
 
 
