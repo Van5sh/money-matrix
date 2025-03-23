@@ -7,7 +7,7 @@ export async function GET() {
     try {
         const db = await connectToDatabase();
         const collection = db.collection("user");
-        const users = await collection.find().toArray();
+        const users = await collection.find({});
         return NextResponse.json({ success: true, data: users }, { status: 200 });
     } catch (error) {
         console.error("Error fetching users:", error);
