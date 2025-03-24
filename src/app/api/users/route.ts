@@ -3,8 +3,9 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/index";
 
-export async function GET() {
+export async function GET(req) {
     try {
+        const req=body
         const db = await connectToDatabase();
         const collection = db.collection("user");
         const users = await collection.find({});
