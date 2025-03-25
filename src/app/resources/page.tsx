@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import Blog from "@/app/components/blog";
 import { UserAuth } from "@/app/context/AuthContext";
 import "../globals.css";
-import { Newspaper } from "lucide-react";
+import {MessageSquareMore, Newspaper} from "lucide-react";
 import { news } from "@/app/constants/news"
+import Link from "next/link";
 
 export default function Page() {
     const { user } = UserAuth();
@@ -102,16 +103,6 @@ export default function Page() {
                             {/*)}*/}
                         </div>
                     </div>
-                    {/* <div className="bg-green-900 w-full max-w-md p-6 rounded-lg self-start text-white shadow-lg">
-                        <h1 className="text-xl font-bold mb-4 text-center">🔥 TOP BLOGS</h1>
-                        <div className="space-y-4">
-                            {topBlogs.map((blog) => (
-                                <div key={blog.id} className="border-b border-white pb-3 last:border-0">
-                                    <h2 className="text-lg font-semibold">{blog.title}</h2>
-                                </div>
-                            ))}
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>
