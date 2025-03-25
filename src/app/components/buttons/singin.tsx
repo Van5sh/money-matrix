@@ -45,7 +45,9 @@ export default function SignInButton() {
             if (user) {
                 await fetch("/api/users", {
                     method: "POST",
-                    headers: {"Content-Type": "application/json"},
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     body: JSON.stringify({
                         name: user.displayName,
                         email: user.email,
@@ -54,19 +56,20 @@ export default function SignInButton() {
             }
         }
         saveUser();
+
     }, [user]);
 
 
     return (
         <>
             <motion.button
-                className="border-green-600 bg-green-950 hover:bg-opacity-100 border-[1.5px]  text-green-50 p-4 text-2xl m-2 rounded-full w-60  ease-in-out duration-75 bg-opacity-20 hover:text-green-400"
+                className="border-green-600 bg-green-950 hover:bg-opacity-100 border-[1.5px] text-green-50 p-4 text-xl m-2 rounded-full w-80  ease-in-out duration-75 bg-opacity-20 hover:text-green-400"
                 onClick={handleSignIn}
                 disabled={loading}
                 whileTap={{scale:0.85}}
                 whileHover={{scale:1.2}}
             >
-                <div><LogIn className="inline mr-2 mb-1"/> Sign In</div>
+                <div><LogIn className="inline mr-2 mb-1"/> Sign In With Google</div>
             </motion.button>
             {loading && <p>Loading...</p> }
         </>
