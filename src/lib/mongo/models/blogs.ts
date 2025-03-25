@@ -10,7 +10,7 @@ const blogschema=new mongoose.Schema({
         required:true,
     },
     date:{
-        type:Date,
+        type:String,
         default:Date.now,
     },
     user:{

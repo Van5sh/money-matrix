@@ -18,7 +18,7 @@ const Page = () => {
     async function postBlog(){
         const result=await axios.post("/api/blogs",{
             title:title,
-            description:description,
+            content:description,
             date:date,
             user:user?.displayName
         })
@@ -33,7 +33,7 @@ const Page = () => {
                 <CardContent className="flex flex-col space-y-4">
                     <div className="flex flex-row space-x-8 justify-between">
                         <label className="text-white justify-start ">Title: <input type="text" onChange={(e)=>setTitle(e.target.value)} className="border-green-500 text-black border-4 rounded-lg"/></label>
-                        <label className="font-bold text-lg text-green-700">Created At: date</label>
+                        <label className="font-bold text-lg text-green-700">Created At: {date}</label>
                     </div>
                         <label className="text-white flex flex-col">
                             Description:
