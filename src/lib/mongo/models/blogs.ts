@@ -13,6 +13,9 @@ const blogschema=new mongoose.Schema({
         type:Date,
         default:Date.now,
     },
+    user:{
+        type:String,
+    }
 })
 
 export default mongoose.models.Blog || mongoose.model("Blog",blogschema)

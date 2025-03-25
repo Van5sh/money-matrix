@@ -2,86 +2,39 @@
 
 import React, { useEffect, useState } from "react";
 import Blog from "@/app/components/blog";
-import { UserAuth } from "@/app/context/AuthContext";
 import "../globals.css";
-import {MessageSquareMore, Newspaper} from "lucide-react";
-import { news } from "@/app/constants/news"
-import Link from "next/link";
+import { Newspaper} from "lucide-react";
+import axios from "axios";
+
+interface Blog{
+    title:string;
+    content:string;
+    user:string;
+    createdAt:Date;
+}
 
 export default function Page() {
-    const { user } = UserAuth();
-    const currentUser = user?.displayName || "Guest";
-
-    const initialBlogs = [
-        {
-            id: 1,
-            title: "My First Blog",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Morbi vitae pharetra orci. Duis eget vehicula ipsum, at dapibus lorem.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 2,
-            title: "A Day in React Native",
-            content: "Vestibulum vitae libero vitae sapien cursus accumsan. Sed vulputate lacus eu risus rhoncus, non ultrices justo condimentum.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 3,
-            title: "Understanding Next.js",
-            content: "Curabitur faucibus tortor id nulla tristique, sed ornare mauris vehicula. Proin convallis dui ut ligula accumsan posuere.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 4,
-            title: "CSS Tips & Tricks",
-            content: "Aliquam erat volutpat. Aenean sodales varius justo nec sollicitudin. Etiam vestibulum sapien sed felis interdum vulputate.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        }
-    ];
-
-    const [blogs, setBlogs] = useState(initialBlogs);
-    const [newsData, setNews] = useState<any[]>();
+    const [blogs,setBlogs]=useState<Blog[]>([]);
     useEffect(() => {
-        setNews(news)
-        // const getNews = async () => {
-        //     try {
-        //         const request = await fetch("http://localhost:3000/api/getnews");
-        //         const data = await request.json();
-        //         setNews(data);
-        //     } catch (error) {
-        //         console.error("News Error:", error);
-        //     }
-        // };
-        //
-        // getNews();
+        const fetchBlogs=async ()=> {
+            const request = await axios.get("/api/blogs");
+            console.log(request.data.data);
+            const data=request.data.data.map((blog:Blog)=>({
+                ...blog,
+                createdAt: new Date(blog.createdAt),
+            }));
+            setBlogs(data);
+        }
+        fetchBlogs();
     }, []);
-
-    const handleLike = (id: number) => {
-        setBlogs((prevBlogs) =>
-            prevBlogs.map((blog) =>
-                blog.id === id ? { ...blog, likes: blog.likes + 1 } : blog
-            )
-        );
-    };
-
-    const topBlogs = [...blogs].sort((a, b) => b.likes - a.likes).slice(0, 3);
-
     return (
         <div className="flex flex-col gap-6 p-6 items-center justify-center bg-white min-h-screen overflow-auto" style={{ backgroundImage: "url('bg1.svg')", backgroundSize: "cover", backgroundPosition: "center" }}  >
             <h1 className="text-6xl font-bold font-anton tracking-widest text-white mb-4">LATEST BLOGS</h1>
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl ">
                 <div className="flex flex-col items-center justify-center ">
                     <div className="w-full max-w-2xl flex flex-col gap-6 text-2xl text-white">
-                        {blogs.map((blog) => (
-                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)} />
+                        {blogs.map((blog,index) => (
+                            <Blog key={index} title={blog.title} user={blog.user} content={blog.content} createdAt={blog.createdAt} />
                         ))}
                     </div>
                 </div>
