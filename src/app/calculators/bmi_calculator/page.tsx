@@ -95,13 +95,13 @@ export default function Page() {
     return (
         <div className="flex items-center justify-center pb-12  bg-gradient-to-r  overflow-hidden">
             <div className="w-full max-w-xl bg-emerald-100/90 backdrop-blur-sm p-10 rounded-3xl shadow-2xl md:max-w-[65vh] md:max-h-[65vh] md:w-[65vh] md:h-[65vh] flex flex-col justify-center space-y-6">
-                
+
                 <h1 className="text-xl 2xl:text-3xl  2xl:pt-0  font-bold text-green-800 text-center mb-2">
                     BMI Calculator
                 </h1>
 
                 <form className="space-y-3 2xl:space-y-6">
-                    
+
                     <div className="flex flex-col">
                         <label className="text-gray-700 font-medium">Weight (kg)</label>
                         <input
@@ -112,7 +112,7 @@ export default function Page() {
                         />
                     </div>
 
-            
+
                     <div className="flex flex-col">
                         <label className="text-gray-700 font-medium">Height (m)</label>
                         <input
@@ -123,7 +123,7 @@ export default function Page() {
                         />
                     </div>
 
-                    
+
                     <div className="flex flex-col ">
                         <label className="text-gray-700 font-medium">Age: <span className="text-green-700 font-semibold">{age} years</span></label>
                         <input
@@ -139,15 +139,15 @@ export default function Page() {
                 </form>
 
                 <div className="flex justify-center">
-                <button
-                    onClick={onSubmit}
-                    className=" text-sm flex justify-center items-center 2xl:py-4 2xl:w-full 2xl:text-base w-[35vh] py-2  bg-gradient-to-r from-green-600 to-green-800 text-white font-bold  rounded-lg hover:scale-105 hover:shadow-lg transition-transform duration-300"
-                >
-                    <div className="">Calculate BMI</div>
-                </button>
+                    <button
+                        onClick={onSubmit}
+                        className=" text-sm flex justify-center items-center 2xl:py-4 2xl:w-full 2xl:text-base w-[35vh] py-2  bg-gradient-to-r from-green-600 to-green-800 text-white font-bold  rounded-lg hover:scale-105 hover:shadow-lg transition-transform duration-300"
+                    >
+                        <div className="">Calculate BMI</div>
+                    </button>
                 </div>
 
-            
+
                 {isSubmitted && (
                     <div className="mt-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-md text-center">
                         <p className="text-lg font-semibold">
