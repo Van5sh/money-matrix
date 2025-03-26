@@ -14,19 +14,19 @@ interface BlogProps {
     author: string;
     createdAt: Date;
     likes: number;
-    // onLike: () => void;
+    open:boolean;
+    onOpen:()=>void;
 }
 
-const Blog: React.FC<BlogProps> = ({_id,title, author, content, createdAt,likes}) => {
+const Blog: React.FC<BlogProps> = ({_id,title, author, content, createdAt,likes,open,onOpen}) => {
     const [liked, setLiked] = React.useState(false);
     const {user}=UserAuth();
+    const [Open,setOpen]=useState<boolean>(false);
     const [likesCount, setLikesCount] = useState(likes);
     const handleLike = async () => {
         if (liked) return;
-
         setLiked(true);
         setLikesCount((prev) => prev + 1);
-
         try {
             await axios.put("/api/blogs", {
                 _id,
@@ -56,7 +56,7 @@ const Blog: React.FC<BlogProps> = ({_id,title, author, content, createdAt,likes}
                         <ThumbsUp />
                     </button>
                     {user?.displayName === author && (
-                        <button className="text-white">
+                        <button className="text-white" onClick={onOpen}>
                             <FilePenLine />
                         </button>
                     )}
