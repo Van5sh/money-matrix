@@ -15,6 +15,10 @@ const blogschema=new mongoose.Schema({
     },
     author:{
         type:String,
+    },
+    likes:{
+        type:Number,
+        default:0,
     }
 })
 

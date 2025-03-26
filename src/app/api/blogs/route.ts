@@ -26,3 +26,21 @@ export async function POST(req:Request){
         return NextResponse.json({success:false,error:e},{status:400});
     }
 }
+
+export async function PUT(req:Request){
+    try {
+        const db=await connectToDatabase();
+        const collection=db.collection("blog");
+        const body=await req.json();
+        console.log(body);
+        const { _id, likes } = body;
+        const result=await collection.updateOne(
+            {id:new Object(_id)},
+            {likes: { likes }}
+        );
+        return NextResponse.json({success:true,data:result},{status:200});
+    }catch (e){
+        return NextResponse.json({success:false,error:e},{status:400});
+    }
+
+}

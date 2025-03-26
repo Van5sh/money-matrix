@@ -20,7 +20,8 @@ const Page = () => {
             title:title,
             content:description,
             createdAt:date,
-            author:user?.displayName
+            author:user?.displayName,
+            likes:0,
         })
         console.log(result);
         router.push("/resources")

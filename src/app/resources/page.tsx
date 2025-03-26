@@ -7,10 +7,12 @@ import { Newspaper} from "lucide-react";
 import axios from "axios";
 
 interface Blog{
+    _id:string;
     title:string;
     content:string;
     author:string;
     createdAt:string;
+    likes:number;
 }
 
 export default function Page() {
@@ -33,8 +35,8 @@ export default function Page() {
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl ">
                 <div className="flex flex-col items-center justify-center ">
                     <div className="w-full max-w-2xl flex flex-col gap-6 text-2xl text-white">
-                        {blogs.map((blog,index) => (
-                            <Blog key={index} title={blog.title} author={blog.author} content={blog.content} createdAt={new Date(blog.createdAt)} />
+                        {blogs.map((blog) => (
+                            <Blog key={blog._id} _id={blog._id} title={blog.title} author={blog.author} likes={blog.likes} content={blog.content} createdAt={new Date(blog.createdAt)} />
                         ))}
                     </div>
                 </div>
