@@ -17,11 +17,9 @@ export async function PUT(req: Request, context: { params: { id: string } }) {
             { _id: new ObjectId(id) },
             { $set: body }
         );
-
         if (result.matchedCount === 0) {
             return NextResponse.json({ success: false, message: "Blog not found" }, { status: 404 });
         }
-
         return NextResponse.json({ success: true, data: result }, { status: 200 });
     } catch (error) {
         console.error("Error updating blog:", error);
