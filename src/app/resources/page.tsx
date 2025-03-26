@@ -34,6 +34,18 @@ export default function Page() {
         };
         fetchBlogs();
     }, []);
+    const saveChanges = async () => {
+        if (selectedBlog) {
+            const id = selectedBlog._id;
+            const updatedDate=new Date().toLocaleDateString();
+            await axios.put(`/api/blogs/${id}`, {
+                title: selectedBlog.title,
+                content: selectedBlog.content,
+                createdAt: updatedDate,
+            });
+            setOpen(false);
+        }
+    };
 
     return (
         <div className="flex flex-col gap-6 p-6 items-center justify-center bg-white min-h-screen overflow-auto"
@@ -106,6 +118,7 @@ export default function Page() {
                                             className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
                                             onClick={() => {
                                                 setOpen(false);
+                                                saveChanges();
                                             }}
                                         >
                                             Save Changes
