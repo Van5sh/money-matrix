@@ -19,8 +19,8 @@ const Page = () => {
         const result=await axios.post("/api/blogs",{
             title:title,
             content:description,
-            date:date,
-            user:user?.displayName
+            createdAt:date,
+            author:user?.displayName
         })
         console.log(result);
         router.push("/resources")

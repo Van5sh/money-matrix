@@ -13,7 +13,7 @@ const blogschema=new mongoose.Schema({
         type:String,
         default:Date.now,
     },
-    user:{
+    author:{
         type:String,
     }
 })
