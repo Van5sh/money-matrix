@@ -9,8 +9,8 @@ import axios from "axios";
 interface Blog{
     title:string;
     content:string;
-    user:string;
-    createdAt:Date;
+    author:string;
+    createdAt:string;
 }
 
 export default function Page() {
@@ -34,7 +34,7 @@ export default function Page() {
                 <div className="flex flex-col items-center justify-center ">
                     <div className="w-full max-w-2xl flex flex-col gap-6 text-2xl text-white">
                         {blogs.map((blog,index) => (
-                            <Blog key={index} title={blog.title} user={blog.user} content={blog.content} createdAt={blog.createdAt} />
+                            <Blog key={index} title={blog.title} author={blog.author} content={blog.content} createdAt={new Date(blog.createdAt)} />
                         ))}
                     </div>
                 </div>
