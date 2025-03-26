@@ -11,6 +11,8 @@ import Footer from "@/app/components/footer";
 import SignInButton from "@/app/components/buttons/singin";
 import * as React from 'react';
 import { ChartCandlestick } from 'lucide-react';
+import {Button} from "@/components/ui/button";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
   const [showContent, setShowContent] = useState(false);
@@ -19,7 +21,7 @@ export default function Page() {
   const text = "STOCK MARKET".split("");
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
-
+  const router=useRouter();
   return (
     <>
 
@@ -30,7 +32,9 @@ export default function Page() {
           <div className="text-[200px] font-bold text-green-600 ml-14  z-50 tracking-wider font-bangers">
             INSURED?
           </div>
-          <SignInButton />
+          <Button className="text-xl bg-green-500 text-white h-[15vh] w-[15vw]" onClick={() => router.push("/login")}>
+              GET STARTED
+          </Button>
         </div>
         <Navbar />
       </div>

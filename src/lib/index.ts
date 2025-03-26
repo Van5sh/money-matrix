@@ -1,20 +1,15 @@
-import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI!;
 
-if (!MONGODB_URI) {
-    throw new Error("Add Mongo URI to .env.local");
-}
+let client: MongoClient;
+let db: any;
 
-const connectDB = async () => {
-    if (mongoose.connection.readyState >= 1) {
-        return;
+export async function connectToDatabase() {
+    if (!client) {
+        client = new MongoClient(uri);
+        const newclient=await client.connect();
+        db = newclient.db("money");
     }
-    await mongoose.connect(MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    } as mongoose.ConnectOptions);
-    console.log("MongoDB connected");
-};
-
-export default connectDB;
+    return db;
+}
