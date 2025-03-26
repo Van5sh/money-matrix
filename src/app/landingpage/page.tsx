@@ -13,11 +13,13 @@ import * as React from 'react';
 import { ChartCandlestick } from 'lucide-react';
 import {Button} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Page() {
   const [showContent, setShowContent] = useState(false);
   const [showContent1, setShowContent1] = useState(false);
   const [showContent2, setShowConten2] = useState(false);
+  const [flipped,setflip]=useState(false);
   const text = "STOCK MARKET".split("");
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -29,10 +31,10 @@ export default function Page() {
         <img src="/images/ruppe2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-25" alt="" />
         <div className="absolute inset-0 text-6xl mt-16 text-green-50 flex flex-col justify-center items-center gap-10">
           <div className="block z-10 font-oswald">WANT TO GET</div>
-          <div className="text-[200px] font-bold text-green-600 ml-14  z-50 tracking-wider font-bangers">
+          <div className="text-[200px] font-bold text-green-600 ml-[20px]  z-50 tracking-wider font-bangers">
             INSURED?
           </div>
-          <Button className="text-xl bg-green-500 text-white h-[15vh] w-[15vw]" onClick={() => router.push("/login")}>
+          <Button className="text-xl bg-transparent backdrop-blur-lg hover:scale-110 transition-all ease-in-out duration-300  hover:bg-green-700 border-[1px] border-green-400 text-white h-[10vh] w-[15vw] rounded-full" onClick={() => router.push("/login")}>
               GET STARTED
           </Button>
         </div>
@@ -42,7 +44,7 @@ export default function Page() {
         onClick={() => setShowConten2(!showContent2)}
       >
         <AnimatePresence mode="popLayout">
-          {!showContent2 ? (
+          {!showContent2 && !flipped ? (
             <motion.div
               key="insurance-card"
               initial={{ x: "-100%" }}
@@ -72,17 +74,16 @@ export default function Page() {
                 className=" text-white grid grid-cols-5 min-h-[75vh]"
               >
                 <div
-                  className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-2 ">
-                  <img src="/images/feature.avif" alt="Dollars" className="w-full max-h-[75vh]  object-cover opacity-45 " />
+                  className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-1 ">
+                  <img src="/images/feature.avif" alt="Dollars" className="h-[75vh]  object-cover opacity-45 " />
                   <h1 className="absolute">
                     FEATURES
                   </h1>
                 </div>
 
-                <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-3 bg-black  transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
+                <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-4 bg-gradient-to-br from-green-800 via-green-400 to-teal-700 transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
                   <motion.div
-                    animate={{ x: [-8, -8, -150, 190, 0] }}
-                    transition={{ duration: 2.5 }}
+                    
                   >
                     <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-300 text-[200px]" />
                   </motion.div>
@@ -90,10 +91,14 @@ export default function Page() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    animate={{ x: [150, -100, 120, 0] }}
-                    transition={{ duration: 3, staggerChildren: 1 }}
-                    className="space-y-6 z-40  border-2 rounded-[30%] shadow-xl shadow-green-400 border-green-400 p-20"
+                    onClick={()=>setflip(!flipped)}
+                    animate={{rotateY:flipped?180:0}}
+                    transition={{duration:0.6}}
+                    style={{transformStyle:"preserve-3d"}}
                   >
+                    {/*front-side*/}
+                    <Card className="bg-black  z-40  border-2 rounded-[30%] shadow-xl  shadow-green-400 border-green-400 p-20 " style={{backfaceVisibility:"hidden"}}>
+                      <CardContent className="pt-7">
                     {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
                       (text, index) => (
                         <motion.h1
@@ -111,6 +116,17 @@ export default function Page() {
                         </motion.h1>
                       )
                     )}
+
+                    </CardContent>
+                    </Card>
+                    {/*back-side*/}
+                    <Card className="absolute inset-0 bg-black  z-40  border-2 rounded-[30%] shadow-xl  shadow-green-400 border-green-400 p-20 " style={{backfaceVisibility:"hidden",transform:"rotateY(180deg)"}}>
+                      <CardContent className="pt-7">
+
+
+                    </CardContent>
+                    </Card>
+
                   </motion.div>
                 </div>
               </motion.div>
@@ -279,40 +295,40 @@ export default function Page() {
                     </div>
 
                     <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center group-hover:backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300">LINK</button>
+                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="https://github.com/Aditya150422">LINK</a></button>
                     </div>
                   </div>
                   <div className="relative max-h-[95%] group">
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
-                        src="images/vanshdhir.jpg"
+                        src="images/aditya2.jpg"
                         className="absolute inset-0 border-4 border-green-500  opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
-                        alt="Vansh Dhir"
+                        alt="Aditya Mishra"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
-                        <div className="font-bebas text-white font-bold tracking-wider">VANSH DHIR</div>
+                        <div className="font-bebas text-white font-bold tracking-wider">ADITYA MISHRA</div>
                       </div>
                     </div>
 
                     <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300">LINK</button>
+                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="https://github.com/Aditya150422">LINK</a></button>
                     </div>
                   </div>
 
                   <div className="relative max-h-[95%] group">
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
-                        src="images/vanshdhir.jpg"
+                        src="images/vibhor.jpg"
                         className="absolute border-4 border-green-500  inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
-                        alt="Vansh Dhir"
+                        alt="Vibhor Kataria"
                       />
                       <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
-                        <div className="font-bebas text-white font-bold  tracking-wider">VANSH DHIR</div>
+                        <div className="font-bebas text-white font-bold  tracking-wider">VIBHOR KATARIA</div>
                       </div>
                     </div>
 
                     <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300">LINK</button>
+                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="">LINK</a></button>
                     </div>
                   </div>
                 </div>
