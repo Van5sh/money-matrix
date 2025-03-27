@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -32,66 +32,46 @@ export default function Page() {
     };
 
     return (
-        <div className="bg-gray-800 border-green-900 shadow-2xl shadow-green-500 border-8 p-6 h-full max-w-md rounded-2xl justify-center items-center">
-            <form className="flex flex-col space-y-4 w-full max-w-md">
-                <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-white font-medium">Current Age:</label>
-                    <input
-                        value={age}
-                        type="number"
-                        onChange={(e) => setAge(e.target.valueAsNumber)}
-                        className="border-2 rounded-lg p-2 w-full"
-                    />
-                </div>
+        <div className="flex justify-center items-center min-h-screen bg-gray-900 p-6">
+            <div className="w-full max-w-md bg-gray-800 border border-green-600 shadow-lg p-6 rounded-2xl">
+                <h1 className="text-center text-2xl font-bold text-green-400 mb-4">Retirement Fund Calculator</h1>
+                <form className="space-y-4">
+                    {[
+                        { label: "Current Age", value: age, setValue: setAge },
+                        { label: "Retirement Age", value: retirementAge, setValue: setRetirementAge, min: 40 },
+                        { label: "Yearly Inflation (%)", value: inflation, setValue: setInflation },
+                        { label: "Monthly Expenses ($)", value: expenses, setValue: setExpenses },
+                    ].map(({ label, value, setValue, min }, index) => (
+                        <div key={index} className="flex flex-col">
+                            <label className="text-white font-medium">{label}:</label>
+                            <input
+                                type="number"
+                                value={value}
+                                min={min}
+                                onChange={(e) => setValue(e.target.valueAsNumber)}
+                                className="border border-green-400 bg-gray-700 text-white rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
+                        </div>
+                    ))}
 
-                <div className="grid grid-cols-2 items-center  gap-4">
-                    <label className="text-white font-medium">Retirement Age:</label>
-                    <input
-                        value={retirementAge}
-                        type="number"
-                        min={40}
-                        onChange={(e) => setRetirementAge(e.target.valueAsNumber)}
-                        className="border-2 rounded-lg p-2 w-full"
-                    />
-                </div>
+                    <button
+                        type="button"
+                        onClick={onSubmit}
+                        className="w-full p-3 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 transition-transform transform hover:scale-105"
+                    >
+                        Calculate Retirement Fund
+                    </button>
+                </form>
 
-                <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-white font-medium">Yearly Inflation:</label>
-                    <input
-                        value={inflation}
-                        type="number"
-                        onChange={(e) => setInflation(e.target.valueAsNumber)}
-                        className="border-2 rounded-lg p-2 w-full"
-                    />
-                </div>
-
-                <div className="grid grid-cols-2 items-center gap-4">
-                    <label className="text-white font-medium">Monthly Expenses:</label>
-                    <input
-                        value={expenses}
-                        type="number"
-                        onChange={(e) => setExpenses(e.target.valueAsNumber)}
-                        className="border-2 rounded-lg p-2 w-full"
-                    />
-                </div>
-
-                <button
-                    type="button"
-                    onClick={onSubmit}
-                    className="p-3 rounded-lg bg-gray-100 text-green-400 shadow-green-400 border-green-900 border-2 w-full hover:bg-green-600 transition"
-                >
-                    Calculate Retirement Fund
-                </button>
-            </form>
-
-            {isOpen && (
-                <div className="flex bg-gray-100 p-4 mt-4 rounded-lg flex-col">
-                    <p>Yearly Expense: {yearlyExpense}</p>
-                    <p>Yearly Expense at Retirement: {requiredAtRetirement ? requiredAtRetirement.toFixed(2) : "N/A"}</p>
-                    <p>Corpus required at retirement: {finalCost}</p>
-                    <p>(at the interest rate of 6 percent)</p>
-                </div>
-            )}
+                {isOpen && (
+                    <div className="mt-6 p-4 bg-green-700 text-white rounded-lg shadow-md text-center">
+                        <p className="font-semibold">Yearly Expense: Rs {yearlyExpense}</p>
+                        <p>Yearly Expense at Retirement: Rs {requiredAtRetirement.toFixed(2)}</p>
+                        <p>Corpus required at retirement: Rs {finalCost.toFixed(2)}</p>
+                        <p className="text-sm opacity-80">(at an interest rate of 6%)</p>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

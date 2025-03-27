@@ -34,6 +34,7 @@ export default function Page() {
         };
         fetchBlogs();
     }, []);
+
     const saveChanges = async () => {
         if (selectedBlog) {
             const id = selectedBlog._id;

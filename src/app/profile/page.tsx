@@ -4,10 +4,12 @@ import { UserAuth } from "@/app/context/AuthContext";
 import React, { useEffect, useState } from "react";
 import { UserPen, LogOut } from "lucide-react";
 import Editform from "@/app/profile/components/editform";
+import axios from "axios";
 
 const Page = () => {
   const { user, logOut } = UserAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [id, setId] = useState<string>("");
   const [profileData, setProfileData] = useState({
     name: "",
     email: "",
@@ -20,6 +22,11 @@ const Page = () => {
   });
 
   useEffect(() => {
+    const fetchUser = async () => {
+      const result = await axios.get(`/api/users?email=${user?.email}`);
+      const idi = result.data._id;
+      setId(idi);
+    }
     setProfileData({
       name: sessionStorage.getItem("name") || user?.displayName || "",
       email: sessionStorage.getItem("email") || user?.email || "",
@@ -30,15 +37,37 @@ const Page = () => {
       address: sessionStorage.getItem("address") || "",
       income: sessionStorage.getItem("income") || "",
     });
+    fetchUser();
   }, [isOpen, user]);
-
+  const saveProfile = () => {
+    // if (!profileData.phone || profileData.age <= 0 || profileData.weight <= 0 || profileData.height <= 0 || !profileData.address || !profileData.income) {
+    //   alert("Please fill all the fields");
+    //   return;
+    // }
+    sessionStorage.setItem("phone", profileData.phone);
+    sessionStorage.setItem("age", profileData.age.toString());
+    sessionStorage.setItem("weight", profileData.weight.toString());
+    sessionStorage.setItem("height", profileData.height.toString());
+    sessionStorage.setItem("address", profileData.address);
+    sessionStorage.setItem("income", profileData.income);
+    console.log("Profile saved");
+    axios.put(`/api/users/${id}`, {
+      name: profileData.name,
+      email: profileData.email,
+      phone: profileData.phone,
+      age: profileData.age,
+      weight: profileData.weight,
+      height: profileData.height,
+      address: profileData.address,
+      income: profileData.income,
+    });
+    setIsOpen(false);
+  }
   return (
     <div className="relative min-h-screen overflow-y-hidden bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 pt-4 pb-12 mt-[-40px] overflow-hidden text-white font-mono">
       <div className="absolute w-[500px] h-[500px] bg-green-700 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-ping-slow -top-20 -left-20"></div>
       <div className="absolute w-[300px] h-[300px] bg-emerald-400 rounded-full mix-blend-screen filter blur-2xl opacity-30 animate-pulse -bottom-10 -right-10"></div>
       <div className="w-[150vh] max-w-6xl h-[60vh] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl shadow-[0_0_60px_rgba(0,255,150,0.2)] flex flex-col lg:flex-row overflow-hidden transition-all duration-300 2xl:h-[54vh] ">
-
-        {/* Sidebar */}
         <div className="lg:w-1/3 h-[60vh] w-full bg-gradient-to-b from-green-600/80 to-green-800/80 p-8 flex flex-col items-center gap-6 shadow-inner">
           <div className="relative group">
             {user?.photoURL ? (
@@ -77,7 +106,7 @@ const Page = () => {
             User Dashboard
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 2xl:gap-6 text-base leading-relaxed font-semibold">
-            <div><span className="text-gray-400 text-sm 2xl:text-base">🧍 Name:</span> <br /> <span className="text-sm 2xl:text-base pl-1">{profileData.name}</span></div>
+            <div><span className="text-gray-400 text-sm 2xl:text-base">🧍 Occupation:</span> <br /> <span className="text-sm 2xl:text-base pl-1">{profileData.name}</span></div>
             <div><span className="text-gray-400 text-sm 2xl:text-base">📧 Email:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.email}</span> </div>
             <div><span className="text-gray-400 text-sm 2xl:text-base">📱 Phone:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.phone}</span></div>
             <div><span className="text-gray-400 text-sm 2xl:text-base">🎂 Age:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.age}</span></div>
@@ -92,7 +121,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      {isOpen && <Editform formClose={() => setIsOpen(false)} />}
+      {isOpen && <Editform submit={saveProfile} formClose={() => setIsOpen(false)} />}
     </div>
   );
 };

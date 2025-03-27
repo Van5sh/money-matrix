@@ -4,9 +4,10 @@ import { UserAuth } from "@/app/context/AuthContext";
 
 interface EditformProps {
     formClose: () => void;
+    submit: () => void;
 }
 
-const Editform: React.FC<EditformProps> = ({ formClose }) => {
+const Editform: React.FC<EditformProps> = ({ formClose,submit }) => {
     const { user } = UserAuth();
     const [name, setName] = useState<string>(user?.displayName || "");
     const [email, setEmail] = useState<string>(user?.email || "");
@@ -56,7 +57,7 @@ const Editform: React.FC<EditformProps> = ({ formClose }) => {
 
                 <div className="flex justify-between p-4">
                     <button onClick={formClose} className="p-2 bg-black text-white rounded font-bold w-1/2 mr-2">Cancel</button>
-                    <button onClick={saveProfile} className="p-2 bg-green-500 text-white rounded font-bold w-1/2">Save</button>
+                    <button onClick={submit} className="p-2 bg-green-500 text-white rounded font-bold w-1/2">Save</button>
                 </div>
             </div>
         </div>
