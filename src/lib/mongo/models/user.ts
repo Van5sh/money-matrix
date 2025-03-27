@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     address:{type:String,required:true},
     weight:{type:Number},
     height:{type:Number},
-
+    occupation:{type:String},
     name: { type: String, required: true },
 },{timestamps:true});
 

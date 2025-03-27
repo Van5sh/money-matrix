@@ -9,9 +9,8 @@
   const Page = () => {
     const { user, logOut } = UserAuth();
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [id, setId] = useState<string>("");
     const [profileData, setProfileData] = useState({
-      name: "",
+      occupation: "",
       email: "",
       phone: "",
       age: 0,
@@ -35,13 +34,19 @@
           console.error("Failed to fetch user data:", error);
         }
       };
-
+      setProfileData({
+        occupation: localStorage.getItem("jobtitle") || "",
+        email: localStorage.getItem("email") || "",
+        phone: localStorage.getItem("phone") || "",
+        age: Number(localStorage.getItem("age")) || 0,
+        weight: Number(localStorage.getItem("weight")) || 0,
+        height: Number(localStorage.getItem("height")) || 0,
+        address: localStorage.getItem("address") || "",
+        income: localStorage.getItem("income") || "",
+      });
       fetchUser();
     }, [isOpen, user]);
-    const saveProfile = () => {
-      // const response=await axios.put(`/api/profile?name=${user?.displayName}`, profileData);
-      setIsOpen(false);
-    }
+
     return (
       <div className="relative min-h-screen overflow-y-hidden bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 pt-4 pb-12 mt-[-40px] overflow-hidden text-white font-mono">
         <div className="absolute w-[500px] h-[500px] bg-green-700 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-ping-slow -top-20 -left-20"></div>
@@ -85,7 +90,7 @@
               User Dashboard
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 2xl:gap-6 text-base leading-relaxed font-semibold">
-              <div><span className="text-gray-400 text-sm 2xl:text-base">🧍 Occupation:</span> <br /> <span className="text-sm 2xl:text-base pl-1">{profileData.name}</span></div>
+              <div><span className="text-gray-400 text-sm 2xl:text-base">🧍 Occupation:</span> <br /> <span className="text-sm 2xl:text-base pl-1">{profileData.occupation}</span></div>
               <div><span className="text-gray-400 text-sm 2xl:text-base">📧 Email:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.email}</span> </div>
               <div><span className="text-gray-400 text-sm 2xl:text-base">📱 Phone:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.phone}</span></div>
               <div><span className="text-gray-400 text-sm 2xl:text-base">🎂 Age:</span> <br /><span className="text-sm 2xl:text-base pl-1">{profileData.age}</span></div>
@@ -100,7 +105,7 @@
             </div>
           </div>
         </div>
-        {isOpen && <Editform submit={saveProfile} formClose={() => setIsOpen(false)} />}
+        {isOpen && <Editform />}
       </div>
     );
   };
