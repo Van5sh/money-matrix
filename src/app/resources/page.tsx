@@ -34,6 +34,7 @@ export default function Page() {
         };
         fetchBlogs();
     }, []);
+
     const saveChanges = async () => {
         if (selectedBlog) {
             const id = selectedBlog._id;
@@ -51,10 +52,9 @@ export default function Page() {
         <div className="flex flex-col gap-6 p-6 items-center justify-center bg-white min-h-screen overflow-auto"
              style={{ backgroundImage: "url('bg1.svg')", backgroundSize: "cover", backgroundPosition: "center" }}>
             <h1 className="text-6xl font-bold font-anton tracking-widest text-white mb-4">LATEST BLOGS</h1>
-
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl">
-                <div className="flex flex-col items-center justify-center">
-                    <div className="w-full max-w-2xl flex flex-col gap-6 text-2xl text-white">
+                <div className="flex flex-col w-full items-center justify-center">
+                    <div className="w-full flex flex-col gap-6 text-2xl text-white">
                         {blogs.map((blog) => (
                             <Blog
                                 key={blog._id}

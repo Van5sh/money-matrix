@@ -20,7 +20,6 @@ export async function POST(req:Request){
         const body=await req.json();
         console.log(body);
         const result=await collection.insertOne(body);
-        // const result=await Blogs.create(body);
         return NextResponse.json({success:true,data:result},{status:201});
     }catch (e){
         return NextResponse.json({success:false,error:e},{status:400});

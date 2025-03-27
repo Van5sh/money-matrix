@@ -93,7 +93,7 @@ export default function Page() {
     };
 
     return (
-        <div className="flex items-center justify-center pb-12  bg-gradient-to-r  overflow-hidden">
+        <div className="flex flex-col items-center justify-center pb-12  bg-gradient-to-r  overflow-hidden">
             <div className="w-full max-w-xl bg-emerald-100/90 backdrop-blur-sm p-10 rounded-3xl shadow-2xl md:max-w-[65vh] md:max-h-[65vh] md:w-[65vh] md:h-[65vh] flex flex-col justify-center space-y-6">
 
                 <h1 className="text-xl 2xl:text-3xl  2xl:pt-0  font-bold text-green-800 text-center mb-2">
@@ -147,15 +147,14 @@ export default function Page() {
                     </button>
                 </div>
 
-
-                {isSubmitted && (
-                    <div className="mt-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-md text-center">
-                        <p className="text-lg font-semibold">
-                            Your BMI is <span className="text-black text-2xl">{bmi.toFixed(2)}</span>
-                        </p>
-                    </div>
-                )}
             </div>
+            {isSubmitted && (
+                <div className="mt-4 p-4 bg-green-100 text-green-900 rounded-lg shadow-md text-center">
+                    <p className="text-lg font-semibold">
+                        Your BMI is <span className="text-black text-2xl">{bmi.toFixed(2)}</span>
+                    </p>
+                </div>
+            )}
         </div>
     );
 }

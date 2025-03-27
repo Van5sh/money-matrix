@@ -3,18 +3,18 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/index";
 
-export async function GET(req) {
+export async function GET() {
     try {
-        const req=body
         const db = await connectToDatabase();
         const collection = db.collection("user");
-        const users = await collection.find({});
+        const users = await collection.find({}).toArray();
         return NextResponse.json({ success: true, data: users }, { status: 200 });
-    } catch (error) {
-        console.error("Error fetching users:", error);
-        return NextResponse.json({ success: false, error: error }, { status: 400 });
+    } catch (e) {
+        return NextResponse.json({ success: false, error: e }, { status: 400 });
     }
 }
+
+
 
 export async function POST(req: Request) {
     try {
