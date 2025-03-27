@@ -1,86 +1,11 @@
-// "use client";
-// import React, { useState } from "react";
-// import Cards from "@/app/investments/components/cards";
-
-// export default function Page() {
-//     const [selectedCard, setSelectedCard] = useState(null);
-
-//     const items = [
-//         { index: 1, title: "FIXED DEPOSITS", description: "FOR YOUR SECURE FUTURE" },
-//         { index: 2, title: "MUTUAL FUNDS", description: "INVEST IN THE FUTURE" },
-//         { index: 3, title: "STOCKS", description: "INVEST IN THE FUTURE" },
-//         { index: 4, title: "GOLD", description: "SAVE FOR THE FUTURE" },
-//     ];
-
-//     const investmentDetails = {
-//         1: `Fixed Deposit (FD) – A Secure Investment Option. 
-//         A Fixed Deposit (FD) is a financial instrument offered by banks where an investor deposits a lump sum amount for a fixed period at a predetermined interest rate.
-//         - Guaranteed Returns: Unlike stocks or mutual funds, FDs provide fixed interest rates, ensuring stable returns.
-//         - Interest Rates: Banks offer varying interest rates based on tenure, typically ranging from 3% to 8% per annum.
-//         - Flexible Tenure: Ranges from 7 days to 10 years, allowing investors to align with their financial goals.
-//         - Loan Facility: Investors can avail loans against their FDs without breaking them.
-//         - Tax Implications: Interest earned is taxable and subject to TDS above a certain limit.`,
-
-//         2: `Mutual Funds – Diversify Your Portfolio. 
-//         Mutual funds pool money from various investors to invest in stocks, bonds, or other assets, providing diversification and professional management.
-//         - Types: Includes equity funds, debt funds, hybrid funds, and index funds, catering to different risk appetites.
-//         - SIP Option: Systematic Investment Plans (SIPs) allow small periodic investments rather than lump sums.
-//         - Risk & Returns: Higher potential returns but also market risks, depending on fund type.
-//         - Liquidity: Easily redeemable, with varying exit loads and tax implications.
-//         - Professional Management: Managed by experienced fund managers who analyze market trends and investment opportunities.`,
-
-//         3: `Stocks – High Risk, High Reward. 
-//         Stocks represent ownership in a company, offering potential growth and dividends but with market risks.
-//         - Equity Investment: Buying stocks means holding a share in the company’s ownership.
-//         - Returns: Potentially high returns through capital appreciation and dividends.
-//         - Market Volatility: Stock prices fluctuate due to economic conditions, company performance, and market sentiment.
-//         - Long-Term Growth: Historically, stocks have provided superior long-term returns compared to other asset classes.
-//         - Risk Management: Investors use strategies like diversification and stop-loss orders to manage risks.`,
-
-//         4: `Gold – A Safe Haven Asset. 
-//         Gold is considered a stable investment, often used to hedge against inflation and economic uncertainties.
-//         - Forms of Investment: Available as physical gold (jewelry, coins, bars), digital gold, Gold ETFs, and sovereign gold bonds.
-//         - Inflation Hedge: Maintains value during economic downturns and inflationary periods.
-//         - Liquidity: Easily tradable in global markets.
-//         - Diversification: Adds balance to investment portfolios by reducing overall risk.
-//         - Returns: Historically provides moderate returns but is relatively more stable than stocks.`
-//     };
-
-//     return (
-//         <div className="flex flex-col items-center h-full pt-10 bg-gradient-to-br from-green-700 via-emerald-400 to-green-400">
-//             <h1 className="text-green-700 font-bold font-oswald text-7xl m-3 tracking-wider pb-6">INVESTMENTS</h1>
-//             <i className="text-white text-xl pb-4">It is not how much money you make, but how much money you keep, how hard it works for you, and how many generations you keep it for.</i>
-            
-//             <div className="flex flex-row gap-4 p-8">
-//                 {items.map((item) => (
-//                     <Cards 
-//                         key={item.index} 
-//                         title={item.title} 
-//                         description={item.description} 
-//                         onclick={() => setSelectedCard(item.index)} 
-//                     />
-//                 ))}
-//             </div>
-            
-//             <div className="flex justify-end gap-4 items-center flex-col">
-//                 <h1 className="text-green-700 font-bold text-2xl">TYPE OF INVESTMENT:</h1>
-//                 {selectedCard && (
-//                     <div className="text-gray-200 text-center max-w-xl">
-//                         <h1 className="text-6xl font-bold">{items.find(i => i.index === selectedCard).title}</h1>
-//                         <p className="text-3xl">{investmentDetails[selectedCard]}</p>
-//                     </div>
-//                 )}
-//             </div>
-//         </div>
-//     );
-// }
 "use client";
-import React, { useState } from "react";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"; // Import ShadCN Card
-import Cards from "@/app/investments/components/cards";
+import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 export default function Page() {
-    const [selectedCard, setSelectedCard] = useState(null);
+    const [hoveredCard, setHoveredCard] = useState(null);
+    const sectionRefs = useRef({});
 
     const items = [
         { index: 1, title: "FIXED DEPOSITS", description: "FOR YOUR SECURE FUTURE" },
@@ -89,80 +14,123 @@ export default function Page() {
         { index: 4, title: "GOLD", description: "STABLE & SECURE INVESTMENT" },
     ];
 
-    const investmentDetails = {
-        1: [
-            "📌 **Fixed Deposit (FD) – A Secure Investment Option**",
-            "✅ Guaranteed Returns",
-            "✅ Interest Rates: 3%-8% per annum",
-            "✅ Flexible Tenure: 7 days to 10 years",
-            "✅ Loan Facility Available",
-            "✅ Tax Implications: Subject to TDS"
-        ],
-        2: [
-            "📌 **Mutual Funds – Diversify Your Portfolio**",
-            "✅ Types: Equity, Debt, Hybrid & Index Funds",
-            "✅ SIP Option for Small Investments",
-            "✅ High Potential Returns, but Market Risks Apply",
-            "✅ Liquidity: Can be Redeemed Anytime",
-            "✅ Professionally Managed by Experts"
-        ],
-        3: [
-            "📌 **Stocks – High Risk, High Reward**",
-            "✅ Equity Investment with Ownership",
-            "✅ Potential for High Returns & Dividends",
-            "✅ Market Volatility: Prices Fluctuate",
-            "✅ Long-Term Growth Benefits",
-            "✅ Risk Management via Diversification"
-        ],
-        4: [
-            "📌 **Gold – A Safe Haven Asset**",
-            "✅ Investment Forms: Jewelry, Digital Gold, ETFs, Bonds",
-            "✅ Hedge Against Inflation & Economic Instability",
-            "✅ High Liquidity in Global Markets",
-            "✅ Portfolio Diversification Benefits",
-            "✅ Historically Stable & Moderate Returns"
-        ]
+    const moreInfoContent = {
+        1: {
+            intro: "Fixed Deposits (FDs) are one of the safest investment options, offering guaranteed returns with fixed interest rates.",
+            features: [
+                "🏦 Secure & Stable: Provides guaranteed returns, unaffected by market fluctuations.",
+                "💰 Interest Rates: Ranges from 3% to 8% per annum, depending on tenure and bank.",
+                "⏳ Flexible Tenure: Choose a period from 7 days to 10 years.",
+                "📌 Loan Facility: Banks allow loans against FDs at lower interest rates.",
+                "🛑 Lock-in Period: Premature withdrawal may result in penalties."
+            ]
+        },
+        2: {
+            intro: "Mutual Funds pool money from multiple investors and invest in diversified assets like stocks, bonds, and other securities.",
+            features: [
+                "📊 Diversified Investment: Reduces risk by investing in multiple assets.",
+                "📈 High Return Potential: Equity mutual funds can generate significant returns over time.",
+                "💳 SIP Option: Start investing with as little as ₹500 per month.",
+                "⚠️ Market-Linked: Returns depend on stock market performance.",
+                "🏦 Liquidity: Can redeem investments anytime, except for ELSS funds."
+            ]
+        },
+        3: {
+            intro: "Stocks represent ownership in a company, and their value fluctuates based on market conditions and business performance.",
+            features: [
+                "📈 High Returns: Potential to generate massive wealth over time.",
+                "⚠️ Market Volatility: Prices fluctuate daily based on various factors.",
+                "💰 Dividend Earnings: Some companies pay dividends to shareholders.",
+                "⏳ Long-Term Growth: Historical data shows that long-term investors benefit the most.",
+                "📌 Requires Knowledge: Understanding financial statements and market trends is crucial."
+            ]
+        },
+        4: {
+            intro: "Gold is considered a safe investment and acts as a hedge against inflation and currency depreciation.",
+            features: [
+                "🏆 Safe Haven: Gold retains value during economic crises.",
+                "💰 Various Forms: Available as physical gold, digital gold, ETFs, and sovereign gold bonds.",
+                "📌 Inflation Hedge: Protects against rising inflation.",
+                "⚠️ Price Fluctuations: Gold prices are affected by global demand and supply.",
+                "📈 Moderate Returns: Historically stable with long-term appreciation."
+            ]
+        }
+    };
+
+    const handleCardClick = (index) => {
+        sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "start" });
     };
 
     return (
-        <div className="flex flex-col items-center h-full pt-10 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 min-h-screen px-4">
-            {/* Page Title */}
-            <h1 className="text-white font-extrabold font-oswald text-7xl mb-6 tracking-wider drop-shadow-md">INVESTMENTS</h1>
-            <p className="text-gray-200 text-lg italic max-w-2xl text-center px-4">
-                “It is not how much money you make, but how much money you keep, how hard it works for you, and how many generations you keep it for.”
-            </p>
+        <div className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 min-h-screen">
+            {/* Background Animation */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900 to-emerald-700 opacity-30 blur-3xl z-0"></div>
 
-            
-            <div className="flex flex-wrap justify-center gap-6 p-8">
-                {items.map((item) => (
-                    <Card
-                        key={item.index}
-                        onClick={() => setSelectedCard(item.index)}
-                        className="w-64 p-4 text-center bg-gradient-to-br from-green-600 via-green-600 to-emerald-400 cursor-pointer border border-gray-200 hover:shadow-lg hover:border-white transition-all duration-300"
-                    >
-                        <CardHeader>
-                            <CardTitle className="text-xl font-bold text-gray-800">{item.title}</CardTitle>
-                            <CardDescription className="text-white">{item.description}</CardDescription>
-                        </CardHeader>
-                    </Card>
-                ))}
+            <div className="relative flex flex-col items-center h-full pt-10 px-4 z-10">
+                {/* Page Title */}
+                <motion.h1
+                    initial={{ opacity: 0, y: -30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-white font-extrabold font-oswald text-7xl mb-8 tracking-wider drop-shadow-md"
+                >
+                    INVESTMENTS
+                </motion.h1>
+
+                {/* Investment Cards */}
+                <div className="flex flex-wrap justify-center gap-6 p-8 relative">
+                    {items.map((item) => (
+                        <motion.div
+                            key={item.index}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: item.index * 0.2 }}
+                            className="relative"
+                        >
+                            <Card
+                                onMouseEnter={() => setHoveredCard(item.index)}
+                                onMouseLeave={() => setHoveredCard(null)}
+                                onClick={() => handleCardClick(item.index)}
+                                className="w-64 p-4 h-[17vh] text-center backdrop-blur-xl bg-white/10 shadow-md rounded-xl cursor-pointer border border-gray-200 hover:shadow-2xl hover:bg-green-600 hover:scale-105 transition-all duration-300"
+                            >
+                                <CardHeader>
+                                    <CardTitle className="text-xl font-bold text-white">{item.title}</CardTitle>
+                                    <CardDescription className="text-gray-300">{item.description}</CardDescription>
+                                </CardHeader>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
 
-           
-            {selectedCard && (
-                <div className="bg-black bg-opacity-40 backdrop-blur-lg p-6 rounded-xl max-w-2xl text-white mt-6 transition-all duration-500 shadow-lg">
-                    <h2 className="text-3xl font-bold text-center mb-4">{items.find(i => i.index === selectedCard).title}</h2>
-                    
-                   
-                    <ul className="text-lg leading-relaxed space-y-2">
-                        {investmentDetails[selectedCard].map((point, index) => (
-                            <li key={index} className="block">
-                                {point}
-                            </li>
-                        ))}
-                    </ul>
+            {/* More Information Section */}
+            <div className="relative w-full mt-12 overflow-hidden rounded-lg bg-white/10 backdrop-blur-lg shadow-lg p-6">
+                <h2 className="text-5xl border-b-[1px] border-b-white text-white tracking-widest font-anton text-left pb-4">
+                    MORE INFORMATION
+                </h2>
+                <div className="pt-6">
+                    {items.map((item) => (
+                        <motion.div
+                            key={item.index}
+                            ref={(el) => (sectionRefs.current[item.index] = el)}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: item.index * 0.2 }}
+                            className="mb-12 p-6 bg-gradient-to-br from-emerald-900 to-emerald-700 rounded-xl shadow-lg"
+                        >
+                            <h3 className="text-4xl font-bold text-white text-center">{item.title}</h3>
+                            <p className="text-xl text-gray-200 mt-2">{moreInfoContent[item.index].intro}</p>
+
+                            {/* Features List */}
+                            <ul className="list-disc pl-5 mt-4 text-lg text-gray-300 space-y-2">
+                                {moreInfoContent[item.index].features.map((point, index) => (
+                                    <li key={index}>{point}</li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
                 </div>
-            )}
+            </div>
         </div>
     );
 }
