@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
     age:{type:Number,required:true},
     income:{type:Number,required:true},
     address:{type:String,required:true},
+    weight:{type:Number},
+    height:{type:Number},
+
     name: { type: String, required: true },
 },{timestamps:true});
 

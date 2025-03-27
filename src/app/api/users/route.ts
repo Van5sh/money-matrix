@@ -3,24 +3,14 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/index";
 
-export async function GET(req: Request) {
+export async function GET() {
     try {
-        const { searchParams } = new URL(req.url);
-        const email = searchParams.get("email");
-        if (!email) {
-            return NextResponse.json({ success: false, error: "Email is required" }, { status: 400 });
-        }
-
         const db = await connectToDatabase();
         const collection = db.collection("user");
-        const user = await collection.findOne({ email });
-        if (!user) {
-            return NextResponse.json({ success: false, error: "User not found" }, { status: 404 });
-        }
-
-        return NextResponse.json({ success: true, data: user }, { status: 200 });
+        const users = await collection.find({}).toArray();
+        return NextResponse.json({ success: true, data: users }, { status: 200 });
     } catch (e) {
-        return NextResponse.json({ success: false, error: e.message }, { status: 400 });
+        return NextResponse.json({ success: false, error: e }, { status: 400 });
     }
 }
 
