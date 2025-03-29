@@ -86,9 +86,9 @@ export default function Navbar() {
                                         Insurance Calculator
 
                                     </li></Link>
-                                    <li className="px-4 py-2 duration-200 hover:bg-green-500 hover:text-2xl hover:text-white rounded-md cursor-pointer">
+                                    <Link href="../calculators/Child_life_calculator"><li className="px-4 py-2 duration-200 hover:bg-green-500 hover:text-2xl hover:text-white rounded-md cursor-pointer">
                                         Child Life Calculator
-                                    </li>
+                                    </li></Link>
                                     <Link href="../calculators/retirement_calculator"><li className="px-4 py-2 duration-200 hover:bg-green-500 hover:text-white hover:text-2xl rounded-md cursor-pointer">
                                         Retirement Calculator
                                     </li></Link>

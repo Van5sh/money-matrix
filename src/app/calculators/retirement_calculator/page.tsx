@@ -33,7 +33,7 @@ export default function Page() {
 
     return (
         <div className="flex justify-center items-center   p-6">
-            <div className="w-full max-w-md bg-gray-800 bg-opacity-60 backdrop-blur-sm border border-green-600 shadow-lg p-6 rounded-2xl">
+            <div className="w-full max-w-md bg-black bg-opacity-60 backdrop-blur-sm border border-green-600 shadow-lg p-6 rounded-2xl">
                 <h1 className="text-center text-2xl font-bold text-green-400 mb-4">Retirement Fund Calculator</h1>
                 <form className="space-y-4">
                     {[
@@ -57,7 +57,7 @@ export default function Page() {
                     <button
                         type="button"
                         onClick={onSubmit}
-                        className="w-full p-3 rounded-lg bg-green-600 backdrop-blur-md bg-opacity-35 text-white font-bold hover:bg-green-600 transition-transform transform hover:scale-105"
+                        className="w-full p-3 rounded-lg bg-green-600  border-[1px] border-white backdrop-blur-md bg-opacity-35 text-white font-bold hover:bg-green-600 transition-transform transform hover:scale-105"
                     >
                         Calculate Retirement Fund
                     </button>

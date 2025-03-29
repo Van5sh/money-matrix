@@ -16,7 +16,7 @@ export default function Page() {
 
     return (
         <div className="flex flex-col items-center justify-center pb-12 min-h-screen text-white px-4">
-            <div className="w-full max-w-xl bg-emerald-200/80 bg-opacity-50 text-black backdrop-blur-md p-8 rounded-3xl shadow-2xl md:max-w-lg md:w-[60vh] flex flex-col justify-center space-y-6">
+            <div className="w-full max-w-xl bg-emerald-200/80 border-[1px] border-white bg-opacity-50 text-black backdrop-blur-md p-8 rounded-3xl shadow-2xl md:max-w-lg md:w-[60vh] flex flex-col justify-center space-y-6">
                 <h1 className="text-2xl font-bold text-green-800 text-center mb-4">INSURANCE CALCULATOR</h1>
 
                 <form className="space-y-5">
