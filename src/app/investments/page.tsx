@@ -2,16 +2,17 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function Page() {
     const [hoveredCard, setHoveredCard] = useState(null);
     const sectionRefs = useRef({});
 
     const items = [
-        { index: 1, title: "FIXED DEPOSITS", description: "FOR YOUR SECURE FUTURE" },
-        { index: 2, title: "MUTUAL FUNDS", description: "INVEST IN THE FUTURE" },
-        { index: 3, title: "STOCKS", description: "HIGH RISK, HIGH REWARD" },
-        { index: 4, title: "GOLD", description: "STABLE & SECURE INVESTMENT" },
+        { index: 1, title: "FIXED DEPOSITS", description: "FOR YOUR SECURE FUTURE",link:"/investments/fixed-deposits" },
+        { index: 2, title: "MUTUAL FUNDS", description: "INVEST IN THE FUTURE",link:"/investments/mutual-funds" },
+        { index: 3, title: "STOCKS", description: "HIGH RISK, HIGH REWARD",link:"/investments/stocks" },
+        { index: 4, title: "GOLD", description: "STABLE & SECURE INVESTMENT",link:"/investments/gold" },
     ];
 
     const moreInfoContent = {
@@ -118,7 +119,7 @@ export default function Page() {
                             transition={{ duration: 0.5, delay: item.index * 0.2 }}
                             className="mb-12 p-6 bg-gradient-to-br from-emerald-900 to-emerald-700 rounded-xl shadow-lg"
                         >
-                            <h3 className="text-4xl font-bold text-white text-center">{item.title}</h3>
+                            <div className="text-center"><Link href={item.link} className="text-4xl font-bold text-white text-center">{item.title}</Link></div>
                             <p className="text-xl text-gray-200 mt-2">{moreInfoContent[item.index].intro}</p>
 
                             {/* Features List */}
