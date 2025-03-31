@@ -75,53 +75,71 @@ export default function Stocks() {
     })).reverse() : [];
 
     return (
-        <div className="text-white p-4 h-[100vh]" style={{ backgroundImage: "url('/images/stockpage.avif')", backgroundSize: "cover" }}>
-            <input
-                className="text-black p-2 border border-gray-300 rounded w-[45vh]"
-                type="text"
-                placeholder="Search stock..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-            />
-            {sugg.length > 0 && (
-                <ul className="text-green-800 bg-white border w-[45vh] absolute border-gray-300 mt-2 rounded shadow-lg">
-                    {sugg.map((stock, index) => (
-                        <li key={index} className="cursor-pointer p-2 hover:bg-gray-200" onClick={() => handleSelect(stock)}>
-                            {stock["1. symbol"]} - {stock["2. name"]}
-                        </li>
-                    ))}
-                </ul>
-            )}
+        <div className="min-h-screen w-full flex flex-col  bg-gradient-to-br from-green-900 to-emerald-600 text-white p-6">
+            {/* Title */}
+            <h1 className="text-3xl font-bold text-center mb-6">📈 Stock Market Tracker</h1>
+
+            {/* Search Bar */}
+            <div className="w-full max-w-lg">
+                <input
+                    className="w-full p-3 text-black border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    type="text"
+                    placeholder="Search stock..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                />
+                {sugg.length > 0 && (
+                    <ul className="bg-white text-black border border-gray-300 mt-2 rounded-lg shadow-lg absolute w-full max-w-lg z-10">
+                        {sugg.map((stock, index) => (
+                            <li key={index} className="cursor-pointer p-3 hover:bg-gray-200" onClick={() => handleSelect(stock)}>
+                                {stock["1. symbol"]} - {stock["2. name"]}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            {/* Selected Stocks */}
             {selectedStocks.length > 0 && (
-                <div className="mt-4">
-                    <h3 className="text-lg font-semibold">SELECTED STOCKS:</h3>
-                    <ul className="bg-emerald-800 p-3 rounded-lg">
+                <div className="mt-6 w-full max-w-lg bg-emerald-800 p-4 rounded-lg shadow-md">
+                    <h3 className="text-lg font-semibold mb-2">Selected Stocks:</h3>
+                    <ul>
                         {selectedStocks.map((stock, index) => (
-                            <li key={index} className="cursor-pointer p-2 bg-green-700 text-white rounded mt-2 hover:bg-red-600" onClick={() => handleRemove(stock["1. symbol"]) }>
+                            <li key={index} className="cursor-pointer p-3 bg-green-700 text-white rounded-md mt-2 hover:bg-red-600" onClick={() => handleRemove(stock["1. symbol"]) }>
                                 {stock["1. symbol"]} - {stock["2. name"]}
                             </li>
                         ))}
                     </ul>
                 </div>
             )}
-            <div className="pt-4">
-                <input type="text" placeholder="Write the stock..." value={viewquery} onChange={(e) => setViewquery(e.target.value)} className="w-[45vh] text-black p-2 border-[1px] border-gray-300" />
+
+            {/* Stock Input */}
+            <div className="mt-6 w-full max-w-lg">
+                <input 
+                    type="text" 
+                    placeholder="Enter stock symbol..." 
+                    value={viewquery} 
+                    onChange={(e) => setViewquery(e.target.value)} 
+                    className="w-full p-3 text-black border border-gray-300 rounded-lg shadow-md" 
+                />
                 {title && (
-                    <div className="bg-emerald-800 p-4 mt-4 rounded-lg">
+                    <div className="bg-emerald-800 p-4 mt-4 rounded-lg shadow-md">
                         <h2 className="text-lg font-semibold">{title["2. Symbol"]} - Last Refreshed: {title["3. Last Refreshed"]}</h2>
                         <p>Time Zone: {title["5. Time Zone"]}</p>
                     </div>
                 )}
+
+                {/* Stock Graph */}
                 {singstoc && (
-                    <div className="bg-emerald-800 p-4 mt-4 rounded-lg min-h-[75vh]">
-                        <h2 className="text-lg font-semibold">Stock Price Trend (Last 5 Days)</h2>
-                        <ResponsiveContainer  width="100%" height={600}>
-                            <LineChart data={graphData}>
+                    <div className="bg-emerald-900 p-6 mt-6 rounded-lg shadow-md  w-[225vh] min-w-screen-xl">
+                        <h2 className="text-xl font-semibold mb-4 text-center text-white">Stock Price Trend (Last 5 Days)</h2>
+                        <ResponsiveContainer width="100%" height={500}>
+                            <LineChart data={graphData} margin={{ left: 20, right: 20 }}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
                                 <XAxis dataKey="date" tick={{ fill: 'white' }} />
                                 <YAxis domain={[(dataMin) => dataMin * 0.99, (dataMax) => dataMax * 1.01]} tick={{ fill: 'white' }} />
                                 <Tooltip />
-                                <Line type="monotone" dataKey="close" stroke="#82ca9d" strokeWidth={2} />
+                                <Line type="monotone" dataKey="close" stroke="#10b981" strokeWidth={4} dot={{ r: 5, fill: "#fff" }} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
