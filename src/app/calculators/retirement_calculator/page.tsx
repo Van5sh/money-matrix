@@ -1,14 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import Loading from "../loading";
 export default function Page() {
     const [age, setAge] = useState<number>(0);
-    useEffect(() => {
-        const storedAge = parseInt(sessionStorage.getItem("age") || "0", 10);
-        setAge(isNaN(storedAge) ? 0 : storedAge);
-    }, []);
-
+    const [loading, setLoading] = useState<boolean>(true);
     const [retirementAge, setRetirementAge] = useState<number>(60);
     const [inflation, setInflation] = useState<number>(1);
     const [expenses, setExpenses] = useState<number>(0);
@@ -16,7 +12,14 @@ export default function Page() {
     const [yearlyExpense, setYearlyExpense] = useState<number>(0);
     const [requiredAtRetirement, setRequiredAtRetirement] = useState<number>(0);
     const [finalCost, setFinalCost] = useState<number>(0);
-
+    useEffect(() => {
+        const storedAge = parseInt(sessionStorage.getItem("age") || "0", 10);
+        setAge(isNaN(storedAge) ? 0 : storedAge);
+        setTimeout(()=>{setLoading(false)},5000);
+    }, []);
+    if(loading){
+        return <Loading/>;
+    }
     const onSubmit = () => {
         if (expenses > 0 && inflation >= 0 && age >= 0 && retirementAge > age) {
             const expense = expenses * 12;

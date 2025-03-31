@@ -7,6 +7,7 @@ import { Newspaper } from "lucide-react";
 import axios from "axios";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Loading from "./loading";
 
 interface Blog {
     _id: string;
@@ -21,7 +22,7 @@ export default function Page() {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [open, setOpen] = useState<boolean>(false);
     const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
-
+    const [loading,setLoading]=useState(true);
     useEffect(() => {
         const fetchBlogs = async () => {
             const request = await axios.get("/api/blogs");
@@ -33,8 +34,11 @@ export default function Page() {
             setBlogs(data);
         };
         fetchBlogs();
+        setLoading(false);
     }, []);
-
+    if(loading){
+        return <Loading/>;
+    }
     const saveChanges = async () => {
         if (selectedBlog) {
             const id = selectedBlog._id;

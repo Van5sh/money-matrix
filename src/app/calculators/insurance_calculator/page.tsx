@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import Loading from "../loading";
 export default function Page() {
     const [age, setAge] = useState<number>(25);
     const [retirementAge, setRetirementAge] = useState<number>(60);
@@ -8,11 +8,17 @@ export default function Page() {
     const [smoker, setSmoker] = useState<boolean>(false);
     const [weight, setWeight] = useState<number>(60);
     const [height, setHeight] = useState<number>(1.7);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         setWeight(parseInt(sessionStorage.getItem("weight") || "60"));
         setHeight(parseFloat(sessionStorage.getItem("height") || "1.7"));
+        setTimeout(()=>{setLoading(false)},5000);
     }, []);
+    if(loading){
+        return <Loading/>;
+    }
+
 
     return (
         <div className="flex flex-col items-center justify-center pb-12 min-h-screen text-white px-4">

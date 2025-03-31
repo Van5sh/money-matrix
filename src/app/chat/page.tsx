@@ -42,6 +42,7 @@ import Image from "next/image";
 import { io } from "socket.io-client";
 import { UserAuth } from "@/app/context/AuthContext";
 import sendIcon from "../../../public/send.svg";
+import Loading from "../../../loading";
 
 const socket = io("http://localhost:3001");
 
@@ -54,8 +55,12 @@ export default function Chat() {
     const { user } = UserAuth();
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState<string>("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setTimeout(()=>{
+            setLoading(false);
+        },5000)
         socket.emit("client ready", "Hello, World!");
         socket.on("message", (message: Message) => {
             setMessages((prev) => [...prev, message]);
@@ -75,7 +80,9 @@ export default function Chat() {
         setInputMessage("");
         socket.emit("send_message", newMessage);
     };
-
+    if(loading){
+        return <Loading/>;
+    }
     return (
         <div className="flex flex-col items-center justify-center min-h-screen w-full p-5 bg-gradient-to-br from-green-400 via-gray-200 to-green-400">
             <div className="max-w-lg w-full bg-white p-5 rounded-lg shadow-lg h-[500px] overflow-y-auto">

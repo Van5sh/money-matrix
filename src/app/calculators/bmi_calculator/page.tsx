@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import Loading from "../loading";
 export default function Page() {
     const [weight, setWeight] = useState<number>(50);
     const [height, setHeight] = useState<number>(1.6);
@@ -11,6 +11,7 @@ export default function Page() {
     const [inflation, setInflation] = useState<number>(2);
     const [monthlyExpenses, setMonthlyExpenses] = useState<number>(20000);
     const [bmi, setBmi] = useState<number | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const storedWeight = parseInt(sessionStorage.getItem("weight") || "50");
@@ -20,12 +21,17 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
+        setTimeout(()=>{
+            setLoading(false);
+        },5000)
         if (weight && height) {
             const bmiCalc = weight / (height * height);
             setBmi(bmiCalc);
         }
     }, [weight, height]);
-
+    if(loading){
+        return <Loading/>;
+    }
     return (
         <div className="min-h-screen flex flex-col items-center justify-center pt-0 p-6">
             <div className="bg-emerald-200/95 border-[1px] border-white shadow-lg rounded-xl p-6 w-full max-w-lg">
