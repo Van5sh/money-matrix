@@ -9,7 +9,7 @@ interface TeamMemberProps {
 
 const TeamMember: React.FC<TeamMemberProps> = ({ image, name, profileLink }) => {
     return (
-        <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 group mb-8">
+        <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 group mb-8 2xl:h-[50vh] 2xl:w-[55vw] ">
             <div className="w-full h-full rounded-full relative overflow-hidden">
                 <img
                     src={image}
@@ -76,7 +76,7 @@ const AboutSection: React.FC = () => {
                         />
 
                         <div className="absolute inset-0 flex flex-col items-center w-full">
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 font-mono py-4 z-10">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-4 font-mono py-4 z-10 2xl:pb-16">
                                 ABOUT US
                             </h2>
 

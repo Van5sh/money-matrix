@@ -210,7 +210,7 @@ export default function Page() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2 }}
-                    className="p-4 pt-10 pl-20 font-mono text-sm"
+                    className="p-4 pt-10 pl-20 font-mono text-sm 2xl:text-3xl"
                   >
                     <ul className="">
                       {["Want to know what has happened in the Stock Market?", "Get the latest Stock Market trends","make a to-do list of the stocks", "Write the stock name you want and get a graph"].map((lit, i) => (
@@ -218,7 +218,7 @@ export default function Page() {
                           initial={{ opacity: 0, x: 100 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 2, delay: i * 2.5 }}
-                          className="py-2"
+                          className="py-2 2xl:py-6"
                         >
                           {lit}
                         </motion.li>
@@ -245,7 +245,7 @@ export default function Page() {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 2 }}
-                        src="/images/stock3.jpg" alt="" className="max-h-[60vh] pt-4" />
+                        src="/images/stock3.jpg" alt="" className="max-h-[60vh] pt-4 2xl:pt-10" />
                     </motion.div>
                   </AnimatePresence>
                 </div>

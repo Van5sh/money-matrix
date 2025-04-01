@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import Loading from "../stocks/loading";
 
 export default function Stocks() {
     const [query, setQuery] = useState("");
@@ -9,6 +10,9 @@ export default function Stocks() {
     const [viewquery, setViewquery] = useState("");
     const [singstoc, setSingstoc] = useState(null);
     const [title, setTitle] = useState(null);
+    const [loading, setLoading] = useState<boolean>(true);
+   
+    
 
     useEffect(() => {
         const fetchStocks = async () => {
@@ -56,6 +60,12 @@ export default function Stocks() {
         };
         fetchStockData();
     }, [viewquery]);
+    useEffect(() => {
+        setTimeout(()=>{setLoading(false)},5000);
+    }, []);
+    if(loading){
+        return <Loading />;
+    }
 
     const handleSelect = (stock) => {
         if (!selectedStocks.some(s => s["1. symbol"] === stock["1. symbol"])) {
