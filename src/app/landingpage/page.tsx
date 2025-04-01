@@ -36,9 +36,7 @@ export default function Page() {
           <div className="text-[200px] font-bold text-green-600 ml-[20px]  z-50 tracking-wider font-bangers">
             INSURED?
           </div>
-          <Button className="text-xl bg-transparent backdrop-blur-lg hover:scale-110 transition-all ease-in-out duration-300  hover:bg-green-700 border-[1px] border-green-400 text-white h-[10vh] w-[15vw] rounded-full" onClick={() => router.push("/login")}>
-              GET STARTED
-          </Button>
+            <SignInButton/>
         </div>
         <Navbar />
       </div>
