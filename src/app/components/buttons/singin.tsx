@@ -5,6 +5,7 @@ import { useState,useEffect } from "react";
 import {UserAuth} from "@/app/context/AuthContext";
 import { LogIn } from 'lucide-react';
 import {motion} from "framer-motion";
+import Loading from "@/app/landingpage/loading";
 
 
 export default function SignInButton() {
@@ -59,7 +60,6 @@ export default function SignInButton() {
 
     }, [user]);
 
-
     return (
         <>
             <motion.button
@@ -71,7 +71,6 @@ export default function SignInButton() {
             >
                 <div><LogIn className="inline mr-2 mb-1"/> Sign In With Google</div>
             </motion.button>
-            {loading && <p>Loading...</p> }
         </>
     );
 }
