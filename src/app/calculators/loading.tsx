@@ -1,5 +1,5 @@
 "use client"
-import animationData from "C:/Users/Aditya/Desktop/newl.json";   
+import animationData from "../../../public/newl.json";
 import dynamic from "next/dynamic";
 
 const Lottie = dynamic(() => import("lottie-react"), {
@@ -8,7 +8,7 @@ const Lottie = dynamic(() => import("lottie-react"), {
 });
 
 export default function Loading() {
-    return(
+    return (
         <div className="max-h-[100vh] min-w-[231vh] overflow-hidden bg-black/75 flex items-center justify-center">
             <div className="scale-[0.75]">
                 <Lottie

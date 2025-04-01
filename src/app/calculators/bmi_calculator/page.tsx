@@ -21,57 +21,41 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-        setTimeout(()=>{
+        setTimeout(() => {
             setLoading(false);
-        },5000)
+        }, 5000)
         if (weight && height) {
             const bmiCalc = weight / (height * height);
             setBmi(bmiCalc);
         }
     }, [weight, height]);
-    if(loading){
-        return <Loading/>;
+    if (loading) {
+        return <Loading />;
     }
     return (
         <div className="min-h-screen flex flex-col items-center justify-center pt-0 p-6">
             <div className="bg-emerald-200/95 border-[1px] border-white shadow-lg rounded-xl p-6 w-full max-w-lg">
                 <h2 className="text-3xl font-semibold text-green-700 text-center mb-6 min-w-[45vh]">BMI Calculator</h2>
-                
+
                 <form className="space-y-6">
                     {/* Current Age */}
                     <div>
                         <label className="block text-gray-700 font-semibold mb-1">Current Age: {age}</label>
-                        <input 
-                            type="range" 
-                            min="18" max="70" step="1" 
-                            value={age} 
-                            onChange={(e) => setAge(parseInt(e.target.value))} 
+                        <input
+                            type="range"
+                            min="18" max="70" step="1"
+                            value={age}
+                            onChange={(e) => setAge(parseInt(e.target.value))}
                             className="w-full accent-green-600"
                         />
                     </div>
-
-                    {/* Retirement Age */}
-                    <div>
-                        <label className="block text-gray-700 font-semibold mb-1">Retirement Age: {retirementAge}</label>
-                        <input 
-                            type="range" 
-                            min="40" max="80" step="1" 
-                            value={retirementAge} 
-                            onChange={(e) => setRetirementAge(parseInt(e.target.value))} 
-                            className="w-full accent-green-600"
-                        />
-                    </div>
-
-                    
-
-                    {/* Weight */}
                     <div>
                         <label className="block text-gray-700 font-semibold mb-1">Weight (kg): {weight}</label>
-                        <input 
-                            type="range" 
-                            min="30" max="150" step="1" 
-                            value={weight} 
-                            onChange={(e) => setWeight(parseInt(e.target.value))} 
+                        <input
+                            type="range"
+                            min="30" max="150" step="1"
+                            value={weight}
+                            onChange={(e) => setWeight(parseInt(e.target.value))}
                             className="w-full accent-green-600"
                         />
                     </div>
@@ -79,11 +63,11 @@ export default function Page() {
                     {/* Height */}
                     <div>
                         <label className="block text-gray-700 font-semibold mb-1">Height (m): {height.toFixed(2)}</label>
-                        <input 
-                            type="range" 
-                            min="1.2" max="2.2" step="0.01" 
-                            value={height} 
-                            onChange={(e) => setHeight(parseFloat(e.target.value))} 
+                        <input
+                            type="range"
+                            min="1.2" max="2.2" step="0.01"
+                            value={height}
+                            onChange={(e) => setHeight(parseFloat(e.target.value))}
                             className="w-full accent-green-600"
                         />
                     </div>
