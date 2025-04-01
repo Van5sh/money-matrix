@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { House, ShieldCheck, LogOut, Boxes, Calculator, User, Bitcoin, Info, LogIn } from "lucide-react";
+import { House, ShieldCheck, LogOut, Boxes, Calculator, User, Info, LogIn } from "lucide-react";
 import Link from "next/link";
 import "../globals.css";
 import { UserAuth } from "@/app/context/AuthContext";
@@ -66,11 +66,6 @@ export default function Navbar() {
                             <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
                                 <Link href="/resources">
                                     <Boxes className="inline mr-2 mb-1" /> Resources
-                                </Link>
-                            </li>
-                            <li className="relative pb-2 hover:before:w-full before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-white before:transition-all before:duration-500">
-                                <Link href="/chat">
-                                    <Boxes className="inline mr-2 mb-1" />Chat
                                 </Link>
                             </li>
                             <li className="relative group">
