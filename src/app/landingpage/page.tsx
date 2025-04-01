@@ -14,6 +14,7 @@ import { ChartCandlestick } from 'lucide-react';
 import {Button} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
+import AboutSection from "@/app/landingpage/aboutpage";
 
 export default function Page() {
   const [showContent, setShowContent] = useState(false);
@@ -209,7 +210,7 @@ export default function Page() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2 }}
-                    className="p-4 pt-16 pl-20 font-mono text-3xl"
+                    className="p-4 pt-10 pl-20 font-mono text-sm"
                   >
                     <ul className="">
                       {["Want to know what has happened in the Stock Market?", "Get the latest Stock Market trends","make a to-do list of the stocks", "Write the stock name you want and get a graph"].map((lit, i) => (
@@ -217,7 +218,7 @@ export default function Page() {
                           initial={{ opacity: 0, x: 100 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 2, delay: i * 2.5 }}
-                          className="py-6"
+                          className="py-2"
                         >
                           {lit}
                         </motion.li>
@@ -244,7 +245,7 @@ export default function Page() {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 2 }}
-                        src="/images/stock3.jpg" alt="" className="max-h-[60vh] pt-16" />
+                        src="/images/stock3.jpg" alt="" className="max-h-[60vh] pt-4" />
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -255,108 +256,7 @@ export default function Page() {
 
       </motion.div>
       {/* end of stock market */}
-
-
-      {/* //this is us */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
-        className=" duration-500 bg-black  text-white overflow-hidden "
-        onClick={() => setShowContent(!showContent)}
-      >
-        <AnimatePresence mode="popLayout">
-          {!showContent ? (
-            <motion.div
-              key="about-image"
-              initial={{ x: "-100%" }} // Start from outside the screen
-              animate={{ x: "0" }} // Slide into view
-              exit={{ x: "-100%" }} // Slide out when hidden
-              transition={{ duration: 0.5 }}
-              className="relative flex items-center justify-center overflow-hidden group transition-opacity duration-500"
-            >
-
-
-              <img src="/images/ab.avif" alt="Dollars" className="w-full opacity-35  max-h-[75vh] duration-500 group-hover:scale-125 group-hover:opacity-[98%] " />
-              <h1 className="absolute text-8xl font-anton transition-all duration-500 group-hover:scale-150 group-hover:text-green-200  tracking-wider">WE ARE MONEYMATRIX</h1>
-
-
-            </motion.div>
-          ) : (
-            <motion.div
-              key="about-content"
-              initial={{ x: "100%" }} // Start from outside the screen
-              animate={{ x: 0 }} // Slide into view
-              exit={{ x: "100%" }} // Slide out when hidden
-              transition={{ duration: 0.5 }}
-              className="relative min-h-[75vh] p-6 bg-black  text-white overflow-hidden"
-            >
-              <img src="/images/ourpicbg.avif" className="absolute inset-0 w-full h-full object-cover opacity-25 backdrop-blur-lg" alt="" />
-
-              <div className="absolute inset-0 flex flex-col items-center pt-4">
-                <div className="absolute inset-0 flex flex-col items-center pt-4">
-
-                  <h2 className="text-5xl font-extrabold mb-2 font-mono py-4 ">ABOUT US</h2>
-
-                </div>
-
-                <div className="  min-h-[600px] relative flex flex-row gap-14 pt-24 pb-4">
-                  <div className="relative max-h-[95%] group duration-700">
-                    <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
-                      <img
-                        src="images/vanshdhir.jpg"
-                        className="absolute inset-0 opacity-90 border-4 border-green-500 transition-all  duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
-                        alt="Vansh Dhir"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 p-4  backdrop-blur-sm text-4xl group-hover:hidden text-center  bg-green-900 bg-opacity-70">
-                        <div className="font-bebas text-white font-bold tracking-wider">VANSH DHIR</div>
-                      </div>
-                    </div>
-
-                    <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center group-hover:backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="https://github.com/Aditya150422">LINK</a></button>
-                    </div>
-                  </div>
-                  <div className="relative max-h-[95%] group">
-                    <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
-                      <img
-                        src="images/Aditya1.jpg"
-                        className="absolute inset-0 border-4 border-green-500  opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
-                        alt="Aditya Mishra"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
-                        <div className="font-bebas text-white font-bold tracking-wider">ADITYA MISHRA</div>
-                      </div>
-                    </div>
-
-                    <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="https://github.com/Aditya150422">LINK</a></button>
-                    </div>
-                  </div>
-
-                  <div className="relative max-h-[95%] group">
-                    <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
-                      <img
-                        src="images/vibhor.jpg"
-                        className="absolute border-4 border-green-500  inset-0 opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
-                        alt="Vibhor Kataria"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 backdrop-blur-sm text-4xl group-hover:hidden text-center text-green-950 bg-green-900 bg-opacity-70">
-                        <div className="font-bebas text-white font-bold  tracking-wider">VIBHOR KATARIA</div>
-                      </div>
-                    </div>
-
-                    <div className="rounded-full hidden duration-700 ease-in-out absolute inset-0 group-hover:flex justify-center items-center backdrop-blur-sm text-4xl">
-                      <button className="ease-in-out duration-300 hover:scale-125 hover:text-green-300"><a href="">LINK</a></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-      </motion.div>
+        <AboutSection/>
       <Footer />
     </>
   );

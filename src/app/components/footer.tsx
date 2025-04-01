@@ -12,7 +12,7 @@ import { Bitcoin } from 'lucide-react';
 
 function Footer() {
     return (
-        <footer className="bg-black border-t-2 border-white py-20 ">
+        <footer className="bg-black min-h-[40vh] border-t-2 border-white py-20 ">
             <div className=" mx-8 ">
                 <div className=" flex justify-around pb-6 border-b border-b-green-50">
                     <div className="text-4xl font-mono font-bold text-green-50"><span className=''><Bitcoin className="inline-block size-8 mb-1"/></span>MONEYMATRIX</div>
