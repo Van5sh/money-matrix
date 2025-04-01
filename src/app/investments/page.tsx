@@ -103,7 +103,7 @@ export default function Page() {
                                 onMouseEnter={() => setHoveredCard(item.index)}
                                 onMouseLeave={() => setHoveredCard(null)}
                                 onClick={() => handleCardClick(item.index)}
-                                className="w-64 p-4 h-[22vh] text-center backdrop-blur-xl bg-white/10 shadow-md rounded-xl cursor-pointer border border-gray-200 hover:shadow-2xl hover:bg-green-600 hover:scale-105 transition-all duration-300"
+                                className="w-64 p-4 h-[22vh] 2xl:h-[16vh] text-center backdrop-blur-xl bg-white/10 shadow-md rounded-xl cursor-pointer border border-gray-200 hover:shadow-2xl hover:bg-green-600 hover:scale-105 transition-all duration-300"
                             >
                                 <CardHeader>
                                     <CardTitle className="text-base font-bold text-white">{item.title}</CardTitle>
