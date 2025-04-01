@@ -1,7 +1,7 @@
 "use client";
 
 import { useState,useEffect } from "react";
-
+import Loading from "../loading";
 export default function Page() {
     const [childAge, setChildAge] = useState<number>(1);
     const [policyTerm, setPolicyTerm] = useState<number>(18);
@@ -16,9 +16,14 @@ export default function Page() {
             const pre=premium*12;
             setprem(pre);
         }
-        
-
     }
+    const [loading, setLoading] = useState(true);
+    useEffect(()=>{
+        setTimeout(()=>{setLoading(false)},5000);
+    },[]);
+    if(loading){
+            return <Loading/>;
+        }
 
 
     return (

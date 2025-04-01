@@ -5,8 +5,11 @@
   import { UserPen, LogOut } from "lucide-react";
   import Editform from "@/app/profile/components/editform";
   import axios from "axios";
+import { set } from "mongoose";
+import Loading from "../../../loading";
 
   const Page = () => {
+    const [loading, setLoading] = useState<boolean>(true);
     const { user, logOut } = UserAuth();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [profileData, setProfileData] = useState({
@@ -30,7 +33,9 @@
           } else {
             console.error("Error fetching user:", response.data.message);
           }
+          setLoading(false);
         } catch (error) {
+          setLoading(true);
           console.error("Failed to fetch user data:", error);
         }
       };
@@ -46,6 +51,10 @@
       });
       fetchUser();
     }, [isOpen, user]);
+
+    if(loading){
+      return<Loading/>;
+    }
 
     return (
       <div className="relative min-h-screen overflow-y-hidden bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4 pt-4 pb-12 mt-[-40px] overflow-hidden text-white font-mono">

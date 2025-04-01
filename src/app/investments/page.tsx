@@ -1,12 +1,15 @@
-"use client";
-import React, { useState, useRef } from "react";
+"use client"
+
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import Link from "next/link";
+import Loading from "../../../loading";
 
 export default function Page() {
     const [hoveredCard, setHoveredCard] = useState(null);
     const sectionRefs = useRef({});
+    const [loading, setLoading] = useState(true);
 
     const items = [
         { index: 1, title: "FIXED DEPOSITS", description: "FOR YOUR SECURE FUTURE",link:"/investments/fixed-deposits" },
@@ -14,6 +17,14 @@ export default function Page() {
         { index: 3, title: "STOCKS", description: "HIGH RISK, HIGH REWARD",link:"/investments/stocks" },
         { index: 4, title: "GOLD", description: "STABLE & SECURE INVESTMENT",link:"/investments/gold" },
     ];
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        },4000);
+    },[]);
+    if(loading){
+        <Loading/>
+    }
 
     const moreInfoContent = {
         1: {
