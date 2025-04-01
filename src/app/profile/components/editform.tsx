@@ -48,6 +48,9 @@ const EditForm = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-4 p-10 bg-white rounded-xl shadow-lg w-full max-w-md"
             >
+                <h1 className="text-3xl font-extrabold text-green-700 mb-8 tracking-wide drop-shadow-lg animate-pulse">
+                    Edit Your Profile
+                </h1>
                 <label className="text-green-900 font-bold">
                     OCCUPATION:
                     <input
