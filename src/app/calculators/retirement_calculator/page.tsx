@@ -18,7 +18,7 @@ export default function Page() {
         setTimeout(()=>{setLoading(false)},5000);
     }, []);
     if(loading){
-        return <Loading/>;
+        return <Loading />;
     }
     const onSubmit = () => {
         if (expenses > 0 && inflation >= 0 && age >= 0 && retirementAge > age) {

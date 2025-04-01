@@ -6,7 +6,7 @@
   import Editform from "@/app/profile/components/editform";
   import axios from "axios";
 import { set } from "mongoose";
-import Loading from "../../../loading";
+import Loading from "../profile/loading";
 
   const Page = () => {
     const [loading, setLoading] = useState<boolean>(true);
