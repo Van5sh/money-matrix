@@ -31,7 +31,7 @@ export default function Page() {
         
         <div className="flex-1">
           <h1 className="text-5xl font-bold mb-5 text-green-400 tracking-wide">
-            Welcome to Maven Financials
+            Welcome to Money Matrix
           </h1>
           <p className="text-lg leading-relaxed text-gray-200">
             Investing is the key to financial freedom. By strategically allocating resources,
