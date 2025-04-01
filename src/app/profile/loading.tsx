@@ -1,5 +1,5 @@
 "use client"
-import animationData from "c:/Users/Aditya/Desktop/newloader.json";   
+import animationData from "./../../../public/newloader.json";   
 import dynamic from "next/dynamic";
 
 const Lottie = dynamic(() => import("lottie-react"), {
