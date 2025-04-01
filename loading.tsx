@@ -1,5 +1,4 @@
 "use client"
-import Lottie from "lottie-react";
 import animationData from "./loader.json";   
 import dynamic from "next/dynamic";
 
@@ -7,7 +6,6 @@ const Lottie = dynamic(() => import("lottie-react"), {
     ssr: false,
     loading: () => <div className="h-screen bg-black/80" />,
 });
-
 export default function Loading() {
     return(
         <div className="bg-black/80 min-h-screen flex items-center justify-center">

@@ -23,7 +23,13 @@ export default function Page() {
     const [open, setOpen] = useState<boolean>(false);
     const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
     const [loading,setLoading]=useState(true);
+    const [news,setNews]=useState<string[] | null>([]);
     useEffect(() => {
+        const fetchNews=async ()=>{
+            const request=await axios.get(`https://api.marketaux.com/v1/news/all?countries=in&filter_entities=true&limit=10&published_after=2025-02-22T06:40&api_token=${process.env.NEXT_PUBLIC_MARKETAUX_API_KEY}`);
+            console.log(request.data.data);
+            setNews(request.data.data);
+        }
         const fetchBlogs = async () => {
             const request = await axios.get("/api/blogs");
             console.log(request.data.data);
@@ -34,6 +40,7 @@ export default function Page() {
             setBlogs(data);
         };
         fetchBlogs();
+        fetchNews();
         setLoading(false);
     }, []);
     if(loading){
@@ -83,6 +90,16 @@ export default function Page() {
                             <Newspaper className="w-6 h-6" /> Latest News
                         </div>
                         <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
+                            {
+                                news?.map((newsItem, index) => {
+                                    return (
+                                        <div key={index} className="mb-4">
+                                            <h2 className="text-lg font-semibold">{newsItem.title}</h2>
+                                            <p className="text-sm text-gray-600">{newsItem.description}</p>
+                                            <a href={newsItem.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Read more</a>
+                                        </div>
+                                    );
+                                })}
                         </div>
                     </div>
                 </div>
