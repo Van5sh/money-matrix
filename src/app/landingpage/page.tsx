@@ -19,6 +19,7 @@ export default function Page() {
   const [showContent, setShowContent] = useState(false);
   const [showContent1, setShowContent1] = useState(false);
   const [showContent2, setShowConten2] = useState(false);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const [flipped,setflip]=useState(false);
   const text = "STOCK MARKET".split("");
   const ref = React.useRef(null);
@@ -53,7 +54,7 @@ export default function Page() {
               transition={{ duration: 0.5 }}
               className="relative bg-black flex justify-center items-center overflow-hidden min-h-[75vh] group"
             >
-              <img src="/images/insu9.jpg" alt="" className="absolute w-full object-cover min-h-[75vh] opacity-35 group-hover:opacity-90 group-hover:scale-125 duration-500" />
+              <img src="/images/insurance.avif" alt="" className="absolute w-full object-cover min-h-[75vh] opacity-35 group-hover:opacity-90 group-hover:scale-125 duration-500" />
               <h1 className="absolute text-8xl text-white font-anton transition-all duration-500 group-hover:scale-150 group-hover:text-green-200 tracking-wider ">INSURANCE</h1>
 
             </motion.div>
@@ -65,72 +66,90 @@ export default function Page() {
               exit={{ x: "100%" }}
               transition={{ duration: 0.5 }}
             >
-
               <motion.div
-
                 initial={{ backgroundColor: "#FFFFFF" }}
                 whileInView={{ backgroundColor: "#1B5E20" }}
                 transition={{ duration: 1.5, delay: 0.5 }}
-                className=" text-white grid grid-cols-5 min-h-[75vh]"
+                className="text-white grid grid-cols-5 h-[75vh]"
               >
-                <div
-                  className=" relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center  border-white  col-span-1 ">
-                  <img src="/images/feature.avif" alt="Dollars" className="h-[75vh]  object-cover opacity-45 " />
-                  <h1 className="absolute">
-                    FEATURES
-                  </h1>
+                <div className="relative font-medium font-oswald text-6xl border-l-[1px] flex justify-center items-center border-white col-span-1">
+                  <img
+                    src="/images/feature.avif"
+                    alt="Dollars"
+                    className="h-[75vh] object-cover opacity-45"
+                  />
+                  <h1 className="absolute">FEATURES</h1>
                 </div>
 
-                <div className="flex flex-row gap-10 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-4 bg-gradient-to-br from-green-800 via-green-400 to-teal-700 transition-all duration-200 hover:shadow-2xl hover:shadow-green-400 ">
-                  <motion.div
-                    
-                  >
-                    <FontAwesomeIcon icon={faIndianRupeeSign} className="text-green-300 text-[200px]" />
+                <div className="flex flex-row gap-5 p-10 pt-12 min-h-[50vh] justify-center items-center col-span-4 bg-gradient-to-br from-emerald-800 via-emerald-700 to-emerald-700 transition-all duration-200 hover:shadow-2xl hover:shadow-green-400">
+                  <motion.div>
+                    <FontAwesomeIcon
+                      icon={faIndianRupeeSign}
+                      className="text-green-300 p-4 text-[200px]"
+                    />
                   </motion.div>
 
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    onClick={()=>setflip(!flipped)}
-                    animate={{rotateY:flipped?180:0}}
-                    transition={{duration:0.6}}
-                    style={{transformStyle:"preserve-3d"}}
+                    transition={{ duration: 1 }}
+                    className="grid grid-cols-2 gap-8"
                   >
-                    {/*front-side*/}
-                    <Card className="bg-black  z-40  border-2 rounded-[30%] shadow-xl  shadow-green-400 border-green-400 p-20 " style={{backfaceVisibility:"hidden"}}>
-                      <CardContent className="pt-7">
-                    {["BMI CALCULATOR", "INSURANCE CALCULATOR", "ACCOUNTING", "KNOW YOUR RIGHTS"].map(
-                      (text, index) => (
-                        <motion.h1
-                          key={index}
-                          initial={{ x: 100, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          transition={{ duration: 1 + index * 0.5 }}
-                          className="text-3xl font-mono font-medium relative pb-2 text-white"
+                    {[
+                      { title: "BMI CALCULATOR", desc: "Calculate your BMI based on weight & height" },
+                      { title: "INSURANCE CALCULATOR", desc: "Estimate your insurance premiums easily" },
+                      { title: "BLOGS", desc: "Increase your knowledge through informatory blogs" },
+                      { title: "KNOW YOUR RIGHTS", desc: "You have no rights" },
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        onClick={(e) =>{
+                          e.stopPropagation();
+                          setFlippedIndex(flippedIndex === index ? null : index)
+                        }}
+                        className="relative cursor-pointer"
+                      >
+                        <motion.div
+                          initial={{ rotateY: 0 }}
+                          animate={{
+                            rotateY: flippedIndex === index ? 180 : 0,
+                          }}
+                          transition={{ duration: 0.6 }}
+                          className="relative"
+                          style={{ transformStyle: "preserve-3d" }}
                         >
-                          <button
-                            className="transition-all duration-150 ease-in-out hover:scale-125 hover:text-green-500">
-                            {text}
-                          </button>
+                          {/* Front Side */}
+                          <Card
+                            className="bg-black border-2 rounded-lg shadow-xl duration-300 ease-in-out bg-black/50 backdrop-blur-lg hover:bg-transparent shadow-green-400 text-white border-green-400 p-10 hover:scale-105 hover:text-black  h-48 flex items-center justify-center"
+                            style={{ backfaceVisibility: "hidden" }}
+                          >
+                            <CardContent className="text-center">
+                              <motion.h1 className="text-2xl font-semibold">
+                                {feature.title}
+                              </motion.h1>
+                            </CardContent>
+                          </Card>
 
-                        </motion.h1>
-                      )
-                    )}
-
-                    </CardContent>
-                    </Card>
-                    {/*back-side*/}
-                    <Card className="absolute inset-0 bg-black  z-40  border-2 rounded-[30%] shadow-xl  shadow-green-400 border-green-400 p-20 " style={{backfaceVisibility:"hidden",transform:"rotateY(180deg)"}}>
-                      <CardContent className="pt-7">
-
-
-                    </CardContent>
-                    </Card>
-
+                          {/* Back Side */}
+                          <Card
+                            className="absolute inset-0 bg-transparent  backdrop-blur-lg border-2 rounded-lg shadow-xl shadow-green-400 border-green-400 p-10  h-48 flex items-center justify-center"
+                            style={{
+                              backfaceVisibility: "hidden",
+                              transform: "rotateY(180deg)",
+                            }}
+                          >
+                            <CardContent className="text-center font-semibold text-xl text-white">
+                              <p className="">{feature.desc}</p>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      </motion.div>
+                    ))}
                   </motion.div>
                 </div>
               </motion.div>
-            </motion.div>)}
+            </motion.div>
+          )}
         </AnimatePresence>
       </motion.div>
 
@@ -192,8 +211,8 @@ export default function Page() {
                     transition={{ delay: 2 }}
                     className="p-4 pt-16 pl-20 font-mono text-3xl"
                   >
-                    <ul className="pt-5">
-                      {["We like it", "You will too", "Come to me baby", "ahhhhhhhhhhhhhh"].map((lit, i) => (
+                    <ul className="">
+                      {["Want to know what has happened in the Stock Market?", "Get the latest Stock Market trends","make a to-do list of the stocks", "Write the stock name you want and get a graph"].map((lit, i) => (
                         <motion.li
                           initial={{ opacity: 0, x: 100 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -225,7 +244,7 @@ export default function Page() {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 2 }}
-                        src="/images/stock3.jpg" alt="" className="max-h-[60vh]" />
+                        src="/images/stock3.jpg" alt="" className="max-h-[60vh] pt-16" />
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -301,7 +320,7 @@ export default function Page() {
                   <div className="relative max-h-[95%] group">
                     <div className="min-w-[60vh] h-full rounded-full relative overflow-hidden">
                       <img
-                        src="images/aditya2.jpg"
+                        src="images/Aditya1.jpg"
                         className="absolute inset-0 border-4 border-green-500  opacity-90 duration-700 group-hover:opacity-85 object-cover min-w-[60vh] h-full rounded-full"
                         alt="Aditya Mishra"
                       />
