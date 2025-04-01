@@ -104,52 +104,57 @@ export default function Page() {
                     </div>
                 </div>
                 {open && selectedBlog && (
-                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                        <div className="relative justify-center mt-20 p-7 rounded-lg shadow-lg w-full max-w-md bg-white">
-                            <button
-                                onClick={() => setOpen(false)}
-                                className="absolute top-3 right-3 text-gray-900 hover:text-gray-600 text-xl font-bold"
-                            >
-                                X
-                            </button>
-                            <Card className="w-full">
-                                <CardHeader className="text-xl font-bold text-gray-900">
-                                    EDIT BLOG
-                                </CardHeader>
-                                <CardContent className="flex flex-col gap-4">
-                                    <input
-                                        type="text"
-                                        value={selectedBlog.title}
-                                        onChange={(e) => setSelectedBlog({ ...selectedBlog, title: e.target.value })}
-                                        className="border border-gray-300 rounded-md p-2 w-full focus:ring-2 focus:ring-green-500 focus:outline-none"
-                                    />
-                                    <textarea
-                                        value={selectedBlog.content}
-                                        onChange={(e) => setSelectedBlog({ ...selectedBlog, content: e.target.value })}
-                                        className="border border-gray-300 rounded-md p-2 w-full h-32 resize-none focus:ring-2 focus:ring-green-500 focus:outline-none"
-                                    />
-                                    <div className="flex justify-end gap-4">
-                                        <Button
-                                            onClick={() => setOpen(false)}
-                                            className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                                        >
-                                            Cancel
-                                        </Button>
-                                        <Button
-                                            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
-                                            onClick={() => {
-                                                setOpen(false);
-                                                saveChanges();
-                                            }}
-                                        >
-                                            Save Changes
-                                        </Button>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="relative justify-center mt-20 p-7 rounded-lg shadow-2xl w-full max-w-md bg-gradient-to-br from-green-700 via-gray-900 to-green-400 text-white">
+            <button
+                onClick={() => setOpen(false)}
+                className="absolute top-3 right-3 text-gray-300 hover:text-gray-100 text-3xl font-extrabold transition-all z-50"
+            >
+                ✖
+            </button>
+            <Card className="w-full border border-green-400 shadow-lg rounded-lg p-6 backdrop-blur-lg relative z-10">
+                <CardHeader className="text-2xl font-extrabold text-green-500 text-center uppercase tracking-widest drop-shadow-lg">
+                    EDIT YOUR BLOG
+                </CardHeader>
+                <CardContent className="flex flex-col gap-6">
+                    <input
+                        type="text"
+                        value={selectedBlog.title}
+                        onChange={(e) => setSelectedBlog({ ...selectedBlog, title: e.target.value })}
+                        className="border border-green-400 rounded-md p-3 w-full bg-gray-900 text-green-300 placeholder-green-500 focus:ring-2 focus:ring-green-300 focus:outline-none shadow-inner hover:shadow-lg transition"
+                        placeholder="Enter a new title..."
+                    />
+                    <textarea
+                        value={selectedBlog.content}
+                        onChange={(e) => setSelectedBlog({ ...selectedBlog, content: e.target.value })}
+                        className="border border-green-400 rounded-md p-3 w-full h-40 resize-none bg-gray-900 text-green-300 placeholder-green-500 focus:ring-2 focus:ring-green-300 focus:outline-none shadow-inner hover:shadow-lg transition"
+                        placeholder="Edit your content..."
+                    />
+                    <div className="flex justify-end gap-4">
+                        <Button
+                            onClick={() => setOpen(false)}
+                            className="bg-red-600 text-white px-5 py-2 rounded-md text-lg font-semibold hover:bg-red-700 transition shadow-lg"
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            className="bg-green-500 text-white px-5 py-2 rounded-md text-lg font-semibold hover:bg-green-600 transition shadow-lg"
+                            onClick={() => {
+                                setOpen(false);
+                                saveChanges();
+                            }}
+                        >
+                            Save Changes
+                        </Button>
                     </div>
-                )}
+                </CardContent>
+            </Card>
+        </div>
+    </div>
+)}
+
+
+
             </div>
         </div>
     );
