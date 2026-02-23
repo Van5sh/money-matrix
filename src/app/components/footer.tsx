@@ -12,7 +12,7 @@ import { Bitcoin } from 'lucide-react';
 
 function Footer() {
     return (
-        <footer className="bg-green-950 border-t-2 border-white py-20 ">
+        <footer className="bg-black min-h-[40vh] border-t-2 border-white py-20 ">
             <div className=" mx-8 ">
                 <div className=" flex justify-around pb-6 border-b border-b-green-50">
                     <div className="text-4xl font-mono font-bold text-green-50"><span className=''><Bitcoin className="inline-block size-8 mb-1"/></span>MONEYMATRIX</div>
@@ -25,18 +25,18 @@ function Footer() {
                         </div>
                         <ul className="font-mono leading-8 text-lg">
                             <li className="pb-4 text-xl font-semibold text-green-50 opacity-90"><span className="pr-1"><Linkedin className="inline-block pb-1" /></span>LINKEDIN</li>
-                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vansh Dhir</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Vibhor Kataria</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>Aditya Mishra</button></li>
+                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.linkedin.com/in/vansh-dhir-686b5028b/">Vansh Dhir</a></button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.linkedin.com/in/vibhor-kataria-71a07b28b/">Vibhor Kataria</a></button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.linkedin.com/in/aditya-mishra-a6b395285/">Aditya Mishra</a></button></li>
                         </ul>
                         <div className="invisible">
                             hello
                         </div>
                         <ul className="font-mono leading-8 text-lg ">
                             <li className="pb-4 text-xl font-semibold text-green-50 opacity-90"><span className="pr-1"><Instagram className="inline-block pb-1" /></span>SOCIALS</li>
-                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>vansh_277</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>viberrrr</button></li>
-                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'>aditya_fatneek</button></li>
+                            <li className="text-green-50"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.instagram.com/vansh__277/">vansh_277</a></button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.instagram.com/vibhor._kataria/">viberrrr</a></button></li>
+                            <li className="text-green-50 pt-2"><button className='transition:all duration-300 ease-in-out hover:-translate-y-2 hover:scale-125 hover:text-green-400 hover:translate-x-2'><a href="https://www.instagram.com/aditya_fatneek/">aditya_fatneek</a></button></li>
                         </ul>
                         <div className="invisible">
                             hello

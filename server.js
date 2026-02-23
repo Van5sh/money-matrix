@@ -17,6 +17,9 @@ io.on("connection", (socket) => {
     socket.on("client ready", (data) => {
         console.log("Client says:", data);
     });
+    socket.on("message", (data) => {
+       socket.broadcast.emit("message", data);
+    });
     socket.on("send_message", (data) => {
         socket.broadcast.emit("message", data);
     });

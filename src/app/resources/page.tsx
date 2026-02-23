@@ -2,117 +2,159 @@
 
 import React, { useEffect, useState } from "react";
 import Blog from "@/app/components/blog";
-import { UserAuth } from "@/app/context/AuthContext";
 import "../globals.css";
 import { Newspaper } from "lucide-react";
-import { news } from "@/app/constants/news"
+import axios from "axios";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Loading from "./loading";
+
+interface Blog {
+    _id: string;
+    title: string;
+    content: string;
+    author: string;
+    createdAt: string;
+    likes: number;
+}
 
 export default function Page() {
-    const { user } = UserAuth();
-    const currentUser = user?.displayName || "Guest";
-
-    const initialBlogs = [
-        {
-            id: 1,
-            title: "My First Blog",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Morbi vitae pharetra orci. Duis eget vehicula ipsum, at dapibus lorem.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 2,
-            title: "A Day in React Native",
-            content: "Vestibulum vitae libero vitae sapien cursus accumsan. Sed vulputate lacus eu risus rhoncus, non ultrices justo condimentum.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 3,
-            title: "Understanding Next.js",
-            content: "Curabitur faucibus tortor id nulla tristique, sed ornare mauris vehicula. Proin convallis dui ut ligula accumsan posuere.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        },
-        {
-            id: 4,
-            title: "CSS Tips & Tricks",
-            content: "Aliquam erat volutpat. Aenean sodales varius justo nec sollicitudin. Etiam vestibulum sapien sed felis interdum vulputate.",
-            createdAt: new Date(),
-            user: currentUser,
-            likes: 0
-        }
-    ];
-
-    const [blogs, setBlogs] = useState(initialBlogs);
-    const [newsData, setNews] = useState<any[]>();
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [open, setOpen] = useState<boolean>(false);
+    const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [news, setNews] = useState<string[] | null>([]);
     useEffect(() => {
-        setNews(news)
-        // const getNews = async () => {
-        //     try {
-        //         const request = await fetch("http://localhost:3000/api/getnews");
-        //         const data = await request.json();
-        //         setNews(data);
-        //     } catch (error) {
-        //         console.error("News Error:", error);
-        //     }
-        // };
-        //
-        // getNews();
+        const fetchNews = async () => {
+            const request = await axios.get(`https://api.marketaux.com/v1/news/all?countries=in&filter_entities=true&limit=10&published_after=2025-02-22T06:40&api_token=${process.env.NEXT_PUBLIC_MARKETAUX_API_KEY}`);
+            console.log(request.data.data);
+            setNews(request.data.data);
+        }
+        const fetchBlogs = async () => {
+            const request = await axios.get("/api/blogs");
+            console.log(request.data.data);
+            const data = request.data.data.map((blog: Blog) => ({
+                ...blog,
+                createdAt: new Date(blog.createdAt),
+            }));
+            setBlogs(data);
+        };
+        fetchBlogs();
+        fetchNews();
+        setLoading(false);
     }, []);
-
-    const handleLike = (id: number) => {
-        setBlogs((prevBlogs) =>
-            prevBlogs.map((blog) =>
-                blog.id === id ? { ...blog, likes: blog.likes + 1 } : blog
-            )
-        );
+    if (loading) {
+        return <Loading />;
+    }
+    const saveChanges = async () => {
+        if (selectedBlog) {
+            const id = selectedBlog._id;
+            const updatedDate = new Date().toLocaleDateString();
+            await axios.put(`/api/blogs/${id}`, {
+                title: selectedBlog.title,
+                content: selectedBlog.content,
+                createdAt: updatedDate,
+            });
+            setOpen(false);
+        }
     };
 
-    const topBlogs = [...blogs].sort((a, b) => b.likes - a.likes).slice(0, 3);
-
     return (
-        <div className="flex flex-col gap-6 p-6 items-center justify-center min-h-screen bg-gray-50 overflow-auto">
-            <h1 className="text-4xl font-bold text-green-900 mb-4">Latest Blogs</h1>
+        <div className="flex flex-col gap-6 p-6 items-center justify-center bg-white min-h-screen overflow-auto"
+            style={{ backgroundImage: "url('bg1.svg')", backgroundSize: "cover", backgroundPosition: "center" }}>
+            <h1 className="text-6xl font-bold font-anton tracking-widest text-white mb-4">LATEST BLOGS</h1>
             <div className="flex flex-col md:flex-row gap-8 w-full max-w-6xl">
-                <div className="flex flex-col items-center justify-center flex-1">
-                    <div className="w-full max-w-2xl flex flex-col gap-6">
+                <div className="flex flex-col w-full items-center justify-center">
+                    <div className="w-full flex flex-col gap-6 text-2xl text-white">
                         {blogs.map((blog) => (
-                            <Blog key={blog.id} {...blog} onLike={() => handleLike(blog.id)} />
+                            <Blog
+                                key={blog._id}
+                                _id={blog._id}
+                                title={blog.title}
+                                author={blog.author}
+                                likes={blog.likes}
+                                content={blog.content}
+                                createdAt={new Date(blog.createdAt)} open={open}
+                                onOpen={() => {
+                                    setSelectedBlog(blog);
+                                    setOpen(true);
+                                }}
+                            />
                         ))}
                     </div>
                 </div>
+
                 <div className="flex flex-col w-full max-w-sm gap-6">
                     <div className="w-full max-w-md bg-white rounded-lg shadow-green-300 shadow-lg overflow-hidden">
-                        <div className="bg-green-700 text-white text-xl font-bold px-6 py-4 flex items-center gap-2">
+                        <div className="bg-gradient-to-r from-green-700 via-emerald-400 to-green-500 text-white text-xl font-bold px-6 py-4 flex items-center gap-2">
                             <Newspaper className="w-6 h-6" /> Latest News
                         </div>
                         <div className="p-6 text-green-900 min-h-[200px] border-t border-green-300">
-                            {/*{news.length > 0 ? (*/}
-                            {/*    news.map((article, index) => (*/}
-                            {/*        <div key={index} className="border-b border-green-200 pb-3 last:border-0">*/}
-                            {/*            <h2 className="text-lg font-semibold">{article.title}</h2>*/}
-                            {/*            <p className="text-sm">{article.description}</p>*/}
-                            {/*        </div>*/}
-                            {/*    ))*/}
-                            {/*) : (*/}
-                            {/*    <p>Loading news...</p>*/}
-                            {/*)}*/}
-                        </div>
-                    </div>
-                    <div className="bg-green-900 w-full max-w-md p-6 rounded-lg self-start text-white shadow-lg">
-                        <h1 className="text-xl font-bold mb-4 text-center">🔥 TOP BLOGS</h1>
-                        <div className="space-y-4">
-                            {topBlogs.map((blog) => (
-                                <div key={blog.id} className="border-b border-white pb-3 last:border-0">
-                                    <h2 className="text-lg font-semibold">{blog.title}</h2>
-                                </div>
-                            ))}
+                            {
+                                news?.map((newsItem, index) => {
+                                    return (
+                                        <div key={index} className="mb-4">
+                                            <h2 className="text-lg font-semibold">{newsItem.title}</h2>
+                                            <p className="text-sm text-gray-600">{newsItem.description}</p>
+                                            <a href={newsItem.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">Read more</a>
+                                        </div>
+                                    );
+                                })}
                         </div>
                     </div>
                 </div>
+                {open && selectedBlog && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                        <div className="relative justify-center mt-20 p-7 rounded-lg shadow-2xl w-full max-w-md bg-gradient-to-br from-green-700 via-gray-900 to-green-400 text-white">
+                            <button
+                                onClick={() => setOpen(false)}
+                                className="absolute top-3 right-3 text-gray-300 hover:text-gray-100 text-3xl font-extrabold transition-all z-50"
+                            >
+                                ✖
+                            </button>
+                            <Card className="w-full border border-green-400 shadow-lg rounded-lg p-6 backdrop-blur-lg relative z-10">
+                                <CardHeader className="text-2xl font-extrabold text-green-500 text-center uppercase tracking-widest drop-shadow-lg">
+                                    EDIT YOUR BLOG
+                                </CardHeader>
+                                <CardContent className="flex flex-col gap-6">
+                                    <input
+                                        type="text"
+                                        value={selectedBlog.title}
+                                        onChange={(e) => setSelectedBlog({ ...selectedBlog, title: e.target.value })}
+                                        className="border border-green-400 rounded-md p-3 w-full bg-gray-900 text-green-300 placeholder-green-500 focus:ring-2 focus:ring-green-300 focus:outline-none shadow-inner hover:shadow-lg transition"
+                                        placeholder="Enter a new title..."
+                                    />
+                                    <textarea
+                                        value={selectedBlog.content}
+                                        onChange={(e) => setSelectedBlog({ ...selectedBlog, content: e.target.value })}
+                                        className="border border-green-400 rounded-md p-3 w-full h-40 resize-none bg-gray-900 text-green-300 placeholder-green-500 focus:ring-2 focus:ring-green-300 focus:outline-none shadow-inner hover:shadow-lg transition"
+                                        placeholder="Edit your content..."
+                                    />
+                                    <div className="flex justify-end gap-4">
+                                        <Button
+                                            onClick={() => setOpen(false)}
+                                            className="bg-red-600 text-white px-5 py-2 rounded-md text-lg font-semibold hover:bg-red-700 transition shadow-lg"
+                                        >
+                                            Cancel
+                                        </Button>
+                                        <Button
+                                            className="bg-green-500 text-white px-5 py-2 rounded-md text-lg font-semibold hover:bg-green-600 transition shadow-lg"
+                                            onClick={() => {
+                                                setOpen(false);
+                                                saveChanges();
+                                            }}
+                                        >
+                                            Save Changes
+                                        </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                )}
+
+
+
             </div>
         </div>
     );
